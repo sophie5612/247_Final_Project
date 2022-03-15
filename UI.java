@@ -3,7 +3,7 @@
  */
 
 public class UI {
-    String welcome = " ";
+    String welcome = "Welcome to Syntax Errorz Beautiful Booking System";
     User user;
 
     /**
@@ -42,4 +42,14 @@ public class UI {
     public void RoomPicker(){}
     public void DurationOfStay(){}
     public void BedScreen(){}
+
+    public String getWelcome(){
+        return welcome;
+    }
+
+    public static void main(String[] args) {
+
+        UI ui = new UI();
+        System.out.println(ui.getWelcome());
+    }
 }
