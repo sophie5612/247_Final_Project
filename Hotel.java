@@ -11,13 +11,13 @@ public class Hotel extends Booking {
     private boolean noSmoking;
     private int numOfBeds;
     private boolean hasPool;
-    private ArrayList<Rooms> rooms;
+    private ArrayList<Room> rooms;
 
     public Hotel() {
 
     }
 
     private int[][] showRooms() {
-        
+        return new int[0][0];
     }
 }

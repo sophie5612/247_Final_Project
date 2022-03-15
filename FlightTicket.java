@@ -8,10 +8,11 @@ public class FlightTicket extends Flight{
     private ArrayList<Bag> bags;
     private boolean windowSeat;
 
-    public void addPetTicket(PetSize petSize) {
+    public void addPetTicket(boolean petSize) {
 
     }
+
     public boolean isSeatAvailable(Seat seat) {
-        
+        return false;
     }
 }
