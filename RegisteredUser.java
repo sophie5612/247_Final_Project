@@ -18,7 +18,7 @@ public class RegisteredUser extends User{
      */
     public RegisteredUser(){
         super();
-        this.login = new Login(" ", " ");
+        this.login = new Login();
         this.name = " ";
         this.age = 0;
         this.flightData = new ArrayList<Flight>();

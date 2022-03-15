@@ -51,5 +51,41 @@ public class UI {
 
         UI ui = new UI();
         System.out.println(ui.getWelcome());
+
+        Bag bag = new Bag();
+        System.out.println(bag);
+
+        Booking booking = new Booking();
+        System.out.println(booking);
+
+        BusinessUser bUser = new BusinessUser();
+        System.err.println(bUser);
+
+        Flight flight = new Flight();
+        System.out.println(flight);
+
+        FlightTicket fTicket = new FlightTicket();
+        System.out.println(fTicket);
+
+        Hotel hotel = new Hotel();
+        System.out.println(hotel);
+
+        Login login = new Login();
+        System.out.println(login);
+
+        PetTicket pTicket = new PetTicket();
+        System.out.println(pTicket);
+
+        RegisteredUser rUser = new RegisteredUser();
+        System.out.println(rUser);
+
+        Room room = new Room();
+        System.out.println(room);
+
+        Seat seat = new Seat();
+        System.out.println(seat);
+
+        User user = new User();
+        System.err.println(user);
     }
 }
