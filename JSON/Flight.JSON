@@ -1,0 +1,39 @@
+[
+    {
+        "flightID": "0aa311b0-29ac-4aad-a060-b99eba863755",
+        "airport" : "PHL",
+        "airline" : "Spirit",
+        "desitination" : "CLM",
+        "depatureTime" : "11:00 PM EST",
+        "arrivalTime" : "2:00 AM EST",
+        "depatureDate" : "11/02/2022",
+        "arrivalDate" : "11/03/2022",
+        "seats" : [
+            {
+                "seatID" : "de86de6f-6b24-4b02-b439-122201eed34b",
+                "seatNumber" : "3B",
+                "seatClass" : "First",
+                "type" : "Middle"
+            }, {
+                "seatID" : "8043690a-f255-40e8-9e26-90f2c24ab7a5",
+                "seatNumber" : "6A",
+                "seatClass" : "Buisness",
+                "type" : "Window"
+            }
+        ]
+    } , {
+        "flightID": "565e6565-af69-4ea5-88b2-8c35c301c3e3",
+        "airport" : "CLT",
+        "airline" : "Spirit",
+        "desitination" : "LAS",
+        "depatureTime" : "4:00 PM EST",
+        "arrivalTime" : "7:00 PM CST",
+        "depatureDate" : "12/25/2022",
+        "arrivalDate" : "12/25/2022",
+        "seats" : [
+            {
+
+            }
+        ]
+    }
+]

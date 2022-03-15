@@ -1,0 +1,29 @@
+[
+    {
+         "userID": "5ba4b205-5fb3-48b2-9e75-e95536a192bf",
+         "firstName": "Benjamin",
+         "lastName": "Tibbits",
+         "dateOfBirth": "11/20/2000",
+         "smoker": false,
+         "address": "123 Hublem Street",
+         "age": 21,
+         "password": 1234,
+         "Frequent Flyer" : false,
+         "Flight History" : ["0aa311b0-29ac-4aad-a060-b99eba863755", "565e6565-af69-4ea5-88b2-8c35c301c3e3"],
+         "Room History" : ["f4562c63-2b93-4537-a886-dac4cbcef1c0", "fcb3326c-0f4d-424b-beae-1561faa5973f"],
+         "FamilyMember" : ["516e27c1-b214-4bac-aa44-cb1dc73665d6", "6a75bc91-9074-4d95-be8d-c86a11300254"]
+    } , {
+        "userID":"d81ce85e-f3a1-4c9f-80c6-e6109cc1230f",
+        "firstName": "Julia",
+        "lastName": "Kuzan",
+        "dateOfBirth": "12/25/1969",
+        "smoker": true,
+        "address": "523 North Pole Street",
+        "age": 52,
+        "password": 1234,
+        "Frequent Flyer" : false,
+        "Flight History" : ["0aa311b0-29ac-4aad-a060-b99eba863755", "565e6565-af69-4ea5-88b2-8c35c301c3e3"],
+        "Room History" : ["f4562c63-2b93-4537-a886-dac4cbcef1c0", "fcb3326c-0f4d-424b-beae-1561faa5973f"],
+        "FamilyMember" : []
+   }
+] 

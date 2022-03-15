@@ -1,0 +1,32 @@
+[
+    {
+        "hotelID": "dd6150e5-4c08-4307-8036-67af45a56a6f",
+        "name" : "The Marriot",
+        "location" : "Columbia, South Carolina",
+        "star rating": 4,
+        "pool": false,
+        "rooms": [
+            {
+                "roomID": "f4562c63-2b93-4537-a886-dac4cbcef1c0",
+                "roomNumber" : 101,
+                "numOfBeds" : 2,
+                "smoking" : false,
+                "bookedDates" : []
+            }, {
+                "roomID": "fcb3326c-0f4d-424b-beae-1561faa5973f",
+                "roomNumber" : 102,
+                "numOfBeds" : 1,
+                "smoking" : true,
+                "bookedDates" : []
+            }
+        ]
+    } , {
+        "hotelID": "e4f29019-a902-42d8-820f-5feb70cd5d00",
+        "name" : "The Hilton",
+        "location" : "Austin, Texas",
+        "star rating": 3,
+        "pool": true,
+        "rooms": [
+        ]
+    }
+]
