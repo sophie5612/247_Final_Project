@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 public class RegisteredUser extends User{
     private Login login;
-    private String name;
-    private int age;
     private ArrayList<Flight> flightData;
     private ArrayList<Hotel> hotelData;
     private ArrayList<User> familyList;
@@ -19,8 +17,6 @@ public class RegisteredUser extends User{
     public RegisteredUser(){
         super();
         this.login = new Login();
-        this.name = " ";
-        this.age = 0;
         this.flightData = new ArrayList<Flight>();
         this.hotelData = new ArrayList<Hotel>();
         this.familyList = new ArrayList<User>();
@@ -30,19 +26,15 @@ public class RegisteredUser extends User{
     /**
      * A parameterized constructor for Registered User
      * @param login
-     * @param name
-     * @param age
      * @param flightData
      * @param hotelData
      * @param familyList
      * @param frequentFlier
      */
-    public RegisteredUser(Login login, String name, int age, ArrayList<Flight> flightData, ArrayList<Hotel> hotelData, 
+    public RegisteredUser(Login login, ArrayList<Flight> flightData, ArrayList<Hotel> hotelData, 
     ArrayList<User> familyList, boolean frequentFlier){
         super();
         this.login = login;
-        this.name = name;
-        this.age = age;
         this.flightData = flightData;
         this.hotelData = hotelData;
         this.familyList = familyList;
@@ -77,14 +69,4 @@ public class RegisteredUser extends User{
      * Updates the User's frequent flier status
      */
     public void updateFrequentFlier(){}
-
-    /**
-     * Writes changes to JSON files
-     */
-    public void writeToFile(){}
-
-    /**
-     * Reads data from JSON files
-     */
-    public void readFromFile(){}
 }
