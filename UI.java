@@ -64,34 +64,36 @@ public class UI {
 
         System.out.println("Would you like to book this flight? (Y/N)");
         String book = scanner.next();
-        if(book == "Y"){
+        if (book == "Y") {
             FlightTicket ticket = SeatPicker();
-            //add flight to user
+            // add flight to user
         }
     }
 
     /**
      * Method to search for a flight
+     * 
      * @param destinationCity
      * @param departAirport
      */
     public Flight SearchFlight(String destinationCity, String departAirport) {
         // search for a flight
-        return null;
+        return null; //for compliling sake
     }
 
     /**
      * Method to pick a seat
+     * 
      * @return The flight at the requested location
      */
     public FlightTicket SeatPicker() {
         System.out.println("Please pick which seat you would like\nInput the row: ");
         int row = scanner.nextInt();
         System.out.println("Input the column: ");
-        int col = scanner.nextInt() ;
+        int col = scanner.nextInt();
 
         // return the flight ticket, update the double array
-        return null;
+        return null; //for compiling sake
     }
 
     /**
@@ -101,12 +103,12 @@ public class UI {
         System.out.println("Welcome to ticket history");
         // retrieve user's past flights
         /*
-        if(Booking.getFlights() != null)
-        for(int i = 0; i < flights.length; i++){
-            System.out.println(ticket);
-        }
-        else System.out.println("You have no past tickets");
-        */
+         * if(Booking.getFlights() != null)
+         * for(int i = 0; i < flights.length; i++){
+         * System.out.println(ticket);
+         * }
+         * else System.out.println("You have no past tickets");
+         */
     }
 
     /**
@@ -115,18 +117,18 @@ public class UI {
     public void FrequentFlier() {
         System.err.println("Frequent flier status: ");
         /*
-        if(RegisteredUser.frequentFlier == true){
-            System.out.println("Active");
-        } else {
-            System.out.println("Not active");
-        }
-        */
+         * if(RegisteredUser.frequentFlier == true){
+         * System.out.println("Active");
+         * } else {
+         * System.out.println("Not active");
+         * }
+         */
     }
 
-      /**
-      * Method to create a pet ticket
-      */
-      public void Pet() {
+    /**
+     * Method to create a pet ticket
+     */
+    public void Pet() {
         System.out.print("Please input the weight of your pet (lbs)");
         double weight = scanner.nextDouble();
         // PetTicket petTicket = new PetTicket(weight);
