@@ -47,17 +47,90 @@ public class UI {
                     quit = true;
             }
         }
+        System.out.println("Goodbye!");
+        scanner.close();
     }
 
     /**
-     * 
+     * Method to book a flight
      */
     public void BookFlight() {
-        String destinationCity = " ";
-        String departAirport = " ";
-        System.out.println("Input the following:\nDestination City: ");
-        destinationCity = scanner.nextLine();
-        departAirport = scanner.nextLine();
+        System.out.print("Input the following\nDestination City: ");
+        String destinationCity = scanner.next();
+        System.out.print("Depart Airport: ");
+        String departAirport = scanner.next();
+
+        // SearchFlight(destinationCity, departAirport)
+
+        System.out.println("Would you like to book this flight? (Y/N)");
+        String book = scanner.next();
+        if(book == "Y"){
+            FlightTicket ticket = SeatPicker();
+            //add flight to user
+        }
+    }
+
+    /**
+     * Method to search for a flight
+     * @param destinationCity
+     * @param departAirport
+     */
+    public Flight SearchFlight(String destinationCity, String departAirport) {
+        // search for a flight
+        return null;
+    }
+
+    /**
+     * Method to pick a seat
+     * @return The flight at the requested location
+     */
+    public FlightTicket SeatPicker() {
+        System.out.println("Please pick which seat you would like\nInput the row: ");
+        int row = scanner.nextInt();
+        System.out.println("Input the column: ");
+        int col = scanner.nextInt() ;
+
+        // return the flight ticket, update the double array
+        return null;
+    }
+
+    /**
+     * Method to view flight ticket history
+     */
+    public void TicketHistory() {
+        System.out.println("Welcome to ticket history");
+        // retrieve user's past flights
+        /*
+        if(Booking.getFlights() != null)
+        for(int i = 0; i < flights.length; i++){
+            System.out.println(ticket);
+        }
+        else System.out.println("You have no past tickets");
+        */
+    }
+
+    /**
+     * Method to view the user's frequent flier status
+     */
+    public void FrequentFlier() {
+        System.err.println("Frequent flier status: ");
+        /*
+        if(RegisteredUser.frequentFlier == true){
+            System.out.println("Active");
+        } else {
+            System.out.println("Not active");
+        }
+        */
+    }
+
+      /**
+      * Method to create a pet ticket
+      */
+      public void Pet() {
+        System.out.print("Please input the weight of your pet (lbs)");
+        double weight = scanner.nextDouble();
+        // PetTicket petTicket = new PetTicket(weight);
+        // add the ticket to the user's account
     }
 
     public void run() {
@@ -72,29 +145,7 @@ public class UI {
     }
 
     /**
-     * TO DO FOR SPRINT
-     */
-
-    public void TicketHistory() {
-    }
-
-    public void FrequentFlier() {
-    }
-
-    public void SearchFlight() {
-    }
-
-    public void Pet() {
-    }
-
-    public void SeatPicker() {
-    }
-
-    public void PrintInformation() {
-    }
-
-    /**
-     * Extra in progress
+     * In progress
      */
     public void Login() {
         System.out.println("Would you like to login or continue as a guest?");
@@ -112,6 +163,7 @@ public class UI {
 /**
  * Get done later
  */
+
 // public void RoomPicker(){}
 // public void DurationOfStay(){}
 // public void BedScreen(){}
