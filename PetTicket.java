@@ -3,13 +3,17 @@
  * @author Reagan Tibbetts
  */
 public class PetTicket extends FlightTicket {
-    private boolean petSize;
-
+    private double petWeight;
+/**
     public PetTicket() {
-        
     }
-
-    public PetTicket(boolean petSize) {
-
+**/
+    public boolean isPetLarge(double petWeight) {
+        if(petWeight > 100) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
