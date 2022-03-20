@@ -4,15 +4,31 @@ import java.util.*;
  */
 public class FlightTicket extends Flight{
     
-    private SeatClass seatClass;
+    private SeatClass seatClass; //Is this needed if it is extending flight tickets?
     private ArrayList<Bag> bags;
     private boolean windowSeat;
+    private int petTickets = 0;
 
-    public void addPetTicket(boolean petSize) {
-
+    public void addBag(Bag bag) {
+        bags.add(bag);
+    }
+    public void addPetTicket(String petSize) {
+        if(petSize.equalsIgnoreCase("large")) {
+            petTickets++;
+        }
     }
 
-    public boolean isSeatAvailable(Seat seat) {
+    public boolean isSeatAvailable(String[][] seats) { //edit method
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < columns; j++) {
+                if(seats[i][j] == "O"){
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        }
         return false;
     }
 }

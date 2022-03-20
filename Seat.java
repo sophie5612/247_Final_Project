@@ -5,21 +5,14 @@
 
 import java.util.ArrayList;
 
-public class Seat extends FlightTicket {
-    private SeatClass seatClass;
-    private ArrayList<Bag> bags;
-    private boolean windowSeat;
-    /**
-     * Method that adds a pet ticket
-     */
-    public void addPetTicket() {
+public class Seat extends FlightTicket { // This class might be useless
+    private int[][] location;
+    private boolean isAvailable;
 
-    }
-    /**
-     * Method that checks if a seat is available
-     * @param seatClass
-     */
-    public boolean isSeatAvailable(Seat seatClass) {
-        return false;
+    int x = 0;
+    int y = 0;
+
+    public boolean Seat() {
+        
     }
 }

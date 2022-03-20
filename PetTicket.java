@@ -5,7 +5,9 @@
 public class PetTicket extends FlightTicket {
     private boolean petSize;
 
-    public PetTicket(){}
+    public PetTicket() {
+        
+    }
 
     public PetTicket(boolean petSize) {
 

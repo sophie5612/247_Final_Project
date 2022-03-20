@@ -4,6 +4,7 @@
  */
 
 import java.util.Date;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -16,8 +17,13 @@ import java.util.UUID;
     private String arrivalAirport;
     private boolean smoking;
     private FlightType flightType;
-    private ArrayList<Seat> seats;
+    private String[][] seats;
     private Airline airline;
+    
+    private int[] totalFlights;
+
+    int rows = 10;
+    int columns = 6;
 
     /**
      * A default constructor
@@ -31,7 +37,8 @@ import java.util.UUID;
         this.arrivalAirport = " ";
         this.smoking = false;
         this.flightType = FlightType.ONE_WAY;
-        this.seats = new ArrayList<Seat>();
+        String[][] seats = new String[rows][columns]; //Dont know if this is neccessary.
+        //this.seats = new ArrayList<Seat>();
         this.airline = Airline.DELTA;
     }
 
@@ -49,7 +56,7 @@ import java.util.UUID;
       * @param airline
       */
     public Flight(UUID ID, String destinationCity, Date departDate, Date arrivalDate, String departAirport, String arrivalAirport, boolean smoking,
-        FlightType flightType, ArrayList<Seat> seats, Airline airline){
+        FlightType flightType, String[][] seats, Airline airline){
             this.ID = ID;
             this.destinationCity = destinationCity;
             this.departDate = departDate;
@@ -67,18 +74,49 @@ import java.util.UUID;
      * @param destinationCity
      * @param departDate
      */
-    public void sortFlights(String destinationCity, Date departDate){}
+    public void sortFlights(String destinationCity, Date departDate){
+        //Read in jason to get all dates then compare
+        //Total flights will be an array of dates of the dates in the json.
+        for(int i = 0; i < totalFlights.length; i++) { 
+            
+        }
+    }
     
     /**
      * Calculate the number of unbooked seats
      * @return The number of remaining seats 
      */
-    public int remainingSeats(){ return 0;}
+    public int remainingSeats(String[][] seats){
+        int amountOfSeats = 0;
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; i < columns; j++) {
+                if(seats[i][j] == "O") {
+                    amountOfSeats++;
+                }
+            }
+        }
+        System.out.println("Their are " + amountOfSeats + " seats left");
+        return amountOfSeats;
+    }
     
     /**
      * Display the seats in a 2x2 matrix
      * Note: X represents booked, O represents open
      * @return A 2x2 matrix of seats on this flight
      */
-    public int[][] showSeats(){ return new int[0][0];}
+    public void showSeats(int seats) { 
+        String[][] seatsArray = new String[rows][columns];
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; i < columns; j++) {
+                seatsArray[i][j] = "O";
+            }
+        }
+
+        for(int i = 0; i < rows; i++) {
+            for (int j = 0; i < columns; j++) {
+                System.out.print(seatsArray[i][j]);
+            }
+            System.out.println();
+        }
+    }
  }

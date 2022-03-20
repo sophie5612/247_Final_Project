@@ -12,6 +12,7 @@ public class Bag extends FlightTicket {
     }
     
     public Bag(double weight, boolean carryOn) {
-
+        this.weight = weight;
+        this. carryOn = carryOn;
     }
 }
