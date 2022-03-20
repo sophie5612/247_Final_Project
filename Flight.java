@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.UUID;
 
  public class Flight{
+    protected int rows = 10;
+    protected int columns = 6;
     private UUID ID;
     private String destinationCity;
     private Date departDate;
@@ -17,13 +19,10 @@ import java.util.UUID;
     private String arrivalAirport;
     private boolean smoking;
     private FlightType flightType;
-    private String[][] seats;
+    private String[][] seats = new String[rows][columns];
     private Airline airline;
     
     private int[] totalFlights;
-
-    int rows = 10;
-    int columns = 6;
 
     /**
      * A default constructor
@@ -37,7 +36,7 @@ import java.util.UUID;
         this.arrivalAirport = " ";
         this.smoking = false;
         this.flightType = FlightType.ONE_WAY;
-        String[][] seats = new String[rows][columns]; //Dont know if this is neccessary.
+        //String[][] seats = new String[rows][columns]; //Dont know if this is neccessary.
         //this.seats = new ArrayList<Seat>();
         this.airline = Airline.DELTA;
     }
@@ -104,17 +103,17 @@ import java.util.UUID;
      * Note: X represents booked, O represents open
      * @return A 2x2 matrix of seats on this flight
      */
-    public void showSeats(int seats) { 
-        String[][] seatsArray = new String[rows][columns];
+    public void showSeats(String[][] seats) { 
+        //String[][] seatsArray = new String[rows][columns];
         for(int i = 0; i < rows; i++) {
             for(int j = 0; i < columns; j++) {
-                seatsArray[i][j] = "O";
+                seats[i][j] = "O";
             }
         }
 
         for(int i = 0; i < rows; i++) {
             for (int j = 0; i < columns; j++) {
-                System.out.print(seatsArray[i][j]);
+                System.out.print(seats[i][j]);
             }
             System.out.println();
         }
