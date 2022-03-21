@@ -87,16 +87,4 @@ import Enums.FlightType;
      * Calculate the number of unbooked seats
      * @return The number of remaining seats 
      */
-    public int remainingSeats(String[][] seats){
-        int amountOfSeats = 0;
-        for(int i = 0; i < row; i++) {
-            for(int j = 0; i < col; j++) {
-                if(seats[i][j] == "O") {
-                    amountOfSeats++;
-                }
-            }
-        }
-        System.out.println("Their are " + amountOfSeats + " seats left");
-        return amountOfSeats;
-    }
  }
