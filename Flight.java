@@ -8,9 +8,9 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.UUID;
 
- public class Flight{
-    protected int rows = 10;
-    protected int columns = 6;
+ public class Flight extends Booking{
+    protected int row;
+    protected int col;
     private UUID ID;
     private String destinationCity;
     private Date departDate;
@@ -19,7 +19,7 @@ import java.util.UUID;
     private String arrivalAirport;
     private boolean smoking;
     private FlightType flightType;
-    private String[][] seats = new String[rows][columns];
+    private String[][] seats = new String[row][col];
     private Airline airline;
     
     private int[] totalFlights;
@@ -87,8 +87,8 @@ import java.util.UUID;
      */
     public int remainingSeats(String[][] seats){
         int amountOfSeats = 0;
-        for(int i = 0; i < rows; i++) {
-            for(int j = 0; i < columns; j++) {
+        for(int i = 0; i < row; i++) {
+            for(int j = 0; i < col; j++) {
                 if(seats[i][j] == "O") {
                     amountOfSeats++;
                 }
@@ -103,16 +103,16 @@ import java.util.UUID;
      * Note: X represents booked, O represents open
      * @return A 2x2 matrix of seats on this flight
      */
-    public void showSeats(String[][] seats) { 
+    public void showSeats() { 
         //String[][] seatsArray = new String[rows][columns];
-        for(int i = 0; i < rows; i++) {
-            for(int j = 0; i < columns; j++) {
+        for(int i = 0; i < 10; i++) {
+            for(int j = 0; i < 10; j++) {
                 seats[i][j] = "O";
             }
         }
 
-        for(int i = 0; i < rows; i++) {
-            for (int j = 0; i < columns; j++) {
+        for(int i = 0; i < row; i++) {
+            for (int j = 0; i < col; j++) {
                 System.out.print(seats[i][j]);
             }
             System.out.println();
