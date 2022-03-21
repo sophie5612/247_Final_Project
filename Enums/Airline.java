@@ -1,3 +1,4 @@
+package Enums;
 /**
  * An enum to hold all the Airlines
  * @author Sophie Azula
