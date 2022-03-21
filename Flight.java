@@ -7,7 +7,8 @@ import java.util.Date;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.UUID;
-import Enums.*;
+import Enums.Airline;
+import Enums.FlightType;
 
  public class Flight extends Booking{
     protected int row;
@@ -86,4 +87,34 @@ import Enums.*;
      * Calculate the number of unbooked seats
      * @return The number of remaining seats 
      */
+    public UUID getUuid() {
+        return ID;
+    }
+    public String getDestination() {
+        return destinationCity;
+    }
+    public Date getDepartureDate() {
+        return departDate;
+    }
+    public Date getArrivalDate() {
+        return arrivalDate;
+    }
+    public String getDepartureAirport() {
+        return departAirport;
+    }
+    public String getArrivalAirport() {
+        return arrivalAirport;
+    }
+    public boolean getSmoking() {
+        return smoking;
+    }
+    public FlightType getFlightType() {
+        return flightType;
+    }
+    public String[][] getSeat() {
+        return seats;
+    }
+    public Airline getAirline() {
+        return airline;
+    }
  }
