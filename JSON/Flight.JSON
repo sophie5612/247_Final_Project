@@ -1,24 +1,29 @@
 [
     {
         "flightID": "0aa311b0-29ac-4aad-a060-b99eba863755",
-        "airport" : "PHL",
+        "departAirport" : "PHL",
+        "arrivalAirport" : "CLM",
         "airline" : "Spirit",
-        "desitination" : "CLM",
+        "desitination" : "Clemson",
         "depatureTime" : "11:00 PM EST",
         "arrivalTime" : "2:00 AM EST",
         "depatureDate" : "11/02/2022",
         "arrivalDate" : "11/03/2022",
+        "smoking" : false,
+        "flightType" : "ONE_WAY",
         "seats" : [
             {
                 "seatID" : "de86de6f-6b24-4b02-b439-122201eed34b",
                 "seatNumber" : "3B",
                 "seatClass" : "First",
-                "type" : "Middle"
+                "type" : "Middle",
+                "isAvailable" : false
             }, {
                 "seatID" : "8043690a-f255-40e8-9e26-90f2c24ab7a5",
                 "seatNumber" : "6A",
                 "seatClass" : "Buisness",
-                "type" : "Window"
+                "type" : "Window",
+                "isAvailable" : true
             }
         ]
     } , {
