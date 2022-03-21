@@ -4,6 +4,7 @@
  * @author Sophie Azula 
  */
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UI {
@@ -68,6 +69,8 @@ public class UI {
             FlightTicket ticket = SeatPicker();
             // add flight to user
         }
+
+        // ask if they would like a bag or a pet after booking 
     }
 
     /**
@@ -87,6 +90,7 @@ public class UI {
      * @return The flight at the requested location
      */
     public FlightTicket SeatPicker() {
+        showSeats();
         System.out.println("Please pick which seat you would like\nInput the row: ");
         int row = scanner.nextInt();
         System.out.println("Input the column: ");
@@ -96,6 +100,29 @@ public class UI {
         return null; //for compiling sake
     }
 
+    /**
+     * Display the seats in a 2x2 matrix
+     * Note: X represents booked, O represents open
+     * @return A 2x2 matrix of seats on this flight
+     */
+    public void showSeats(Flight flight) { 
+        int rows = 6;
+        int cols = 10;
+        char[][] seats = new char[rows][cols]; // will change to adapt
+
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; i < cols; j++) {
+                // if (flight.getSeat().isAvailable()){
+                //     seats[i][j] = 'O';
+                // }                
+                // else{
+                //     seats[i][j] = 'X';
+                // }
+            System.out.print(seats[i][j]);;
+            }
+        }
+    }
+ 
     /**
      * Method to view flight ticket history
      */

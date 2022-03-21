@@ -7,6 +7,7 @@ import java.util.Date;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.UUID;
+import Enums.*;
 
  public class Flight{
     protected int rows = 10;
@@ -96,26 +97,5 @@ import java.util.UUID;
         }
         System.out.println("Their are " + amountOfSeats + " seats left");
         return amountOfSeats;
-    }
-    
-    /**
-     * Display the seats in a 2x2 matrix
-     * Note: X represents booked, O represents open
-     * @return A 2x2 matrix of seats on this flight
-     */
-    public void showSeats(String[][] seats) { 
-        //String[][] seatsArray = new String[rows][columns];
-        for(int i = 0; i < rows; i++) {
-            for(int j = 0; i < columns; j++) {
-                seats[i][j] = "O";
-            }
-        }
-
-        for(int i = 0; i < rows; i++) {
-            for (int j = 0; i < columns; j++) {
-                System.out.print(seats[i][j]);
-            }
-            System.out.println();
-        }
     }
  }
