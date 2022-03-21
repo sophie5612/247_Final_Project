@@ -10,8 +10,8 @@ public class Seat {
     private static int cols = 10;
     private static String[][] Array;
     private String[][] location;
-    private int x = 0;
-    private int y = 0;
+    private static int x;
+    private static int y;
 
     public Seat() {
         this.x = x;
@@ -34,10 +34,10 @@ public class Seat {
         }
     }
 
-    public boolean isSeatAvailable(String[][] location) { 
-        for(int i = 0; i < rows; i++) {
-            for(int j = 0; j < cols; j++) {
-                if(location[x][y] == "O"){
+    public static boolean isSeatAvailable(String[][] location) { 
+        for(int rows = 0; rows < Array.length; rows++) {
+            for(int cols = 0; cols < Array[rows].length; cols++) {
+                if(location[rows][cols] == "O"){//change it find location not just indexing.  
                     return true;
                 }
             }
@@ -56,5 +56,4 @@ public class Seat {
         System.out.println("Their are " + amountOfSeats + " seats left");
         return amountOfSeats;
     }
-
 }

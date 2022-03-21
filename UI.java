@@ -96,8 +96,13 @@ public class UI {
         int row = scanner.nextInt();
         System.out.println("Input the column: ");
         int col = scanner.nextInt();
-
-        //Seat.isSeatAvailable();
+        String[][] newSeat = new String[row][col];
+        if(Seat.isSeatAvailable(newSeat) == true) {
+            System.out.println("Booking your seat.");
+        }
+        else {
+            System.out.println("That seat is already taken, please select another seat.");
+        }
 
         // return the flight ticket, update the double array
         return null; //for compiling sake
