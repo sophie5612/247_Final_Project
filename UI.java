@@ -94,6 +94,8 @@ public class UI {
         System.out.println("Input the column: ");
         int col = scanner.nextInt();
 
+        //Seat.isSeatAvailable();
+
         // return the flight ticket, update the double array
         return null; //for compiling sake
     }

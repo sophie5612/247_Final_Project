@@ -44,5 +44,17 @@ public class Seat {
         }
         return false;
     }
+    public int remainingSeats(String[][] seats){
+        int amountOfSeats = 0;
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; i < cols; j++) {
+                if(seats[i][j] == "O") {
+                    amountOfSeats++;
+                }
+            }
+        }
+        System.out.println("Their are " + amountOfSeats + " seats left");
+        return amountOfSeats;
+    }
 
 }
