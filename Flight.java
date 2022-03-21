@@ -7,8 +7,7 @@ import java.util.Date;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.UUID;
-import Enums.Airline;
-import Enums.FlightType;
+import Enums.*;
 
  public class Flight extends Booking{
     protected int row;

@@ -1,5 +1,5 @@
 import java.util.*;
-import Enums.SeatClass;
+import Enums.*;
 /**
  * @author Ben Goodman
  */
@@ -18,5 +18,4 @@ public class FlightTicket {
             petTickets++;
         }
     }
-
 }
