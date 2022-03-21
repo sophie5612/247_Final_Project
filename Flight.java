@@ -99,27 +99,4 @@ import Enums.FlightType;
         System.out.println("Their are " + amountOfSeats + " seats left");
         return amountOfSeats;
     }
-    
-    /**
-     * Display the seats in a 2x2 matrix
-     * Note: X represents booked, O represents open
-     * @return A 2x2 matrix of seats on this flight
-     */
-    /** 
-    public void showSeats(String[][] seats) { 
-        //String[][] seatsArray = new String[rows][columns];
-        for(int i = 0; i < 10; i++) {
-            for(int j = 0; i < 10; j++) {
-                seats[i][j] = "O";
-            }
-        }
-
-        for(int i = 0; i < row; i++) {
-            for (int j = 0; i < col; j++) {
-                System.out.print(seats[i][j]);
-            }
-            System.out.println();
-        }
-    }
-    */
  }
