@@ -23,9 +23,11 @@ public class Seat {
     }
      
     public boolean isSeatAvailable(String[][] seats) { 
-        for(int i = 0; i < rows; i++) {
-            for(int j = 0; j < col; j++) {
-                if(seats[i][j] == "O"){
+        for(int i = 0; i < rows; i++) 
+        {
+            for(int j = 0; j < col; j++) 
+            {
+                if(seats[x][y] == "O"){
                     return true;
                 }
                 else {
