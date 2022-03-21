@@ -15,7 +15,7 @@ public class Seat {
 
     public Seat() {
         this.rows = rows;
-        this.col = col
+        this.col = col;
         this.location = location;
         this.isAvailable = isAvailable;
         this.x = x;
