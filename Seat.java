@@ -6,9 +6,9 @@
 //import java.util.ArrayList;
 
 public class Seat { 
-    private int rows = 10; //Change when dimensions of plane are given
-    private int col = 10;
-    private static String[][] newArray;
+    private static int rows = 10; //Change when dimensions of plane are given
+    private static int cols = 10;
+    private static String[][] Array;
     private String[][] location;
     private int x = 0;
     private int y = 0;
@@ -19,15 +19,16 @@ public class Seat {
     }
 
     public static void showSeats() { 
-        for(int i = 0; i < 10; i++) {
-            for(int j = 0; i < 10; j++) {
-                newArray[i][j] = "O";
+        String[][] Array= new String[rows][cols];
+        for(int rows = 0; rows < Array.length; rows++) {
+            for(int cols = 0; cols < Array[rows].length; cols++) {
+                Array[rows][cols] = "O";
             }
         }
 
-        for(int i = 0; i < 10; i++) {
-            for (int j = 0; i < 10; j++) {
-                System.out.print(newArray[i][j]);
+        for(int rows = 0; rows < Array.length ; rows++) {
+            for (int cols = 0; cols < Array[rows].length; cols++) {
+                System.out.print(Array[rows][cols]);
             }
             System.out.println();
         }
@@ -35,7 +36,7 @@ public class Seat {
 
     public boolean isSeatAvailable(String[][] location) { 
         for(int i = 0; i < rows; i++) {
-            for(int j = 0; j < col; j++) {
+            for(int j = 0; j < cols; j++) {
                 if(location[x][y] == "O"){
                     return true;
                 }

@@ -60,13 +60,13 @@ public class UI {
         System.out.print("Depart Airport: ");
         String departAirport = scanner.next();
 
-        SeatPicker();
         // SearchFlight(destinationCity, departAirport)
 
         System.out.println("Would you like to book this flight? (Y/N)");
         String book = scanner.next();
-        if (book == "Y") {
-            FlightTicket ticket = SeatPicker();
+        if (book.equals("Y")) {
+            SeatPicker();
+            //FlightTicket ticket = SeatPicker();
             // add flight to user
         }
     }
