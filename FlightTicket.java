@@ -1,10 +1,9 @@
 import java.util.*;
-
-import Enums.SeatClass;
+import Enums.*;
 /**
  * @author Ben Goodman
  */
-public class FlightTicket extends Flight{
+public class FlightTicket {
     
     private SeatClass seatClass; //Is this needed if it is extending flight tickets?
     private ArrayList<Bag> bags;

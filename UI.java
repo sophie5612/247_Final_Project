@@ -65,8 +65,9 @@ public class UI {
 
         System.out.println("Would you like to book this flight? (Y/N)");
         String book = scanner.next();
-        if (book == "Y") {
-            FlightTicket ticket = SeatPicker();
+        if (book.equals("Y")) {
+            SeatPicker();
+            //FlightTicket ticket = SeatPicker();
             // add flight to user
         }
 
@@ -90,11 +91,13 @@ public class UI {
      * @return The flight at the requested location
      */
     public FlightTicket SeatPicker() {
-        showSeats();
+        Seat.showSeats();
         System.out.println("Please pick which seat you would like\nInput the row: ");
         int row = scanner.nextInt();
         System.out.println("Input the column: ");
         int col = scanner.nextInt();
+
+        //Seat.isSeatAvailable();
 
         // return the flight ticket, update the double array
         return null; //for compiling sake
