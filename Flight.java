@@ -105,7 +105,8 @@ import Enums.FlightType;
      * Note: X represents booked, O represents open
      * @return A 2x2 matrix of seats on this flight
      */
-    public void showSeats() { 
+    /** 
+    public void showSeats(String[][] seats) { 
         //String[][] seatsArray = new String[rows][columns];
         for(int i = 0; i < 10; i++) {
             for(int j = 0; i < 10; j++) {
@@ -120,34 +121,5 @@ import Enums.FlightType;
             System.out.println();
         }
     }
-    public UUID getUuid() {
-        return ID;
-    }
-    public String getDestination() {
-        return destinationCity;
-    }
-    public Date getDepartureDate() {
-        return departDate;
-    }
-    public Date getArrivalDate() {
-        return arrivalDate;
-    }
-    public String getDepartureAirport() {
-        return departAirport;
-    }
-    public String getArrivalAirport() {
-        return arrivalAirport;
-    }
-    public boolean getSmoking() {
-        return smoking;
-    }
-    public FlightType getFlightType() {
-        return flightType;
-    }
-    public String[][] getSeat() {
-        return seats;
-    }
-    public Airline getAirline() {
-        return airline;
-    }
+    */
  }

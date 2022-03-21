@@ -60,6 +60,7 @@ public class UI {
         System.out.print("Depart Airport: ");
         String departAirport = scanner.next();
 
+        SeatPicker();
         // SearchFlight(destinationCity, departAirport)
 
         System.out.println("Would you like to book this flight? (Y/N)");
@@ -87,6 +88,7 @@ public class UI {
      * @return The flight at the requested location
      */
     public FlightTicket SeatPicker() {
+        Seat.showSeats();
         System.out.println("Please pick which seat you would like\nInput the row: ");
         int row = scanner.nextInt();
         System.out.println("Input the column: ");
