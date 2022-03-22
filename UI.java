@@ -5,12 +5,13 @@
  */
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class UI {
     private static final String WELCOME = "Welcome to Syntax Errorz Beautiful Booking System.\n";
     private String[] loginOptions = { "Login", "Continue as guest" };
     private String[] mainOptions = { "Book a flight", "Book a hotel", "View Account", "Log out" };
-    private String[] sortingOptions = { "Find cheapest", "Find most available" };
+    private String[] flightSortingOptions = { "Find cheapest", "Find most available" }; // take this out, hotels will have best rating
     private Scanner scanner;
     private User user; // the user that will be operating this account
     private BookingFacade bookingFacade;
@@ -34,6 +35,7 @@ public class UI {
             for (int i = 0; i < mainOptions.length; i++) {
                 System.out.println("(" + (i + 1) + ") " + mainOptions[i]);
             }
+
 
             int input = scanner.nextInt();
 
@@ -60,10 +62,10 @@ public class UI {
      * 
      * @return Integer of sorting method
      */
-    public int pickSortingMethod() {
+    public int pickSortingMethod(String[] options) {
         System.out.println("How would you like to sort your options?");
-        for (int i = 0; i < sortingOptions.length; i++) {
-            System.out.println("(" + (i + 1) + ") " + sortingOptions[i]);
+        for (int i = 0; i < options.length; i++) {
+            System.out.println("(" + (i + 1) + ") " + options[i]);
         }
         return scanner.nextInt();
     }
@@ -78,23 +80,27 @@ public class UI {
         String departAirport = scanner.next();
 
         System.out.println("How would you like to sort the flights?");
-        Flight flight= new Flight();
+        ArrayList<Flight> sortedFlights= new ArrayList<Flight>(); //not sure how to do this
 
-        switch (pickSortingMethod()) {
+        switch (pickSortingMethod(flightSortingOptions)) {
             case (1):
-                flight = bookingFacade.searchCheapestFlight(destinationCity, departAirport);
+                sortedFlights = sortedFlights.sortedByCheapest();
+                sortedFlights.printSortedFlights();
                 break;
             case (2):
-                flight = bookingFacade.searchMostAvailableFlight(destinationCity, departAirport);
+                sortedFlights = bookingFacade.searchMostAvailableFlight(destinationCity, departAirport);
                 break;
             default:
                 System.out.println("Sorry, there are no available flights");
                 break;
         }
 
-        if (flight!= null) { // how to check if its just a default?
-            // flight.printFlight();
-            System.out.println("Would you like to book this flight? (Y/N)");
+        if (sortedFlights!= null) { // how to check if its just a default?
+            // sortedFlights.printSortedFlights();
+            // print out numbered list of flights
+            // ask for input of which one they want (option none)
+
+            System.out.println("Which flight would you like to book? (Input a number)");
             String input = scanner.next();
 
             if (input.equals("Y") || input.equals("y")) {
@@ -116,13 +122,6 @@ public class UI {
         int row = scanner.nextInt();
         System.out.print("Input the column: ");
         int col = scanner.nextInt();
-<<<<<<< HEAD
-
-
-        flight.getSeat()[row][col];
-
-        // Seat.isSeatAvailable();
-=======
         String[][] newSeat = new String[row][col];
         if(Seat.isSeatAvailable(newSeat) == true) {
             System.out.println("Booking your seat.");
@@ -130,7 +129,6 @@ public class UI {
         else {
             System.out.println("That seat is already taken, please select another seat.");
         }
->>>>>>> 38b706d4ab8be8a5eb9b7375d23b3b6e5385a952
 
         // return the flight ticket, update the double array
         return null; // for compiling sake
@@ -198,11 +196,7 @@ public class UI {
         double weight = scanner.nextDouble();
         // PetTicket petTicket = new PetTicket(weight);
         // add the ticket to the user's account
-    }
-
-    public int getUserInput(){ // rather than system.in for every input 
-        return 0
-    }
+    }76
 
     public void run() {
         System.out.println(WELCOME);
