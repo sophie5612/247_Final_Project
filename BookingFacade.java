@@ -1,3 +1,10 @@
+/**
+ * A facade for our Booking System
+ * @author Sophie Azula
+ */
+
+import java.util.ArrayList;
+
 public class BookingFacade {
     
     public void signUp(String username, String password){
@@ -16,17 +23,17 @@ public class BookingFacade {
         // add a flight to the Users database
     }
 
-    public Flight searchCheapestFlight(String destinationCity, String departAirport){
+    public ArrayList<Flight> sortedCheapestFlights(String destinationCity, String departAirport){
         // search the Flight database for cheapest flight
         return null;
     }
 
-    public Flight searchMostAvailableFlight(String destinationCity, String departAirport){
+    public ArrayList<Flight> sortedMostAvailableFlights(String destinationCity, String departAirport){
         // search the Flight database for the most available flight
         return null;
     }
 
-    public String printFlight(Flight flight){
+    public String printSortedFlights(ArrayList<Flight> flights){
         // return a nicely formated breakdown of flight ticket
         return null;
     }
@@ -34,8 +41,4 @@ public class BookingFacade {
     public void saveData(){
         // save all the users data
     }
-
-
-
-
 }
