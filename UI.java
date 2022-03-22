@@ -10,14 +10,17 @@ public class UI {
     private static final String WELCOME = "Welcome to Syntax Errorz Beautiful Booking System.\n";
     private String[] loginOptions = { "Login", "Continue as guest" };
     private String[] mainOptions = { "Book a flight", "Book a hotel", "View Account", "Log out" };
+    private String[] sortingOptions = { "Find cheapest", "Find most available" };
     private Scanner scanner;
     private User user; // the user that will be operating this account
+    private BookingFacade bookingFacade;
 
     /**
      * A default constructor for UI
      */
     public UI() {
         this.scanner = new Scanner(System.in);
+        this.bookingFacade = new BookingFacade();
     }
 
     /**
@@ -44,11 +47,25 @@ public class UI {
                 // case (3):
                 // ViewAccount
                 case (4):
+                    bookingFacade.saveData();
                     quit = true;
             }
         }
         System.out.println("Goodbye!");
         scanner.close();
+    }
+
+    /**
+     * Method to pick a sorting method (1 = cheapest, 2 = most available)
+     * 
+     * @return Integer of sorting method
+     */
+    public int pickSortingMethod() {
+        System.out.println("How would you like to sort your options?");
+        for (int i = 0; i < sortingOptions.length; i++) {
+            System.out.println("(" + (i + 1) + ") " + sortingOptions[i]);
+        }
+        return scanner.nextInt();
     }
 
     /**
@@ -60,28 +77,32 @@ public class UI {
         System.out.print("Depart Airport: ");
         String departAirport = scanner.next();
 
-        // SearchFlight(destinationCity, departAirport)
+        System.out.println("How would you like to sort the flights?");
+        Flight flight= new Flight();
 
-        System.out.println("Would you like to book this flight? (Y/N)");
-        String book = scanner.next();
-        if (book.equals("Y")) {
-            SeatPicker();
-            //FlightTicket ticket = SeatPicker();
-            // add flight to user
+        switch (pickSortingMethod()) {
+            case (1):
+                flight = bookingFacade.searchCheapestFlight(destinationCity, departAirport);
+                break;
+            case (2):
+                flight = bookingFacade.searchMostAvailableFlight(destinationCity, departAirport);
+                break;
+            default:
+                System.out.println("Sorry, there are no available flights");
+                break;
         }
 
-        // ask if they would like a bag or a pet after booking 
-    }
+        if (flight!= null) { // how to check if its just a default?
+            // flight.printFlight();
+            System.out.println("Would you like to book this flight? (Y/N)");
+            String input = scanner.next();
 
-    /**
-     * Method to search for a flight
-     * 
-     * @param destinationCity
-     * @param departAirport
-     */
-    public Flight SearchFlight(String destinationCity, String departAirport) {
-        // search for a flight
-        return null; //for compliling sake
+            if (input.equals("Y") || input.equals("y")) {
+                SeatPicker(Flight flight);
+                // FlightTicket ticket = SeatPicker();
+                // add flight to user
+            }
+        }
     }
 
     /**
@@ -89,42 +110,47 @@ public class UI {
      * 
      * @return The flight at the requested location
      */
-    public FlightTicket SeatPicker() {
-        Seat.showSeats();
+    public FlightTicket SeatPicker(Flight flight) {
+        flight.showSeats();
         System.out.print("Please pick which seat you would like\nInput the row: ");
         int row = scanner.nextInt();
         System.out.print("Input the column: ");
         int col = scanner.nextInt();
 
-        //Seat.isSeatAvailable();
+
+        flight.getSeat()[row][col];
+
+        // Seat.isSeatAvailable();
 
         // return the flight ticket, update the double array
-        return null; //for compiling sake
+        return null; // for compiling sake
     }
 
     /**
      * Display the seats in a 2x2 matrix
      * Note: X represents booked, O represents open
+     * 
      * @return A 2x2 matrix of seats on this flight
      */
-    public void showSeats(Flight flight) { 
+    public void showSeats(Flight flight) {
         int rows = 6;
         int cols = 10;
         char[][] seats = new char[rows][cols]; // will change to adapt
 
-        for(int i = 0; i < rows; i++) {
-            for(int j = 0; i < cols; j++) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; i < cols; j++) {
                 // if (flight.getSeat().isAvailable()){
-                //     seats[i][j] = 'O';
-                // }                
-                // else{
-                //     seats[i][j] = 'X';
+                // seats[i][j] = 'O';
                 // }
-            System.out.print(seats[i][j]);;
+                // else{
+                // seats[i][j] = 'X';
+                // }
+                System.out.print(seats[i][j]);
+                ;
             }
         }
     }
- 
+
     /**
      * Method to view flight ticket history
      */
@@ -164,6 +190,10 @@ public class UI {
         // add the ticket to the user's account
     }
 
+    public int getUserInput(){ // rather than system.in for every input 
+        return 0
+    }
+
     public void run() {
         System.out.println(WELCOME);
         // Login();
@@ -174,6 +204,13 @@ public class UI {
         UI ui = new UI();
         ui.run();
     }
+
+
+
+
+
+
+
 
     /**
      * In progress
