@@ -4,6 +4,7 @@
  */
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class BookingFacade {
     
@@ -19,22 +20,52 @@ public class BookingFacade {
         // add the family member's name to the User database
     }
 
-    public void bookFlight(Flight flight){
+    public void bookFlight(Seat seat){
         // add a flight to the Users database
+        // we're going to start running into issues of objects not knowing about each other, should restructure this
     }
 
-    public ArrayList<Flight> sortedCheapestFlights(String destinationCity, String departAirport){
-        // search the Flight database for cheapest flight
+    public void bookHotel(Room room){
+        // ^^ see above
+    }
+
+    public ArrayList<Flight> sortCheapestFlights(String destinationCity, String departAirport){
+        // search the Flights for cheapest flight, return the sorted ArrayList
         return null;
     }
 
-    public ArrayList<Flight> sortedMostAvailableFlights(String destinationCity, String departAirport){
-        // search the Flight database for the most available flight
+    public ArrayList<Flight> sortMostAvailableFlights(String destinationCity, String departAirport){
+        // search the Flights for most available flight, return the sorted ArrayList
         return null;
     }
 
-    public String printSortedFlights(ArrayList<Flight> flights){
-        // return a nicely formated breakdown of flight ticket
+    public String printFlight(Flight flight){
+        // print out a nice overview of a flight
+        return null;
+    }
+
+    public String printSortedFlights(ArrayList<Flight> flights){ // or rename to printFlights?? idk just want to make it distinguishable
+        // use printFlight, loop through each flight and print out, number each flight 1 - length of flights
+        return null;
+    }
+
+    public ArrayList<Hotel> sortCheapestHotels(String destinationCity){
+        // search Hotels for cheapest
+        return null;
+    }
+
+    public ArrayList<Hotel> sortRatingHotels(String destinationCity){
+        // search Hotels for highest rating
+        return null;
+    }
+
+    public String printHotel(Hotel hotel){
+        // nice formating of a hotel
+        return null;
+    }
+
+    public String printSortedHotels(ArrayList<Hotel> hotels){ 
+        // numbered list of hotels
         return null;
     }
 

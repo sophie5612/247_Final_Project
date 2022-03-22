@@ -2,9 +2,10 @@
     {
         "hotelID": "dd6150e5-4c08-4307-8036-67af45a56a6f",
         "name" : "The Marriot",
-        "location" : "Columbia, South Carolina",
+        "location" : "Columbia, South Carolina", // need the city alone, or parse out
         "star rating": 4,
         "pool": false,
+        // need a rating for each hotel
         "rooms": [
             {
                 "roomID": "f4562c63-2b93-4537-a886-dac4cbcef1c0",
