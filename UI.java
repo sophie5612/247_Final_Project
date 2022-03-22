@@ -116,11 +116,21 @@ public class UI {
         int row = scanner.nextInt();
         System.out.print("Input the column: ");
         int col = scanner.nextInt();
+<<<<<<< HEAD
 
 
         flight.getSeat()[row][col];
 
         // Seat.isSeatAvailable();
+=======
+        String[][] newSeat = new String[row][col];
+        if(Seat.isSeatAvailable(newSeat) == true) {
+            System.out.println("Booking your seat.");
+        }
+        else {
+            System.out.println("That seat is already taken, please select another seat.");
+        }
+>>>>>>> 38b706d4ab8be8a5eb9b7375d23b3b6e5385a952
 
         // return the flight ticket, update the double array
         return null; // for compiling sake
