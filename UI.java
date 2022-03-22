@@ -4,7 +4,6 @@
  * @author Sophie Azula 
  */
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UI {
@@ -92,9 +91,9 @@ public class UI {
      */
     public FlightTicket SeatPicker() {
         Seat.showSeats();
-        System.out.println("Please pick which seat you would like\nInput the row: ");
+        System.out.print("Please pick which seat you would like\nInput the row: ");
         int row = scanner.nextInt();
-        System.out.println("Input the column: ");
+        System.out.print("Input the column: ");
         int col = scanner.nextInt();
 
         //Seat.isSeatAvailable();
