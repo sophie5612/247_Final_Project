@@ -92,12 +92,12 @@ public class UI {
                 sortedFlights = bookingFacade.sortMostAvailableFlights(destinationCity, departAirport);
                 break;
             default:
+                sortedFlights = bookingFacade.sortCheapestFlights(destinationCity, departAirport);
                 System.out.println("Showing cheapest flights"); //make sure defualt sort is cheap
                 break;
         }
 
-        if (sortedFlights!= null) { // how to check if its just a default? SOS
-            bookingFacade.printSortedFlights(sortedFlights);
+            bookingFacade.printSortedFlights(sortedFlights); // display sorted flights
 
             System.out.println("Which flight would you like to book?");
             int input = scanner.nextInt();
@@ -106,7 +106,6 @@ public class UI {
                 Seat pickedSeat = SeatPicker(pickedFlight); // user picks their seat
                 bookingFacade.bookFlight(pickedSeat); // book seat to user
             }
-        }
     } 
 
     /**
@@ -121,13 +120,8 @@ public class UI {
         int row = scanner.nextInt();
         System.out.print("Input the column: ");
         int col = scanner.nextInt();
-<<<<<<< HEAD
-        if(Seat.isSeatAvailable(row, col) == true) {
-            Seat.printSeats();
-=======
         String[][] newSeat = new String[row][col];
         if (Seat.isSeatAvailable(newSeat) == true) {
->>>>>>> 78efe34bed85f05cc214241ae6a483776ea4c273
             System.out.println("Booking your seat.");
         } else {
             System.out.println("That seat is already taken, please select another seat.");
