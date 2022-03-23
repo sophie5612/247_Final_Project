@@ -12,26 +12,35 @@ public class Room extends Hotel {
     private int numOfBeds;
     private boolean noSmoking;
     private ArrayList<Date> bookedDates;
-    private String[][] location;
     private static int rows = 10;
     private static int cols = 10;
-    public Room() {
+    private static String[][] location = new String[rows][cols];
 
-    }
-    public static void showRooms() { 
-        String[][] Array= new String[rows][cols];
-        for(int rows = 0; rows < Array.length; rows++) {
-            for(int cols = 0; cols < Array[rows].length; cols++) {
-                Array[rows][cols] = "O";
+    public static void initalizeRooms() { 
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < cols; j++) {
+                location[i][j] = "O";
             }
         }
-
-        for(int rows = 0; rows < Array.length ; rows++) {
-            for (int cols = 0; cols < Array[rows].length; cols++) {
-                System.out.print(Array[rows][cols]);
+    }
+    public static void printRoom() {
+    for(int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print(location[rows][cols]);
             }
             System.out.println();
         }
+    }
+    public static boolean isSeatAvailable(int x, int y) { 
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < cols; j++) {
+                if(location[x-1][y-1] == "O") {
+                    location[x-1][y-1] = "X";
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     public int remainingRooms(String[][] rooms){
         int amountOfRooms = 0;
