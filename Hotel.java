@@ -10,7 +10,6 @@ public class Hotel extends Booking {
     private Date checkOutDate;
     private String nameOfHotel; 
     private boolean noSmoking;
-    private int numOfBeds;
     private boolean hasPool;
     private String[][] rooms = new String[row][col];
 
@@ -20,7 +19,6 @@ public class Hotel extends Booking {
         this.checkInDate = new Date();
         this.checkOutDate = new Date();
         this.noSmoking = false;
-        this.numOfBeds = 0;
         this.hasPool = false;
     }
 
@@ -34,16 +32,6 @@ public class Hotel extends Booking {
             this.hasPool = hasPool;
         }
 
-    /**
-     *  A method that will sort flights based on default sorting behavior
-     * @param destinationCity
-     * @param departDate
-     */
-    
-    /**
-     * Calculate the number of unbooked seats
-     * @return The number of remaining seats 
-     */
     public UUID getUuid() {
         return ID;
     }
