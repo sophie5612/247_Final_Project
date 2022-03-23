@@ -81,7 +81,7 @@ public class UI {
         System.out.print("Depart Airport: ");
         String departAirport = scanner.next();
         System.out.println();
-
+        SeatPicker();
         ArrayList<Flight> sortedFlights= new ArrayList<Flight>();
 
         switch (pickSortingMethod(flightSortingOptions)) { // 1 = cheapest, 2 = most available
@@ -115,7 +115,6 @@ public class UI {
      */
     public Seat SeatPicker(Flight flight) { // should this be done in the UI
         showSeats(flight);
-
         System.out.print("Please pick which seat you would like\nInput the row: ");
         int row = scanner.nextInt();
         System.out.print("Input the column: ");

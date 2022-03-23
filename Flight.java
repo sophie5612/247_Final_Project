@@ -15,6 +15,8 @@ import Enums.FlightType;
     private String destinationCity;
     private Date departDate;
     private Date arrivalDate;
+    private int departTime;
+    private int arrivalTime;
     private String departAirport;
     private String arrivalAirport;
     private boolean smoking;
@@ -34,6 +36,8 @@ import Enums.FlightType;
         this.arrivalDate = new Date();
         this.departAirport = " ";
         this.arrivalAirport = " ";
+        this.departTime = departTime;
+        this.arrivalTime = arrivalTime;
         this.smoking = false;
         this.flightType = FlightType.ONE_WAY;
         //String[][] seats = new String[rows][columns]; //Dont know if this is neccessary.
@@ -47,6 +51,8 @@ import Enums.FlightType;
       * @param destinationCity
       * @param departDate
       * @param arrivalDate
+      * @param departTime
+      * @param arrivalTime
       * @param departAirport
       * @param arrivalAirport
       * @param smoking
@@ -60,6 +66,8 @@ import Enums.FlightType;
             this.destinationCity = destinationCity;
             this.departDate = departDate;
             this.arrivalDate = arrivalDate;
+            this.departTime = departTime;
+            this.arrivalTime = arrivalTime;
             this.departAirport = departAirport;
             this.arrivalAirport = arrivalAirport;
             this.smoking = smoking;
@@ -96,6 +104,12 @@ import Enums.FlightType;
     }
     public Date getArrivalDate() {
         return arrivalDate;
+    }
+    public int getDepartureTime() {
+        return departTime;
+    }
+    public int getArrivalTime () {
+        return arrivalTime;
     }
     public String getDepartureAirport() {
         return departAirport;

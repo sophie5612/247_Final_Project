@@ -8,15 +8,9 @@
 public class Seat { 
     private static int rows = 10; //Change when dimensions of plane are given
     private static int cols = 10;
-    private static String[][] Array;
+    private int price;
     private static String[][] newArray = new String[rows][cols];
-    //private String[][] location;
-    private int x;
-    private int y;
-
-    public Seat() {
-
-    }
+    
 
     public static void initalizeSeats() {
         for(int i = 0; i < rows; i++) {
@@ -56,5 +50,8 @@ public class Seat {
         }
         System.out.println("Their are " + amountOfSeats + " seats left");
         return amountOfSeats;
+    }
+    public int getPrice() {
+        return price;
     }
 }
