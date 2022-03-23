@@ -9,35 +9,38 @@ public class Seat {
     private static int rows = 10; //Change when dimensions of plane are given
     private static int cols = 10;
     private static String[][] Array;
-    private String[][] location;
-    private static int x;
-    private static int y;
+    private static String[][] newArray;
+    //private String[][] location;
+    private int x;
+    private int y;
 
     public Seat() {
+        newArray = new String[rows][cols];
         this.x = x;
         this.y = y;
     }
 
-    public static void showSeats() { 
-        String[][] Array= new String[rows][cols];
-        for(int rows = 0; rows < Array.length; rows++) {
-            for(int cols = 0; cols < Array[rows].length; cols++) {
-                Array[rows][cols] = "O";
+    public static void initalizeSeats() {
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < cols; j++) {
+                newArray[i][j] = "O";
             }
-        }
-
-        for(int rows = 0; rows < Array.length ; rows++) {
-            for (int cols = 0; cols < Array[rows].length; cols++) {
-                System.out.print(Array[rows][cols]);
-            }
-            System.out.println();
         }
     }
+    public static void printSeats() {
+    for(int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            System.out.print(newArray[i][j]);
+        }
+        System.out.println();
+    }
+}
 
-    public static boolean isSeatAvailable(String[][] location) { 
-        for(int rows = 0; rows < Array.length; rows++) {
-            for(int cols = 0; cols < Array[rows].length; cols++) {
-                if(location[rows][cols] == "O"){//change it find location not just indexing.  
+    public static boolean isSeatAvailable(String[][] newSeat) { 
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < cols; j++) {
+                if(newSeat[i][j] == newArray[i][j] && newArray[i][j] == "O"){
+                    newArray[rows][cols] = "X";
                     return true;
                 }
             }
