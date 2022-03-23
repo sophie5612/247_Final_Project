@@ -236,7 +236,7 @@ public class UI {
      * Method to view the user's frequent flier status
      */
     public void FrequentFlier() {
-        System.err.println("Frequent flier status: ");
+        System.out.println("Frequent flier status: ");
         /*
          * if(RegisteredUser.frequentFlier == true){
          * System.out.println("Active");
