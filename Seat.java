@@ -7,7 +7,7 @@
 
 public class Seat { 
     private static int rows = 10; //Change when dimensions of plane are given
-    private static int cols = 10;
+    private static int cols = 6;
     private int price;
     private static String[][] newArray = new String[rows][cols];
     
@@ -31,8 +31,8 @@ public class Seat {
     public static boolean isSeatAvailable(int x, int y) { 
         for(int i = 0; i < rows; i++) {
             for(int j = 0; j < cols; j++) {
-                if(newArray[x][y] == "O") {
-                    newArray[x][y] = "X";
+                if(newArray[x-1][y-1] == "O") {
+                    newArray[x-1][y-1] = "X";
                     return true;
                 }
             }
