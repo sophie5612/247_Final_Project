@@ -14,17 +14,18 @@
         "seats" : [
             {
                 "seatID" : "de86de6f-6b24-4b02-b439-122201eed34b",
-                "seatNumber" : "3B", // have a row and an aisle rather than a seat number
-                "seatClass" : "First", // make enum compatible
-                "type" : "Middle", // scrap the type
-                "isAvailable" : false
-                // add a price so we can sort
+                "seatAisle" : "B",
+                "seatNumber" : "6",
+                "seatClass" : "FIRST",
+                "isAvailable" : false,
+                "price" : 60
             }, {
-                "seatID" : "8043690a-f255-40e8-9e26-90f2c24ab7a5",
-                "seatNumber" : "6A",
-                "seatClass" : "Buisness",
-                "type" : "Window",
-                "isAvailable" : true
+                "seatID" : "de86de6f-6b24-4b02-b439-122201eed34b",
+                "seatAisle" : "B",
+                "seatNumber" : "6",
+                "seatClass" : "FIRST",
+                "isAvailable" : false,
+                "price" : 60
             }
         ]
     } , {
