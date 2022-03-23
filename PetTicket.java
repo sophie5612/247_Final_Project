@@ -2,7 +2,7 @@
  * Pet ticket class that extends flight ticket class
  * @author Reagan Tibbetts
  */
-public class PetTicket extends FlightTicket {
+public class PetTicket {
     private double petWeight;
 /**
     public PetTicket() {

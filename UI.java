@@ -121,13 +121,8 @@ public class UI {
         int row = scanner.nextInt();
         System.out.print("Input the column: ");
         int col = scanner.nextInt();
-<<<<<<< HEAD
         if(Seat.isSeatAvailable(row, col) == true) {
             Seat.printSeats();
-=======
-        String[][] newSeat = new String[row][col];
-        if (Seat.isSeatAvailable(newSeat) == true) {
->>>>>>> 78efe34bed85f05cc214241ae6a483776ea4c273
             System.out.println("Booking your seat.");
         } else {
             System.out.println("That seat is already taken, please select another seat.");

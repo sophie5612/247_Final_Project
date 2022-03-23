@@ -6,15 +6,14 @@
     //    double weight = scanner.nextDouble();
         // PetTicket petTicket = new PetTicket(weight);
         // add the ticket to the user's account
-    }
+    //}
 
     
-
-    import java.util.*;
-import Enums.*;
 /**
+import java.util.*;
+import Enums.*;
  * @author Ben Goodman
- */
+
 public class FlightTicket {
     
     private SeatClass seatClass; //Is this needed if it is extending flight tickets?
@@ -31,3 +30,4 @@ public class FlightTicket {
         }
     }
 }
+*/
