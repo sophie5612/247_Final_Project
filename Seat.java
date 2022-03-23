@@ -9,15 +9,13 @@ public class Seat {
     private static int rows = 10; //Change when dimensions of plane are given
     private static int cols = 10;
     private static String[][] Array;
-    private static String[][] newArray;
+    private static String[][] newArray = new String[rows][cols];
     //private String[][] location;
     private int x;
     private int y;
 
     public Seat() {
-        newArray = new String[rows][cols];
-        this.x = x;
-        this.y = y;
+
     }
 
     public static void initalizeSeats() {
@@ -36,11 +34,11 @@ public class Seat {
     }
 }
 
-    public static boolean isSeatAvailable(String[][] newSeat) { 
+    public static boolean isSeatAvailable(int x, int y) { 
         for(int i = 0; i < rows; i++) {
             for(int j = 0; j < cols; j++) {
-                if(newSeat[i][j] == newArray[i][j] && newArray[i][j] == "O"){
-                    newArray[rows][cols] = "X";
+                if(newArray[x][y] == "O") {
+                    newArray[x][y] = "X";
                     return true;
                 }
             }
