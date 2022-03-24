@@ -48,15 +48,17 @@ public class BookingFacade {
         return null;
     }
 
-    public double calculateFlightTime(String departTime, String arrivalTime){
+    public int calculateFlightTime(int departTime, int arrivalTime){
         // return the total time of the flight (in hours)
         // could alternatively return a String
+        // 2400, 1000
         return 0;
     }
 
-    public String militaryTimeConvert(String time){
+    public int militaryTimeConvert(int time){
         //return the time in regular people time
-        return null;
+        // 0000, 1300
+        return 0;
     }
 
     public String printSortedFlights(ArrayList<Flight> flights){ // or rename to printFlights?? idk just want to make it distinguishable
