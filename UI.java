@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class UI {
     private static final String WELCOME = "Welcome to Syntax Errorz Beautiful Booking System.\n";
-    private String[] loginOptions = { "Login", "Continue as guest" };
+    private String[] loginOptions = { "Login", "Sign up" };
     private String[] mainOptions = { "Book a flight", "Book a hotel", "View Account", "Log out" };
     private String[] flightSortingOptions = { "Find cheapest", "Find most available" };
     private String[] hotelSortingOptions = { "Find cheapest", "Find highest rated" };
@@ -78,8 +78,8 @@ public class UI {
     public void BookFlight() {
         System.out.print("Please input the following\nDestination City: ");
         String destinationCity = scanner.next();
-        System.out.print("Depart Airport: ");
-        String departAirport = scanner.next();
+        System.out.print("Depart City: ");
+        String departCity = scanner.next();
         System.out.println();
         
         //CAN BE REMOVED TO CREATE FLIGHT LATE.  ASK BEN BEFORE REMOVING.
@@ -91,13 +91,14 @@ public class UI {
 
         switch (pickSortingMethod(flightSortingOptions)) { // 1 = cheapest, 2 = most available
             case (1):
-                sortedFlights = bookingFacade.sortCheapestFlights(destinationCity, departAirport);
+                sortedFlights = bookingFacade.sortCheapestFlights(destinationCity, departCity);
                 break;
             case (2):
-                sortedFlights = bookingFacade.sortMostAvailableFlights(destinationCity, departAirport);
+                sortedFlights = bookingFacade.sortMostAvailableFlights(destinationCity, departCity);
+         
                 break;
             default:
-                sortedFlights = bookingFacade.sortCheapestFlights(destinationCity, departAirport);
+                sortedFlights = bookingFacade.sortCheapestFlights(destinationCity, departCity);
                 System.out.println("Showing cheapest flights"); //make sure defualt sort is cheap
                 break;
         }
@@ -215,6 +216,10 @@ public class UI {
         MainMenu();
     }
 
+    public void logOut(){
+        bookingFacade.logOut();
+    }
+
     public static void main(String[] args) {
         UI ui = new UI();
         ui.run();
@@ -225,7 +230,7 @@ public class UI {
      * In progress
      */
     public void Login() {
-        System.out.println("Would you like to login or continue as a guest?");
+        System.out.println("What would you like to do?");
         for (int i = 0; i < loginOptions.length; i++) {
             System.out.println("(" + (i + 1) + ") " + loginOptions[i]);
         }

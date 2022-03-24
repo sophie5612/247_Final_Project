@@ -15,6 +15,10 @@ public class BookingFacade {
         // return true if the username and password match with an account in the User database
     }
 
+    public void logOut(){
+        // log out of Flights, Hotels (save the data)
+    }
+
     public void addFamilyMember(String name){
         // add the family member's name to the User database
     }
@@ -28,18 +32,30 @@ public class BookingFacade {
         // ^^ see above
     }
 
-    public ArrayList<Flight> sortCheapestFlights(String destinationCity, String departAirport){
+    public ArrayList<Flight> sortCheapestFlights(String destinationCity, String departCity){
         // search the Flights for cheapest flight, return the sorted ArrayList
         return null;
     }
 
-    public ArrayList<Flight> sortMostAvailableFlights(String destinationCity, String departAirport){
+    public ArrayList<Flight> sortMostAvailableFlights(String destinationCity, String departCity){
         // search the Flights for most available flight, return the sorted ArrayList
         return null;
     }
 
     public String printFlight(Flight flight){
         // print out a nice overview of a flight
+        // calculate the flight time and include it here
+        return null;
+    }
+
+    public double calculateFlightTime(String departTime, String arrivalTime){
+        // return the total time of the flight (in hours)
+        // could alternatively return a String
+        return 0;
+    }
+
+    public String militaryTimeConvert(String time){
+        //return the time in regular people time
         return null;
     }
 
