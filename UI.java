@@ -82,23 +82,29 @@ public class UI {
         String departCity = scanner.next();
         System.out.println();
         
-        //CAN BE REMOVED TO CREATE FLIGHT LATE.  ASK BEN BEFORE REMOVING.
-        Flight flight = new Flight();
-        SeatPicker(flight);
-        //READ TEXT ABOVE.
+        System.out.println("How many tickets would you like to book?");
+        int numTickets = scanner.nextInt();
         
         ArrayList<Flight> sortedFlights= new ArrayList<Flight>();
+        // search if available flights and enough tickets
+        // populate the flight array initially using FlightIsAvailable
+        sortedFlights = bookingFacade.validFlights();
+
+        if (sortedFlights.size() == 0);{
+            System.out.println("No flights available");
+            return;
+        }
 
         switch (pickSortingMethod(flightSortingOptions)) { // 1 = cheapest, 2 = most available
             case (1):
-                sortedFlights = bookingFacade.sortCheapestFlights(destinationCity, departCity);
+                sortedFlights = bookingFacade.sortCheapestFlights();
                 break;
             case (2):
-                sortedFlights = bookingFacade.sortMostAvailableFlights(destinationCity, departCity);
+                sortedFlights = bookingFacade.sortMostAvailableFlights();
          
                 break;
             default:
-                sortedFlights = bookingFacade.sortCheapestFlights(destinationCity, departCity);
+                sortedFlights = bookingFacade.sortCheapestFlights();
                 System.out.println("Showing cheapest flights"); //make sure defualt sort is cheap
                 break;
         }
@@ -119,7 +125,7 @@ public class UI {
      * 
      * @return The flight at the requested location
      */
-    public Seat SeatPicker(Flight flight) { // should this be done in the UI
+    public Seat SeatPicker(Flight flight) { // should this be done in the UI? No, will move
         Seat.initalizeSeats();
         Seat.printSeats();
         System.out.print("Please pick which seat you would like\nInput the row: ");
@@ -169,6 +175,12 @@ public class UI {
         System.out.print("Please input the following\nDestination City: ");
         String destinationCity = scanner.next();
         System.out.println();
+
+        // how many rooms would you like to book?
+        // search for flights with the city and number of tickets available
+
+        
+        // if there are no flights that fit parameters, tell them that and quit this method
 
         System.out.println("How would you like to sort the hotels?");
         ArrayList<Hotel> sortedHotels= new ArrayList<Hotel>();

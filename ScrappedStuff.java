@@ -1,4 +1,4 @@
-    /**
+/**
      * Method to create a pet ticket
      */
     //public void Pet() {
@@ -64,7 +64,7 @@ public class BusinessUser extends User{
 /**
  * A Booking class
  * @author Sophie Azula
- */
+ *
 
 import java.util.ArrayList;
 
@@ -102,3 +102,16 @@ public class Booking {
      */
     public void Book(User user){}
 }
+
+/*
+package Enums;
+/**
+ * An enum to hold all the types of Seats
+ * @author Sophie Azula
+ *
+public enum SeatClass {
+    FIRST_CLASS, ECONOMY, BUSINESS
+}
+
+*/
+*/

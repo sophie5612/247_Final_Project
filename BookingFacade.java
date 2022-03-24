@@ -32,12 +32,12 @@ public class BookingFacade {
         // ^^ see above
     }
 
-    public ArrayList<Flight> sortCheapestFlights(String destinationCity, String departCity){
+    public ArrayList<Flight> sortCheapestFlights(){
         // search the Flights for cheapest flight, return the sorted ArrayList
         return null;
     }
 
-    public ArrayList<Flight> sortMostAvailableFlights(String destinationCity, String departCity){
+    public ArrayList<Flight> sortMostAvailableFlights(){
         // search the Flights for most available flight, return the sorted ArrayList
         return null;
     }
@@ -64,12 +64,12 @@ public class BookingFacade {
         return null;
     }
 
-    public ArrayList<Hotel> sortCheapestHotels(String destinationCity){
+    public ArrayList<Hotel> sortCheapestHotels(){
         // search Hotels for cheapest
         return null;
     }
 
-    public ArrayList<Hotel> sortRatingHotels(String destinationCity){
+    public ArrayList<Hotel> sortRatingHotels(){
         // search Hotels for highest rating
         return null;
     }
@@ -87,4 +87,23 @@ public class BookingFacade {
     public void saveData(){
         // save all the users data
     }
+
+    public ArrayList<Flight> validFlights(){
+        // loop through and see if the flight is available and add to the string
+        return null;
+    }
+
+    public boolean flightAvailable(int numTickets, String departCity, String arrivalCity){
+        numTicketsAvailable(numTickets);
+        // search for city
+        if (numTickets >= numTicketsAvailable(numTickets) && departCity == " "){ //check for the citys
+            return true;
+        }
+        return false;
+    }
+    public int numTicketsAvailable(int numTickets){
+        //reutnr the number of tickets available
+        return 0;
+    }
+
 }
