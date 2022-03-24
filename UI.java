@@ -86,25 +86,23 @@ public class UI {
         int numTickets = scanner.nextInt();
         
         ArrayList<Flight> sortedFlights= new ArrayList<Flight>();
-        // search if available flights and enough tickets
-        // populate the flight array initially using FlightIsAvailable
-        sortedFlights = bookingFacade.validFlights();
+        sortedFlights = bookingFacade.validFlights(numTickets, destinationCity, departCity);
 
         if (sortedFlights.size() == 0);{
             System.out.println("No flights available");
             return;
         }
 
-        switch (pickSortingMethod(flightSortingOptions)) { // 1 = cheapest, 2 = most available
+        switch (pickSortingMethod(flightSortingOptions)) { 
             case (1):
-                sortedFlights = bookingFacade.sortCheapestFlights();
+                sortedFlights = bookingFacade.sortCheapestFlights(sortedFlights);
                 break;
             case (2):
-                sortedFlights = bookingFacade.sortMostAvailableFlights();
+                sortedFlights = bookingFacade.sortMostAvailableFlights(sortedFlights);
          
                 break;
             default:
-                sortedFlights = bookingFacade.sortCheapestFlights();
+                sortedFlights = bookingFacade.sortCheapestFlights(sortedFlights);
                 System.out.println("Showing cheapest flights"); //make sure defualt sort is cheap
                 break;
         }
