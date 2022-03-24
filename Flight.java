@@ -3,6 +3,7 @@
  * @author Sophie Azula
  */
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 import Enums.Airline;
@@ -13,18 +14,18 @@ import Enums.FlightType;
     protected int col;
     private UUID ID;
     private String destinationCity;
+    private String departureCity;
     private Date departDate;
     private Date arrivalDate;
+    private double price;
     private int departTime;
     private int arrivalTime;
     private String departAirport;
     private String arrivalAirport;
     private boolean smoking;
     private FlightType flightType;
-    private String[][] seats = new String[row][col];
+    private ArrayList<Seat> seats;
     private Airline airline;
-    
-    private int[] totalFlights;
 
     /**
      * A default constructor
@@ -32,13 +33,14 @@ import Enums.FlightType;
     public Flight(){
         this.ID = UUID.randomUUID();
         this.destinationCity = " ";
+        this.departureCity = " ";
         this.departDate = new Date();
         this.arrivalDate = new Date();
         this.departAirport = " ";
+        this.price = 0;
         this.arrivalAirport = " ";
         this.departTime = departTime;
         this.arrivalTime = arrivalTime;
-        this.smoking = false;
         this.flightType = FlightType.ONE_WAY;
         //String[][] seats = new String[rows][columns]; //Dont know if this is neccessary.
         //this.seats = new ArrayList<Seat>();
@@ -55,38 +57,35 @@ import Enums.FlightType;
       * @param arrivalTime
       * @param departAirport
       * @param arrivalAirport
-      * @param smoking
       * @param flightType
       * @param seats
       * @param airline
       */
-    public Flight(UUID ID, String destinationCity, Date departDate, Date arrivalDate, String departAirport, String arrivalAirport, boolean smoking,
-        FlightType flightType, String[][] seats, Airline airline){
+    public Flight(UUID ID, String destinationCity, String departureCity, Date departDate, Date arrivalDate, String departAirport, String arrivalAirport,
+        FlightType flightType, Airline airline, double price){
             this.ID = ID;
+
             this.destinationCity = destinationCity;
+            this.departureCity = departureCity;
             this.departDate = departDate;
             this.arrivalDate = arrivalDate;
             this.departTime = departTime;
             this.arrivalTime = arrivalTime;
             this.departAirport = departAirport;
             this.arrivalAirport = arrivalAirport;
-            this.smoking = smoking;
             this.flightType = flightType;
-            this.seats = seats;
             this.airline = airline;
+            this.price = price;
+            seats = createSeats();
         }
 
-    /**
-     *  A method that will sort flights based on default sorting behavior
-     * @param destinationCity
-     * @param departDate
-     */
-    public void sortFlights(String destinationCity, Date departDate){
-        //Read in jason to get all dates then compare
-        //Total flights will be an array of dates of the dates in the json.
-        for(int i = 0; i < totalFlights.length; i++) { 
-            
-        }
+    private ArrayList<Seat> createSeats() {
+        // seats array will be filled with seat objects
+        // Loop for each class of seats and then put them in order
+        // They have the correct location
+        // price is varying based off of seat class
+        // i%6 and i/6
+        return null;
     }
     
     /**
