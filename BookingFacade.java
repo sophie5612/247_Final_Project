@@ -15,6 +15,10 @@ public class BookingFacade {
         // return true if the username and password match with an account in the User database
     }
 
+    public void logOut(){
+        // log out of Flights, Hotels (save the data)
+    }
+
     public void addFamilyMember(String name){
         // add the family member's name to the User database
     }

@@ -95,6 +95,7 @@ public class UI {
                 break;
             case (2):
                 sortedFlights = bookingFacade.sortMostAvailableFlights(destinationCity, departAirport);
+         
                 break;
             default:
                 sortedFlights = bookingFacade.sortCheapestFlights(destinationCity, departAirport);
@@ -213,6 +214,10 @@ public class UI {
         System.out.println(WELCOME);
         // Login();
         MainMenu();
+    }
+
+    public void logOut(){
+        bookingFacade.logOut();
     }
 
     public static void main(String[] args) {
