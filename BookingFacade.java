@@ -127,20 +127,20 @@ public class BookingFacade {
 
     public ArrayList<Hotel> sortCheapestHotels(ArrayList<Hotel> hotels){
         // search Hotels for cheapest
-        Hotel temp;
-        boolean sorted = false;
-        while(!sorted) {
-            sorted = true;
-            for(int i = 0; i < hotels.size()-1; i++) {
-                if(hotels.get(i).compareHotelsCost(hotels.get(i+1)) > 0) {
-                    temp = hotels.get(i);
-                    hotels.set(i, hotels.get(i+1));
-                    hotels.set(i+1, temp);
-                    sorted = false;
+        ArrayList<Double> tempHotel = new ArrayList<Double>();
+        ArrayList<Hotel> validHotel = new ArrayList<Hotel>();
+        for(int i = 0; i < hotels.size(); i++) {
+                tempHotel.add(hotels.get(i).getPrice());
+            } 
+        Collections.sort(tempHotel);
+        for(int i = 0; i < hotels.size(); i++) {
+            for(int j = 0; j < hotels.size()-1; j++) {
+                if(tempHotel.get(i) == hotels.get(i).getPrice()) {
+                    validHotel.add(hotels.get(i));
                 }
             }
         }
-        return null;
+        return validHotel;
     }
 
     public ArrayList<Hotel> sortRatingHotels(ArrayList<Hotel> hotels){

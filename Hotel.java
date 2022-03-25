@@ -2,7 +2,7 @@ import java.util.*;
 /**
  * @author Ben Goodman
  */
-public class Hotel extends Booking {
+public class Hotel {
     protected int row;
     protected int col;
     private UUID ID;
@@ -11,7 +11,8 @@ public class Hotel extends Booking {
     private String nameOfHotel; 
     private boolean noSmoking;
     private boolean hasPool;
-    private String[][] rooms = new String[row][col];
+    private double price;
+    private ArrayList<Room> rooms;
 
     public Hotel(){
         this.ID = UUID.randomUUID();
@@ -22,7 +23,7 @@ public class Hotel extends Booking {
         this.hasPool = false;
     }
 
-    public Hotel(UUID ID, String namOfHotel, Date checkInDate, Date checkOutDate, boolean noSmoking, String[][] rooms, boolean hasPool){
+    public Hotel(UUID ID, String namOfHotel, Date checkInDate, Date checkOutDate, boolean noSmoking, ArrayList<Room> rooms, boolean hasPool){
             this.ID = ID;
             this.nameOfHotel = namOfHotel;
             this.checkInDate = checkInDate;
@@ -47,11 +48,14 @@ public class Hotel extends Booking {
     public boolean getSmoking() {
         return noSmoking;
     }
-    public String[][] getRooms() {
+    public ArrayList<Room> getRooms() {
         return rooms;
     }
     public boolean getPool() {
         return hasPool;
+    }
+    public double getPrice() {
+        return price;
     }
 }
 

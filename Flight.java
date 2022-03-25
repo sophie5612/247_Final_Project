@@ -9,7 +9,7 @@ import java.util.UUID;
 import Enums.Airline;
 import Enums.FlightType;
 
- public class Flight extends Booking{
+ public class Flight {
     protected int row;
     protected int col;
     private UUID ID;
