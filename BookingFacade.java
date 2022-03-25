@@ -159,11 +159,13 @@ public class BookingFacade {
         
     }
 
-    public boolean flightAvailable(int numTickets, String destinationCity, String departCity){
+    public boolean flightAvailable(int numTickets, String destinationCity, String departCity, ArrayList<Flight> allFlights){
         numTicketsAvailable(numTickets);
         // search for city
-        if (numTickets >= numTicketsAvailable(numTickets) && departCity == " "){ //check for the citys
-            return true;
+        for(int i = 0; i < allFlights.size(); i++) {
+            if (numTickets >= numTicketsAvailable(numTickets) && departCity == allFlights.get(i).getDepartureAirport() && destinationCity == allFlights.get(i).getArrivalAirport()) { //check for the citys
+                return true;
+            }
         }
         return false;
     }
