@@ -196,16 +196,4 @@ public class BookingFacade {
         return AvailableSeats;//Return integer of Seats still available
     }
 
-    //Method may be unneccessary.
-    public int compareHotelsCost(Hotel hotel) {
-        int res = 0;
-        if (this.cost < hotel.getCost()) {
-            res =- 1
-        }
-        if (this.cost > hotel.getCost()) {
-            res = 1;
-        }
-        return res;
-    }
-
 }
