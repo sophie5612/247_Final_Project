@@ -21,15 +21,15 @@ public class Seat {
         isAvailable = false;
     }
 
-    public boolean getSeatAvailablity(Seat seat) {
-        if(seat.taken != 'X') {
-            isAvailable = true;
+    public boolean getSeatAvailablity() {
+        //if(seat.taken != 'X') {
+        //    isAvailable = true;
             return isAvailable;
-        }
-        else {
-            isAvailable = false;
-            return isAvailable;
-        }
+        //}
+        //else {
+        //    isAvailable = false;
+        //    return isAvailable;
+        //}
     }
 
 }

@@ -172,9 +172,16 @@ public class BookingFacade {
         }
         return false;
     }
-    public int numTicketsAvailable(int numTickets){
+    public int numTicketsAvailable(Flight flight){
         //return the number of tickets available
-        return 0;
+        int AvailableSeats = 0;
+                                                            //Determine which Seats are taken in the list
+        for(int i = 0; i < flight.getSeat().size(); i++) {
+            if(flight.getSeat().get(i).getSeatAvailablity() == true) {
+                AvailableSeats++;
+            }
+        }                                                       
+        return AvailableSeats;//Return integer of Seats still available
     }
 
     //Method may be unneccessary.
