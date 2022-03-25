@@ -38,6 +38,7 @@ public class BookingFacade {
 
     public ArrayList<Flight> sortCheapestFlights(ArrayList<Flight> flights){
         // search the Flights for cheapest flight, return the sorted ArrayList
+
         return null;
     }
 
@@ -150,7 +151,7 @@ public class BookingFacade {
         // loop through and see if the flight is available and add to the string
         ArrayList<Flight> validFlights = new ArrayList<Flight>();
         for(int i = 0; i < allFlights.size(); i++) {
-            if(allFlights.get(i).getDepartureAirport() == departCity) {
+            if(allFlights.get(i).getDepartureAirport() == departCity && allFlights.get(i).getDestination() == destinationCity) {
                 validFlights.add(allFlights.get(i));
             }
         } 
