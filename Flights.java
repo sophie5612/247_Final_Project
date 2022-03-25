@@ -18,7 +18,7 @@ public class Flights {
         if (flights == null) {
             flights = new Flights();
         }
-
+        
         return flights;
     }
 
