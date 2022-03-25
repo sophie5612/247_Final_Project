@@ -85,9 +85,26 @@ import Enums.FlightType;
         // They have the correct location
         // price is varying based off of seat class
         // i%6 and i/6
+        ArrayList<Flight> flightList = Flights.getFlights()
+        for(int i = 0; i < flightList.size(); i++) {
+            if(i % 6) {
+                System.out.println(SeatPrinter(flightList.get(i)));
+            }
+            else {
+                System.out.println(SeatPrinter);
+            }
+        }
         return null;
     }
-    
+    //A bit messy but should work, might want to clean up. <<<----------
+    public char SeatPrinter(Seat seat) {
+        if(seat.getSeatAvailablity(seat) == true) {
+            return 'O';
+        }
+        else {
+            return 'X';
+        }
+    }
     /**
      * Calculate the number of unbooked seats
      * @return The number of remaining seats 

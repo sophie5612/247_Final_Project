@@ -44,6 +44,9 @@ public class BookingFacade {
 
     public ArrayList<Flight> sortMostAvailableFlights(ArrayList<Flight> flights){
         // search the Flights for most available flight, return the sorted ArrayList
+        for(int i = 0; i < flights.size(); i++) {
+
+        }
         return null;
     }
 
@@ -170,7 +173,7 @@ public class BookingFacade {
         return false;
     }
     public int numTicketsAvailable(int numTickets){
-        //reutnr the number of tickets available
+        //return the number of tickets available
         return 0;
     }
 
