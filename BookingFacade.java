@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
-import java.text.SimpleDateFormat;
+import java.util.Collections;
 
 public class BookingFacade {
     
@@ -38,8 +38,20 @@ public class BookingFacade {
 
     public ArrayList<Flight> sortCheapestFlights(ArrayList<Flight> flights){
         // search the Flights for cheapest flight, return the sorted ArrayList
-
-        return null;
+        ArrayList<Double> tempFlights = new ArrayList<Double>();
+        ArrayList<Flight> validFlights = new ArrayList<Flight>();
+        for(int i = 0; i < flights.size(); i++) {
+                tempFlights.add(flights.get(i).getPrice());
+            } 
+        Collections.sort(tempFlights);
+        for(int i = 0; i < flights.size(); i++) {
+            for(int j = 0; j < flights.size()-1; j++) {
+                if(tempFlights.get(i) == flights.get(i).getPrice()) {
+                    validFlights.add(flights.get(i));
+                }
+            }
+        }
+        return validFlights;
     }
 
     public ArrayList<Flight> sortMostAvailableFlights(ArrayList<Flight> flights){
