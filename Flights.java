@@ -18,11 +18,11 @@ public class Flights {
         if (flights == null) {
             flights = new Flights();
         }
-        
+
         return flights;
     }
 
-    public ArrayList<Flight> getFlights() {
+    public static ArrayList<Flight> getFlights() {
         return flightList;
     }
 

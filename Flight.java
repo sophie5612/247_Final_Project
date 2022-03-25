@@ -85,20 +85,20 @@ import Enums.FlightType;
         // They have the correct location
         // price is varying based off of seat class
         // i%6 and i/6
-        ArrayList<Flight> flightList = Flights.getFlights()
+        ArrayList<Flight> flightList = Flights.getFlights();
         for(int i = 0; i < flightList.size(); i++) {
-            if(i % 6) {
+            if(i % 6 == 0) {
                 System.out.println(SeatPrinter(flightList.get(i)));
             }
             else {
-                System.out.println(SeatPrinter);
+                System.out.println("\n");
             }
         }
         return null;
     }
     //A bit messy but should work, might want to clean up. <<<----------
-    public char SeatPrinter(Seat seat) {
-        if(seat.getSeatAvailablity(seat) == true) {
+    public char SeatPrinter(Flight flight) {
+        if(flight.getSeat().getSeatAvailablity() == true) {
             return 'O';
         }
         else {
@@ -139,7 +139,7 @@ import Enums.FlightType;
     public FlightType getFlightType() {
         return flightType;
     }
-    public String[][] getSeat() {
+    public ArrayList<Seat> getSeat() {
         return seats;
     }
     public Airline getAirline() {
