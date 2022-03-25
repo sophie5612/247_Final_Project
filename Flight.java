@@ -98,7 +98,7 @@ import Enums.FlightType;
     }
     //A bit messy but should work, might want to clean up. <<<----------
     public char SeatPrinter(Flight flight) {
-        if(flight.getSeat().getSeatAvailablity() == true) {
+        if(flight.getSeat(getSeatAvailablity(seats)) == true) {
             return 'O';
         }
         else {
