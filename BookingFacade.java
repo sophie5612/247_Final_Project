@@ -3,7 +3,11 @@
  * @author Sophie Azula
  */
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class BookingFacade {
     
@@ -48,17 +52,56 @@ public class BookingFacade {
         return null;
     }
 
-    public int calculateFlightTime(int departTime, int arrivalTime){
+    public String calculateFlightTime(int departTime, int arrivalTime){
         // return the total time of the flight (in hours)
         // could alternatively return a String
         // 2400, 1000
-        return 0;
+        departTime = 0020;
+        arrivalTime = 2380;
+        int totalMinutes;
+        int hours;
+        int minutes;
+        departTime = ((departTime / 100) * 60) + (departTime % 100);
+        arrivalTime = ((arrivalTime / 100) * 60) + (arrivalTime % 100);
+        totalMinutes = departTime - arrivalTime;
+        hours = Math.abs(totalMinutes / 60);
+        minutes = Math.abs(totalMinutes % 60);
+        String total = "Total Time " + hours + " Hours " + minutes + " Minutes";
+        System.out.print(total);
+        return total;
     }
 
-    public int militaryTimeConvert(int time){
-        //return the time in regular people time
-        // 0000, 1300
-        return 0;
+    public String militaryTimeConvert(int time){
+
+        String timeconvert = Integer.toString(time);
+        String hour = timeconvert.substring(0,2);
+        String minutes = timeconvert.substring(2,4);
+        String AmOrPm = "AM";
+        int tempAmOrPM = Integer.parseInt(hour.substring(0,2));
+        if(hour.substring(0,2).equals("00")) {
+            hour = "12";
+        }
+        else if(hour.substring(0,1).equals("1") || hour.subSequence(0,1).equals("2")) {
+            Integer militaryHour = Integer.parseInt(hour);
+            Integer regularHour = null;
+            if(militaryHour > 12) {
+                regularHour = (militaryHour - 12);
+                if(regularHour < 10) {
+                    hour = "0" + String.valueOf(regularHour);
+                }
+                else {
+                    hour = String.valueOf(regularHour);
+                }
+            }
+        }
+        if((tempAmOrPM >= 12) || (tempAmOrPM <= 23)) {
+            AmOrPm = "PM";
+        }
+        if((tempAmOrPM == 00) || (tempAmOrPM == 24)) {
+            AmOrPm = "AM";
+        }
+        timeconvert = hour + ":" + minutes + " " + AmOrPm;
+        return timeconvert;
     }
 
     public String printSortedFlights(ArrayList<Flight> flights){ // or rename to printFlights?? idk just want to make it distinguishable
