@@ -111,6 +111,19 @@ public class BookingFacade {
 
     public ArrayList<Hotel> sortCheapestHotels(ArrayList<Hotel> hotels){
         // search Hotels for cheapest
+        Hotel temp;
+        boolean sorted = false;
+        while(!sorted) {
+            sorted = true;
+            for(int i = 0; i < hotels.size()-1; i++) {
+                if(hotels.get(i).compareHotelsCost(hotels.get(i+1)) > 0) {
+                    temp = hotels.get(i);
+                    hotels.set(i, hotels.get(i+1));
+                    hotels.set(i+1, temp);
+                    sorted = false;
+                }
+            }
+        }
         return null;
     }
 
@@ -133,9 +146,16 @@ public class BookingFacade {
         // save all the users data
     }
 
-    public ArrayList<Flight> validFlights(int numTickets, String destinationCity, String departCity){
+    public ArrayList<Flight> validFlights(int numTickets, String destinationCity, String departCity, ArrayList<Flight> allFlights){
         // loop through and see if the flight is available and add to the string
-        return null;
+        ArrayList<Flight> validFlights = new ArrayList<Flight>();
+        for(int i = 0; i < allFlights.size(); i++) {
+            if(allFlights.get(i).getDepartureAirport() == departCity) {
+                validFlights.add(allFlights.get(i));
+            }
+        } 
+        return validFlights;
+        
     }
 
     public boolean flightAvailable(int numTickets, String destinationCity, String departCity){
@@ -149,6 +169,18 @@ public class BookingFacade {
     public int numTicketsAvailable(int numTickets){
         //reutnr the number of tickets available
         return 0;
+    }
+
+    //Method may be unneccessary.
+    public int compareHotelsCost(Hotel hotel) {
+        int res = 0;
+        if (this.cost < hotel.getCost()) {
+            res =- 1
+        }
+        if (this.cost > hotel.getCost()) {
+            res = 1;
+        }
+        return res;
     }
 
 }
