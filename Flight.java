@@ -145,4 +145,7 @@ import Enums.FlightType;
     public Airline getAirline() {
         return airline;
     }
+    public double getPrice() {
+        return price;
+    }
  }
