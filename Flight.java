@@ -64,7 +64,6 @@ import Enums.FlightType;
     public Flight(UUID ID, String destinationCity, String departureCity, Date departDate, Date arrivalDate, String departAirport, String arrivalAirport,
         FlightType flightType, Airline airline, double price){
             this.ID = ID;
-
             this.destinationCity = destinationCity;
             this.departureCity = departureCity;
             this.departDate = departDate;
@@ -80,21 +79,11 @@ import Enums.FlightType;
         }
 
     private ArrayList<Seat> createSeats() {
-        // seats array will be filled with seat objects
-        // Loop for each class of seats and then put them in order
-        // They have the correct location
-        // price is varying based off of seat class
-        // i%6 and i/6
-        ArrayList<Flight> flightList = Flights.getFlights();
-        for(int i = 0; i < flightList.size(); i++) {
-            if(i % 6 == 0) {
-                System.out.println(SeatPrinter(flightList.get(i)));
-            }
-            else {
-                System.out.println("\n");
-            }
+        ArrayList<Seat> temp = new ArrayList<Seat>();
+        for (int i = 0; i < 60; i++) {
+            temp.add(new Seat(i/6, i%6, UUID.randomUUID()));
         }
-        return null;
+        return temp;
     }
     //A bit messy but should work, might want to clean up. <<<----------
     public char SeatPrinter(Flight flight) {
@@ -106,6 +95,7 @@ import Enums.FlightType;
                 return 'X';
             }
         }
+        return '0';
     }
     /**
      * Calculate the number of unbooked seats

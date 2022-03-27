@@ -25,7 +25,7 @@ public class DataLoader extends DataContatnts {
 			
 			for(int i=0; i < flightsJSON.size(); i++) {
 				JSONObject flightJSON = (JSONObject)flightsJSON.get(i);
-				UUID flightID = (UUID)flightJSON.get(FLIGHT_ID);
+				UUID flightID = UUID.fromString((String)flightJSON.get(FLIGHT_ID));
                 String departAirport = (String)flightJSON.get(DEPART_AIRPORT);
                 String arrivalAirport = (String)flightJSON.get(ARRIVAL_AIRPORT);
                 String destination = (String)flightJSON.get(DESTINATION);
@@ -36,10 +36,10 @@ public class DataLoader extends DataContatnts {
                 Boolean smoking = (Boolean)flightJSON.get(SMOKING);
                 FlightType flightType = (FlightType)flightJSON.get(FLIGHT_TYPE);
                 Airline airline = (Airline)flightJSON.get(AIRLINE);
-                String[][] seats = null;
+                ArrayList<Seat> seats = null;
 				
 				flights.add(new Flight(flightID, destination, departDate, arrivDate, departAirport, arrivalAirport, smoking,
-                flightType, seats, airline));
+                flightType, seats, airline, departureTime, arrivalTime));
 			}
 			
 			return flights;
