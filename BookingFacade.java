@@ -63,12 +63,12 @@ public class BookingFacade {
     }
 
     public String printFlight(Flight flight){
-        System.out.println("Flight type: " + flight.getFlightType() + '\n' + "Departure Airport: " + flight.getDepartureAirport() +
+        String flightString = ("Flight type: " + flight.getFlightType() + '\n' + "Departure Airport: " + flight.getDepartureAirport() +
             '\n' + "Arrival Airport: " + flight.getArrivalAirport() + '\n' + "Total Travel Time: "
             + calculateFlightTime(flight.getDepartureTime(), flight.getArrivalTime()));
         // print out a nice overview of a flight
         // calculate the flight time and include it here
-        return null;
+        return flightString;
     }
 
     public String calculateFlightTime(int departTime, int arrivalTime){
@@ -166,9 +166,9 @@ public class BookingFacade {
 
     public String printHotel(Hotel hotel){
         // nice formating of a hotel
-        System.out.println("Hotel Name: " + hotel.getHotel() + '\n' + "Hotel price: " + hotel.getPrice() + '\n' 
+        String hotelString = ("Hotel Name: " + hotel.getHotel() + '\n' + "Hotel price: " + hotel.getPrice() + '\n' 
             + "Rating: " + hotel.getRatings() + '\n' + "Amenities: " + hotel.getPool());
-        return null;
+        return hotelString;
     }
 
     public String printSortedHotels(ArrayList<Hotel> hotels){ 
