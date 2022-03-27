@@ -144,8 +144,21 @@ public class BookingFacade {
     }
 
     public ArrayList<Hotel> sortRatingHotels(ArrayList<Hotel> hotels){
+        ArrayList<Integer> tempHotel = new ArrayList<Integer>();
+        ArrayList<Hotel> validHotel = new ArrayList<Hotel>();
+        for(int i = 0; i < hotels.size(); i++) {
+            tempHotel.add(hotels.get(i).getRatings());
+        }
+        Collections.sort(tempHotel, Collections.reverseOrder());
+        for(int i = 0; i < hotels.size(); i++) {
+            for(int j = 0; j < hotels.size()-1; j++) {
+                if(tempHotel.get(i) == hotels.get(i).getRatings()) {
+                    validHotel.add(hotels.get(i));
+                }
+            }
+        }
         // search Hotels for highest rating
-        return null;
+        return validHotel;
     }
 
     public String printHotel(Hotel hotel){
