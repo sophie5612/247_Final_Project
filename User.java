@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 import java.util.UUID;
 
@@ -29,5 +31,9 @@ public class User {
         this.ID = ID;
         this.name = name;
         this.DOB = DOB;
+    }
+
+    public int calculateAge(LocalDate DOB, LocalDate currentDate){
+            return Period.between(DOB, currentDate).getYears();
     }
 }
