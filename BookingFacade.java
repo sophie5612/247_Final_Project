@@ -63,6 +63,9 @@ public class BookingFacade {
     }
 
     public String printFlight(Flight flight){
+        System.out.println("Flight type: " + flight.getFlightType() + '\n' + "Departure Airport: " + flight.getDepartureAirport() +
+            '\n' + "Arrival Airport: " + flight.getArrivalAirport() + '\n' + "Total Travel Time: "
+            + calculateFlightTime(flight.getDepartureTime(), flight.getArrivalTime()));
         // print out a nice overview of a flight
         // calculate the flight time and include it here
         return null;
