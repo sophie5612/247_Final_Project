@@ -166,6 +166,8 @@ public class BookingFacade {
 
     public String printHotel(Hotel hotel){
         // nice formating of a hotel
+        System.out.println("Hotel Name: " + hotel.getHotel() + '\n' + "Hotel price: " + hotel.getPrice() + '\n' 
+            + "Rating: " + hotel.getRatings() + '\n' + "Amenities: " + hotel.getPool());
         return null;
     }
 
