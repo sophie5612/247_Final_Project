@@ -76,7 +76,8 @@ public class UI {
      * Method to book a flight
      */
     public void BookFlight() {
-        System.out.print("Please input the following\nDestination City: ");
+        System.out.println("Please input the following");
+        System.out.print("Destination City: ");
         String destinationCity = scanner.next();
         System.out.print("Depart City: ");
         String departCity = scanner.next();
@@ -86,12 +87,12 @@ public class UI {
         int numTickets = scanner.nextInt();
         
         ArrayList<Flight> sortedFlights= new ArrayList<Flight>();
-        sortedFlights = bookingFacade.validFlights(numTickets, destinationCity, departCity);
+        // sortedFlights = bookingFacade.validFlights(numTickets, destinationCity, departCity);
 
-        if (sortedFlights.size() == 0);{
-            System.out.println("No flights available");
-            return;
-        }
+        // if (sortedFlights.size() == 0);{
+        //     System.out.println("No flights available");
+        //     return;
+        // }
 
         switch (pickSortingMethod(flightSortingOptions)) { 
             case (1):
@@ -113,8 +114,8 @@ public class UI {
             int input = scanner.nextInt();
             if(input > 0 && input < sortedFlights.size()){ // check the number picked is in bounds
                 Flight pickedFlight = sortedFlights.get(input - 1); // get the flight at the user's request
-                Seat pickedSeat = SeatPicker(pickedFlight); // user picks their seat
-                bookingFacade.bookFlight(pickedSeat); // book seat to user
+                // Seat pickedSeat = SeatPicker(pickedFlight); // user picks their seat
+                // bookingFacade.bookFlight(pickedSeat); // book seat to user
             }
     } 
 
@@ -123,23 +124,23 @@ public class UI {
      * 
      * @return The flight at the requested location
      */
-    public Seat SeatPicker(Flight flight) { // should this be done in the UI? No, will move
-        Seat.initalizeSeats();
-        Seat.printSeats();
-        System.out.print("Please pick which seat you would like\nInput the row: ");
-        int row = scanner.nextInt();
-        System.out.print("Input the column: ");
-        int col = scanner.nextInt();
-        if(Seat.isSeatAvailable(row, col) == true) {
-            Seat.printSeats();
-            System.out.println("Booking your seat.");
-        } else {
-            System.out.println("That seat is already taken, please select another seat.");
-        }
+    // public Seat SeatPicker(Flight flight) { // should this be done in the UI? No, will move
+    //     Seat.initalizeSeats();
+    //     Seat.printSeats();
+    //     System.out.print("Please pick which seat you would like\nInput the row: ");
+    //     int row = scanner.nextInt();
+    //     System.out.print("Input the column: ");
+    //     int col = scanner.nextInt();
+    //     if(Seat.isSeatAvailable(row, col) == true) {
+    //         Seat.printSeats();
+    //         System.out.println("Booking your seat.");
+    //     } else {
+    //         System.out.println("That seat is already taken, please select another seat.");
+    //     }
 
-        // return the seat, update the double array
-        return null; 
-    }
+    //     // return the seat, update the double array
+    //     return null; 
+    // }
 
     /**
      * Display the seats in a 2x2 matrix
@@ -170,7 +171,8 @@ public class UI {
      * Method to book a hotel
      */
     public void BookHotel(){
-        System.out.print("Please input the following\nDestination City: ");
+        System.out.print("Please input the following");
+        System.err.println("Destination City: ");
         String destinationCity = scanner.next();
         System.out.println();
 
@@ -183,17 +185,17 @@ public class UI {
         System.out.println("How would you like to sort the hotels?");
         ArrayList<Hotel> sortedHotels= new ArrayList<Hotel>();
 
-        switch (pickSortingMethod(hotelSortingOptions)) { // 1 = cheapest, 2 = highest rated
-            case (1):
-                sortedHotels = bookingFacade.sortCheapestHotels(destinationCity);
-                break;
-            case (2):
-                sortedHotels = bookingFacade.sortRatingHotels(destinationCity);
-                break;
-            default:
-                System.out.println("Showing cheapest hotles"); //make sure defualt sort is cheap
-                break;
-        }
+        // switch (pickSortingMethod(hotelSortingOptions)) { // 1 = cheapest, 2 = highest rated
+        //     case (1):
+        //         sortedHotels = bookingFacade.sortCheapestHotels(destinationCity);
+        //         break;
+        //     case (2):
+        //         sortedHotels = bookingFacade.sortRatingHotels(destinationCity);
+        //         break;
+        //     default:
+        //         System.out.println("Showing cheapest hotles"); //make sure defualt sort is cheap
+        //         break;
+        // }
 
         if (sortedHotels!= null) { // how to check if its just a default? SOS
             bookingFacade.printSortedHotels(sortedHotels);
@@ -222,7 +224,7 @@ public class UI {
      */
     public void run() {
         System.out.println(WELCOME);
-        // Login();
+        Login();
         MainMenu();
     }
 
@@ -247,8 +249,14 @@ public class UI {
 
         int input = scanner.nextInt();
         if (input == 1) {
-            // set user
+            System.out.println("Input the following login information");
+            System.out.print("Username: ");
+            String username = scanner.next();
+            System.out.print("Password: ");
+            String password = scanner.next();
+            bookingFacade.login(username, password);
         }
+        System.out.println();
     }
 
     /**

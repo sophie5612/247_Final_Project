@@ -175,7 +175,7 @@ public class BookingFacade {
     }
 
     public boolean flightAvailable(int numTickets, String destinationCity, String departCity, ArrayList<Flight> allFlights){
-        numTicketsAvailable(numTickets);
+        int available tnumTicketsAvailable(numTickets);
         // search for city
         for(int i = 0; i < allFlights.size(); i++) {
             if (numTickets >= numTicketsAvailable(numTickets) && departCity == allFlights.get(i).getDepartureAirport() && destinationCity == allFlights.get(i).getArrivalAirport()) { //check for the citys
