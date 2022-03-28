@@ -26,20 +26,21 @@ public class DataLoader extends DataContatnts {
 			for(int i=0; i < flightsJSON.size(); i++) {
 				JSONObject flightJSON = (JSONObject)flightsJSON.get(i);
 				UUID flightID = UUID.fromString((String)flightJSON.get(FLIGHT_ID));
+                String departureCity = (String)flightJSON.get(DEPARTURE_CITY);
                 String departAirport = (String)flightJSON.get(DEPART_AIRPORT);
                 String arrivalAirport = (String)flightJSON.get(ARRIVAL_AIRPORT);
                 String destination = (String)flightJSON.get(DESTINATION);
-                String departureTime = (String)flightJSON.get(DEPARTURE_TIME);
-                String arrivalTime = (String)flightJSON.get(ARRIVAL_TIME);
+                int departureTime = (Integer)flightJSON.get(DEPARTURE_TIME);
+                int arrivalTime = (Integer)flightJSON.get(ARRIVAL_TIME);
                 Date departDate = (Date)flightJSON.get(DEPARTURE_DATE);
                 Date arrivDate = (Date)flightJSON.get(ARRIVAL_DATE);
-                Boolean smoking = (Boolean)flightJSON.get(SMOKING);
                 FlightType flightType = (FlightType)flightJSON.get(FLIGHT_TYPE);
                 Airline airline = (Airline)flightJSON.get(AIRLINE);
+                int price = (Integer)flightJSON.get(PRICE);
                 ArrayList<Seat> seats = null;
 				
-				flights.add(new Flight(flightID, destination, departDate, arrivDate, departAirport, arrivalAirport, smoking,
-                flightType, seats, airline, departureTime, arrivalTime));
+				flights.add(new Flight(flightID, destination, departureCity, departDate, arrivDate, departAirport, arrivalAirport,
+                flightType, airline, price, departureTime, arrivalTime));
 			}
 			
 			return flights;

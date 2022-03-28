@@ -62,7 +62,7 @@ import Enums.FlightType;
       * @param airline
       */
     public Flight(UUID ID, String destinationCity, String departureCity, Date departDate, Date arrivalDate, String departAirport, String arrivalAirport,
-        FlightType flightType, Airline airline, double price){
+        FlightType flightType, Airline airline, double price, int departTime, int arrivalTime){
             this.ID = ID;
             this.destinationCity = destinationCity;
             this.departureCity = departureCity;
@@ -85,6 +85,7 @@ import Enums.FlightType;
         }
         return temp;
     }
+
     //A bit messy but should work, might want to clean up. <<<----------
     public char SeatPrinter(Flight flight) {
         for(int i = 0; i < flight.getSeat().size(); i++) {
