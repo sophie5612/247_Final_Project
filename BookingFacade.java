@@ -230,7 +230,24 @@ public class BookingFacade {
         }
         return seatsLeft;
     }
+    public boolean pickedRoom(Hotel hotel, String room) {
+        ArrayList<Room> rooms = hotel.getRooms();
+        if (room.length() != 2) {
+            return false;
 
+        }
+        int roomFloor = Character.getNumericValue(room.charAt(0)) - 1;
+        int roomNumber = room.charAt(1);
+
+        for (int i = 0; i < rooms.size(); i++) {
+            Room temp = rooms.get(i);
+            if (temp.getFloor() == roomFloor && temp.getRoomNumber() == roomNumber && temp.getIsAvailable()) {
+                temp.setSeatToTaken();
+                return true;
+            }
+        }
+        return false;
+    }
     public boolean pickedSeat(Flight flight, String seat) {
         ArrayList<Seat> seats = flight.getSeat();
         if (seat.length() != 2) {
