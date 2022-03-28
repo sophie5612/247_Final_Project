@@ -6,38 +6,49 @@
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.UUID;
 import java.util.Collections;
 import java.util.Comparator;
 
-
-
 public class BookingFacade {
-    // private Flights flights;
-    // private Hotels hotels;
-    // private Users users;
-    // private User user; // Current user
 
-    // public BookingFacade(){
-    //     flights = Flights.getInstance();
-    //     hotels = Hotels.getInstance();
-    //     users = Users.getInstance();
-    // }
-    
-    public void signUp(String name, Date DOB, String username, String password){
-        Users.addUser(name, DOB, username, password);
+    Flights flights = Flights.getInstance();
+    Hotels hotels = Hotels.getInstance();
+    Users users = Users.getInstance();
+    ArrayList<Flight> flightList;
+    ArrayList<Hotel> hotelList;
+    ArrayList<User> userList;
+    User currentUser;
+
+    public BookingFacade(){
+        flightList = Flights.getFlights();
+        hotelList = Hotels.getHotels();
+        userList = Users.getUsers();
+        currentUser = null;
+    }
+
+    public void signUp(String name, String DOB, String username, String password){
+        currentUser = new User(UUID.randomUUID(), name, DOB, username, password, new ArrayList<String>(), new ArrayList<String>(), new ArrayList<FamilyMember>());
+        Users.addUser(currentUser);
     }
 
     public boolean login(String username, String password){
-        boolean exists = false;
-        for(int i = 0; i < users.getUsers().size(); i ++){
-            // check if there exists a user
+        for (int i = 0; i < userList.size(); i++) {
+            User temp = userList.get(i);
+            if (temp.getUserName().equals(username) && temp.getPassword().equals(password)) {
+                currentUser = temp;
+                return true;
+            }
         }
-        return exists;
+        return false;
     }
 
     public void logOut(){
-        // log out of Flights, Hotels (save the data)
+        flights.logout();
+        hotels.logout();
+        users.logout();
     }
 
     public void addFamilyMember(String name){
@@ -54,59 +65,42 @@ public class BookingFacade {
     }
 
     public ArrayList<Flight> sortCheapestFlights(ArrayList<Flight> flights){ // search the Flights for cheapest flight, return the sorted ArrayList
-        ArrayList<Double> tempFlights = new ArrayList<Double>();
-        ArrayList<Flight> validFlights = new ArrayList<Flight>();
-        for(int i = 0; i < flights.size(); i++) {
-                tempFlights.add(flights.get(i).getPrice());
-            } 
-        Collections.sort(tempFlights);
-        for(int i = 0; i < flights.size(); i++) {
-            for(int j = 0; j < flights.size()-1; j++) {
-                if(tempFlights.get(i) == flights.get(i).getPrice()) {
-                    validFlights.add(flights.get(i));
-                }
-            }
-        }
-        return validFlights;
+        Collections.sort(flights);
+        return flights;
     }
 
     public ArrayList<Flight> sortMostAvailableFlights(ArrayList<Flight> flights){ // search the Flights for most available flight, return the sorted ArrayList
-        Flight temp = new Flight();
-        Flight temp2 = new Flight();
-        return null;
-            // Collections.sort(flights, new Comparator<Flight>()
-            // {
-                //Ascending sort (might scrap)
-            //     public int compare(Flight f1, Flight f2)
-            //     {
-            //         return Integer.valueOf(f1.getSeats().compareTo(f2.getSeats());
-            //     }
-            // });
-            // for (int i = 0; i < flights.size(); i++) {
-            //     System.out.println(flights.get(i));
-            // }
-            //if(numTicketsAvailable(flights.get(i)) < numTicketsAvailable(flights.get(i+1))) {
-            //    temp = flights.get(i);
-            //    temp2 = flights.get(i+1);
-            //    flights.get(i+1) = temp;
-            //    temp = flights.get(i+1);
-            //
-            //}
+        String ret = "";
+        while (flights.size() > 0) {
+            double mostAvailable = 0;
+            Flight mostAvailableFlight = null;
+            int mostAvailableIndex = 0;
+            for (int i = 0; i < flights.size(); i++) {
+                Flight temp = flights.get(i);
+                int howManySeatsLeft = howManySeatsLeft(temp);
+                if (howManySeatsLeft > mostAvailable) {
+                    mostAvailable = howManySeatsLeft;
+                    mostAvailableFlight = temp;
+                    mostAvailableIndex = i;
+                }
+            }
+            ret += printFlight(mostAvailableFlight);
+            flights.remove(mostAvailableIndex);
+        }
+        return ret;
         }
 
     public String printFlight(Flight flight){
+        if (flight == null) {
+            return " ";
+        }
         String flightString = ("Flight type: " + flight.getFlightType() + '\n' + "Departure Airport: " + flight.getDepartureAirport() +
             '\n' + "Arrival Airport: " + flight.getArrivalAirport() + '\n' + "Total Travel Time: "
-            + calculateFlightTime(flight.getDepartureTime(), flight.getArrivalTime()) + '\n' + '\n');
+            + calculateFlightTime(flight.getDepartureTime(), flight.getArrivalTime()) + '\n' + "Number of Stops: " + flight.getStops() + '\n' + "Price: " + flight.getPrice());
         return flightString;
     }
 
     public String calculateFlightTime(int departTime, int arrivalTime){
-        // return the total time of the flight (in hours)
-        // could alternatively return a String
-        // 2400, 1000
-        departTime = 0020;
-        arrivalTime = 2380;
         int totalMinutes;
         int hours;
         int minutes;
@@ -116,7 +110,6 @@ public class BookingFacade {
         hours = Math.abs(totalMinutes / 60);
         minutes = Math.abs(totalMinutes % 60);
         String total = "Total Time " + hours + " Hours " + minutes + " Minutes";
-        System.out.print(total);
         return total;
     }
 
@@ -153,10 +146,10 @@ public class BookingFacade {
         return timeconvert;
     }
 
-    public String printSortedFlights(ArrayList<Flight> flights){
-        String sortedFlights = " ";
-        for(int i = 0; i < flights.size(); i++) {
-            sortedFlights += (i + 1) + ") " + printFlight(flights.get(i));
+    public String printSortedFlights(ArrayList<Flight> tempArr){
+        String sortedFlights = "";
+        for(int i = 0; i < tempArr.size(); i++) {
+            sortedFlights += (i + 1) + ") " + printFlight(tempArr.get(i)) + "\n";
         }
         return sortedFlights;
     }
@@ -216,55 +209,51 @@ public class BookingFacade {
     public ArrayList<Flight> validFlights(int numTickets, String destinationCity, String departCity){
         // loop through and see if the flight is available and add to the string
         ArrayList<Flight> validFlights = new ArrayList<Flight>();
-        // for(int i = 0; i < this.flights.size(); i++) { // idk how we're creating the initial flights ArrayList
-        //     if(numTicketsAvailable(flights.get(i)) >= numTickets )&& this.flights.getDepartureAirport(i) == departCity && this.flights.getDestination(i) == destinationCity) {
-        //         validFlights.add(flights.get(i));
-        //     }
-        // } 
-        return validFlights;
-        
-    }
-
-
-
-    public boolean flightAvailable(int totalTickets, String destinationCity, String departCity, ArrayList<Flight> allFlights){
-        //int available numTicketsAvailable(numTickets);
-        // search for city
-        for(int i = 0; i < allFlights.size(); i++) {
-                if (numTicketsAvailable(allFlights.get(i)) >= totalTickets && departCity == allFlights.get(i).getDepartureAirport() && destinationCity == allFlights.get(i).getArrivalAirport()) { //check for the citys
-                    return true;
-                }
-        }
-        return false;
-    }
-    public int numTicketsAvailable(Flight flight){
-        //return the number of tickets available
-        int AvailableTickets = 0;
-        //Determine which Seats are taken in the list
-        for(int i = 0; i < flight.getSeat().size(); i++) {
-            if(flight.getSeat().get(i).getSeatAvailablity() == true) {
-                AvailableTickets++;
+        for (int i = 0; i < flightList.size(); i++) {
+            Flight temp = flightList.get(i);
+            // Check to see how many seats are available
+            int seatsLeft = howManySeatsLeft(temp);
+            if (seatsLeft >= numTickets && destinationCity.equalsIgnoreCase(temp.getDestination()) && departCity.equalsIgnoreCase(temp.getDepartureCity())) {
+                validFlights.add(temp);
             }
-        }                                                       
-        return AvailableTickets; //Return integer of Seats still available
+        }
+        return validFlights;
+    }
+
+    public int howManySeatsLeft(Flight flight) {
+        ArrayList<Seat> seats = flight.getSeat();
+        int seatsLeft = 0;
+        for (int j = 0; j < seats.size(); j++) {
+            if (seats.get(j).getIsAvailable()) {
+                seatsLeft++;
+            }
+        }
+        return seatsLeft;
+    }
+
+    public boolean pickedSeat(Flight flight, String seat) {
+        return false;
     }
 
     public String showSeats(Flight flight) { //should this be done in the UI
-        String output = " ";
-        int rows = 6;
-        int cols = 10;
-        char[][] seats = new char[rows][cols]; // will change to adapt
+        String output = "  A B C  D E F";
+        int rows = 10;
+        int cols = 6;
+        ArrayList<Seat> seats = flight.getSeat();
+        char[][] seatsChart = new char[rows][cols]; // will change to adapt
 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; i < cols; j++) {
-                // if (flight.getSeat().isAvailable()){
-                // seats[i][j] = 'O';
-                // }
-                // else{
-                // seats[i][j] = 'X';
-                // }
-                output += (seats[i][j]);
-                ;
+        for (int i = 0; i < seats.size(); i++) {
+            Seat temp = seats.get(i);
+            if (temp.getIsAvailable()) {
+                seatsChart[temp.getRow()][temp.getCol()] = 'O';
+            } else {
+                seatsChart[temp.getRow()][temp.getCol()] = 'X';
+            }
+        }
+        for (int i = 0; i < seatsChart.length; i++) {
+            output += "\n" + (i + 1) + " ";
+            for (int j = 0; j < seatsChart[i].length; j++) {
+                output += seatsChart[i][j] + " ";
             }
         }
         return output;

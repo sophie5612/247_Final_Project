@@ -1,11 +1,8 @@
-/**
- * @author Sophie Azula
- */
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class Users {
+    
     private static Users users = null;
     private static ArrayList<User> userList;
 
@@ -24,12 +21,16 @@ public class Users {
         return userList;
     }
 
-    public static void addUser(String name, Date DOB, String username, String password) {
-        userList.add(new RegisteredUser(name, DOB, username, password));
+    public static void addUser(UUID ID, String name, String DOB, String userName, String passWord, ArrayList<String> flightData, ArrayList<String> hotelData, ArrayList<FamilyMember> familyList) {
+        userList.add(new User(ID, name, DOB, userName, passWord, flightData, hotelData, familyList));
+    }
 
+    public static void addUser(User user) {
+        userList.add(user);
     }
 
     public void logout() {
-        DataWriter.saveUser();
+        DataWriter.saveUsers();
     }
+
 }

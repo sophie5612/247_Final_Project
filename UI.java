@@ -5,7 +5,6 @@
  */
 
 import java.util.Scanner;
-import java.io.ObjectInputStream.GetField;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -50,10 +49,10 @@ public class UI {
                 case (2):
                     BookHotel();
                     break;
-                // case (3):
-                // ViewAccount
+                case (3):
+                    ViewAccount();
                 case (4):
-                    bookingFacade.saveData();
+                    bookingFacade.logOut();
                     quit = true;
             }
             System.out.println();
@@ -70,28 +69,28 @@ public class UI {
         for (int i = 0; i < loginOptions.length; i++) {
             System.out.println("(" + (i + 1) + ") " + loginOptions[i]);
         }
-
         int input = scanner.nextInt();
-
+        scanner.nextLine();
         System.out.println("Please input the following information");
         System.out.print("Username: ");
-        String username = scanner.next();
+        String username = scanner.nextLine();
         System.out.print("Password: ");
-        String password = scanner.next();
+        String password = scanner.nextLine();
         if (input == 1) {
-            // bookingFacade.login(username, password);
+            if(bookingFacade.login(username, password)) {
+                System.out.println("\nLogin Successful!");
+                System.out.println("Welcome " + bookingFacade.currentUser.getName() + "\n");
+            } else {
+                System.out.println("Username or password do not match anything in our system, please either try to login again or make a new account!\n");
+                Login();
+            }
         } else {
             System.out.print("Name: ");
-            String name = scanner.next();
-            System.out.print("DOB (dd/mm/yy): ");
-            String StringDOB = scanner.next();
-            Date DOB;
-            try {
-                DOB = new SimpleDateFormat().parse(StringDOB);
-            } catch (ParseException e) {
-                DOB = new Date();
-            }
-            // bookingFacade.signUp(name, DOB, username, password);
+            String name = scanner.nextLine();
+            System.out.print("DOB (dd-mm-yyyy): ");
+            String DOB = scanner.nextLine();
+            bookingFacade.signUp(name, DOB, username, password);
+            System.out.println("Welcome " + bookingFacade.currentUser.getName() + "\n");
         }
     }
 
@@ -135,25 +134,33 @@ public class UI {
                 sortedFlights = bookingFacade.sortCheapestFlights(sortedFlights);
                 break;
             case (2):
-                sortedFlights = bookingFacade.sortMostAvailableFlights(sortedFlights);
-
+                sortedFlights= bookingFacade.sortMostAvailableFlights(sortedFlights);
                 break;
             default:
                 sortedFlights = bookingFacade.sortCheapestFlights(sortedFlights);
                 System.out.println("Showing cheapest flights");
                 break;
         }
-
-        bookingFacade.printSortedFlights(sortedFlights); // display sorted flights
+        String sortedFlightsString = bookingFacade.printSortedFlights(sortedFlights);
+        System.out.println(sortedFlightsString); // display sorted flights
 
         System.out.println("Which flight would you like to book?");
         int input = scanner.nextInt();
-        if (input > 0 && input < sortedFlights.size()) { // check the number picked is in bounds
-            Flight pickedFlight = sortedFlights.get(input - 1); // get the flight at the user's request
-            // Seat pickedSeat = SeatPicker(pickedFlight); // user picks their seat
-            // bookingFacade.bookFlight(pickedSeat); // book seat to user
-            System.out.println("Flight booked!");
+        Flight pickedFlight;
+        if (input > 0 && input <= sortedFlights.size()) { // check the number picked is in bounds
+            pickedFlight = sortedFlights.get(input - 1); // get the flight at the user's request
+            System.out.println("\nNow that you have picked a flight, please choose a seat! The open seats are marked with O's");
+            showSeats(pickedFlight);
+        } else {
+            System.out.println("\nInvalid Flight was entered, sending you back to the main menu");
+            MainMenu();
         }
+        System.out.println("\nPlease enter the seat(s) you would like by following this example. If I wanted the B seat in row 3 I would type in B3 then hit enter.");
+        for (int i = 0; i < numTickets; i++) {
+            String seatPick = scanner.nextLine();
+            bookingFacade.pickedSeat(pickedFlight, seatPick);
+        }
+        
     }
 
     /**
@@ -214,6 +221,10 @@ public class UI {
     }
 
     public void showRooms(Hotel hotel) {
+
+    }
+
+    public void ViewAccount() {
 
     }
 

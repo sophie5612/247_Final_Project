@@ -4,29 +4,27 @@
  */
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.UUID;
 import Enums.Airline;
 import Enums.FlightType;
 
- public class Flight {
+ public class Flight implements Comparable<Flight>{
     protected int row;
     protected int col;
     private UUID ID;
     private String destinationCity;
     private String departureCity;
-    private Date departDate;
-    private Date arrivalDate;
+    private String departDate;
+    private String arrivalDate;
     private double price;
     private int departTime;
     private int arrivalTime;
     private String departAirport;
     private String arrivalAirport;
-    private boolean smoking;
+    private int stops;
     private FlightType flightType;
     private ArrayList<Seat> seats;
     private Airline airline;
-    private int AvailableTickets;
 
     /**
      * A default constructor
@@ -35,13 +33,14 @@ import Enums.FlightType;
         this.ID = UUID.randomUUID();
         this.destinationCity = " ";
         this.departureCity = " ";
-        this.departDate = new Date();
-        this.arrivalDate = new Date();
+        this.departDate = " ";
+        this.arrivalDate = " ";
         this.departAirport = " ";
         this.price = 0;
         this.arrivalAirport = " ";
-        this.departTime = departTime;
-        this.arrivalTime = arrivalTime;
+        this.departTime = 0000;
+        this.arrivalTime = 0000;
+        this.stops = 0;
         this.flightType = FlightType.ONE_WAY;
         //String[][] seats = new String[rows][columns]; //Dont know if this is neccessary.
         //this.seats = new ArrayList<Seat>();
@@ -62,8 +61,8 @@ import Enums.FlightType;
       * @param seats
       * @param airline
       */
-    public Flight(UUID ID, String destinationCity, String departureCity, Date departDate, Date arrivalDate, String departAirport, String arrivalAirport,
-        FlightType flightType, Airline airline, double price, int departTime, int arrivalTime){
+    public Flight(UUID ID, String destinationCity, String departureCity, String departDate, String arrivalDate, String departAirport, String arrivalAirport,
+        FlightType flightType, Airline airline, double price, int departTime, int arrivalTime, ArrayList<Seat> seats, int stops){
             this.ID = ID;
             this.destinationCity = destinationCity;
             this.departureCity = departureCity;
@@ -76,29 +75,10 @@ import Enums.FlightType;
             this.flightType = flightType;
             this.airline = airline;
             this.price = price;
-            seats = createSeats();
+            this.seats = seats;
+            this.stops = stops;
         }
 
-    private ArrayList<Seat> createSeats() {
-        ArrayList<Seat> temp = new ArrayList<Seat>();
-        for (int i = 0; i < 60; i++) {
-            temp.add(new Seat(i/6, i%6, UUID.randomUUID()));
-        }
-        return temp;
-    }
-
-    //A bit messy but should work, might want to clean up. <<<----------
-    public char SeatPrinter(Flight flight) {
-        for(int i = 0; i < flight.getSeat().size(); i++) {
-            if(flight.getSeat().get(i).getSeatAvailablity() == true) {
-                return 'O';
-            }
-            else {
-                return 'X';
-            }
-        }
-        return '0';
-    }
     /**
      * Calculate the number of unbooked seats
      * @return The number of remaining seats 
@@ -109,10 +89,10 @@ import Enums.FlightType;
     public String getDestination() {
         return destinationCity;
     }
-    public Date getDepartureDate() {
+    public String getDepartureDate() {
         return departDate;
     }
-    public Date getArrivalDate() {
+    public String getArrivalDate() {
         return arrivalDate;
     }
     public int getDepartureTime() {
@@ -124,11 +104,14 @@ import Enums.FlightType;
     public String getDepartureAirport() {
         return departAirport;
     }
+    public String getDepartureCity() {
+        return departureCity;
+    }
     public String getArrivalAirport() {
         return arrivalAirport;
     }
-    public boolean getSmoking() {
-        return smoking;
+    public int getStops() {
+        return stops;
     }
     public FlightType getFlightType() {
         return flightType;
@@ -141,5 +124,15 @@ import Enums.FlightType;
     }
     public double getPrice() {
         return price;
+    }
+
+    public int compareTo(Flight flight) {
+        if (price == flight.price) {
+            return 0;
+        } else if (price > flight.price) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
  }

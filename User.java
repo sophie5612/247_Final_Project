@@ -1,18 +1,20 @@
+import java.util.ArrayList;
+import java.util.UUID;
+
 /**
  * @author Sophie Azula
  */
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.UUID;
-
-
 public class User {
     private UUID ID;
     private String name;
-    private Date DOB;
+    private String DOB;
+    private String userName;
+    private String password;
+    private ArrayList<String> flightData;
+    private ArrayList<String> hotelData;
+    private ArrayList<FamilyMember> familyList;
+    private int age;
 
     /**
      * A default constructor for User
@@ -20,7 +22,12 @@ public class User {
     public User(){
         this.ID = UUID.randomUUID();
         this.name = " ";
-        this.DOB = new Date();
+        this.DOB = " ";
+        this.userName = " ";
+        this.password = " ";
+        this.flightData = null;
+        this.hotelData = null;
+        this.familyList = null;
     }
 
     /**
@@ -29,32 +36,68 @@ public class User {
      * @param name
      * @param DOB
      */
-    public User(String name, Date DOB){
-        this.ID = UUID.randomUUID();
+    public User(UUID ID, String name, String DOB, String userName, String passWord, ArrayList<String> flightData, ArrayList<String> hotelData, ArrayList<FamilyMember> familyList){
+        this.ID = ID;
         this.name = name;
         this.DOB = DOB;
+        this.userName = userName;
+        this.password = passWord;
+        this.flightData = flightData;
+        this.hotelData = hotelData;
+        this.familyList = familyList;
+        age = calculateAge();
     }
 
-    public UUID getID(){
-        return this.ID;
+    public void addFamilyMember(UUID uuid, String name, String DOB) {
+        familyList.add(new FamilyMember(ID, name, DOB));
     }
 
-    public Date getDOB(){
-        return this.DOB;
+    public void addFlight(Flight flight) {
+        flightData.add(flight.getUuid().toString());
     }
 
-    public String getName(){
-        return this.name;
+    public void addHotel(Hotel hotel) {
+        hotelData.add(hotel.getUuid().toString());
     }
 
-    public int calculateAge(Date DOB){
-        Date currentDate = new Date();
-        LocalDate currentLocalDate = convertToLocalDate(currentDate);
-
-            return Period.between(convertToLocalDate(DOB), currentLocalDate).getYears();
+    // TODO
+    public int calculateAge(){
+        return 0;
     }
 
-    public LocalDate convertToLocalDate(Date date){
-        return LocalDate.ofInstant(date.toInstant(), ZoneId.systemDefault());
+    public UUID getUuid() {
+        return ID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDOB() {
+        return DOB;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public ArrayList<String> getFlightHistory() {
+        return flightData;
+    }
+
+    public ArrayList<String> getHotelHistory() {
+        return hotelData;
+    }
+
+    public ArrayList<FamilyMember> getFamilyMembers() {
+        return familyList;
     }
 }

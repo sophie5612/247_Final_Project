@@ -1,4 +1,3 @@
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.UUID;
 import Enums.Airline;
@@ -26,9 +25,10 @@ public class Flights {
         return flightList;
     }
 
-    public void addFlight(UUID ID, String destinationCity, Date departDate, Date arrivalDate, String departAirport, String arrivalAirport, boolean smoking,
-    FlightType flightType, String[][] seats, Airline airline) {
-        flightList.add(new Flight(ID, destinationCity, departDate, arrivalDate, departAirport, arrivalAirport, smoking, flightType, seats, airline));
+    public void addFlight(UUID ID, String destinationCity, String departureCity, String departDate, String arrivalDate, String departAirport, String arrivalAirport,
+    FlightType flightType, Airline airline, double price, int departTime, int arrivalTime, ArrayList<Seat> seats, int stops) {
+        flightList.add(new Flight(ID, destinationCity, departureCity, departDate, arrivalDate, departAirport, arrivalAirport,
+        flightType, airline, price, departTime, arrivalTime, seats, stops));
     }
 
     public void logout() {

@@ -3,53 +3,39 @@ import java.util.*;
  * @author Ben Goodman
  */
 public class Hotel {
-    protected int row;
-    protected int col;
     private UUID ID;
-    private Date checkInDate;
-    private Date checkOutDate;
     private String nameOfHotel; 
-    private boolean noSmoking;
     private boolean hasPool;
+    private String city;
     private double price;
+    private double rating;
     private ArrayList<Room> rooms;
-    private int rating;
 
     public Hotel(){
         this.ID = UUID.randomUUID();
         this.nameOfHotel = " ";
-        this.checkInDate = new Date();
-        this.checkOutDate = new Date();
-        this.noSmoking = false;
         this.hasPool = false;
+        this.price = 0.0;
+        this.city = "";
         this.rating = 0;
+        this.rooms = null;
     }
 
-    public Hotel(UUID ID, String namOfHotel, int rating, Date checkInDate, Date checkOutDate, boolean noSmoking, ArrayList<Room> rooms, boolean hasPool){
+    public Hotel(UUID ID, String namOfHotel, boolean hasPool, double price, double rating, ArrayList<Room> rooms, String city){
             this.ID = ID;
             this.nameOfHotel = namOfHotel;
-            this.checkInDate = checkInDate;
-            this.checkOutDate = checkOutDate;
-            this.noSmoking = noSmoking;
-            this.rooms = rooms;
             this.hasPool = hasPool;
+            this.price = price;
             this.rating = rating;
+            this.rooms = rooms;
+            this.city = city;
         }
 
     public UUID getUuid() {
         return ID;
     }
-    public String getHotel() {
+    public String getName() {
         return nameOfHotel;
-    }
-    public Date getCheckinDate() {
-        return checkInDate;
-    }
-    public Date getCheckoutDate() {
-        return checkOutDate;
-    }
-    public boolean getSmoking() {
-        return noSmoking;
     }
     public ArrayList<Room> getRooms() {
         return rooms;
@@ -60,8 +46,11 @@ public class Hotel {
     public double getPrice() {
         return price;
     }
-    public int getRatings() {
+    public double getRatings() {
         return rating;
+    }
+    public String getCity() {
+        return city;
     }
 }
 

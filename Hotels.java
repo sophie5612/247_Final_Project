@@ -17,15 +17,15 @@ public class Hotels {
         return hotels;
     }
 
-    public ArrayList<Hotel> getHotels() {
+    public static ArrayList<Hotel> getHotels() {
         return hotelList;
     }
 
-    public void Hotel(UUID ID, String namOfHotel, Date checkInDate, Date checkOutDate, boolean noSmoking, String[][] rooms, boolean hasPool) {
-        hotelList.add(new Hotel(ID, namOfHotel, checkInDate, checkOutDate, noSmoking, rooms, hasPool));
+    public void addHotel(UUID ID, String namOfHotel, boolean hasPool, double price, double rating, ArrayList<Room> rooms, String city) {
+        hotelList.add(new Hotel(ID, namOfHotel, hasPool, price, rating, rooms, city));
     }
 
     public void logout() {
-        DataWriter.saveHotel();
+        DataWriter.saveHotels();
     }
 }
