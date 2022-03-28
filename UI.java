@@ -116,6 +116,7 @@ public class UI {
                 Flight pickedFlight = sortedFlights.get(input - 1); // get the flight at the user's request
                 // Seat pickedSeat = SeatPicker(pickedFlight); // user picks their seat
                 // bookingFacade.bookFlight(pickedSeat); // book seat to user
+                System.err.println("Flight booked!");
             }
     } 
 
@@ -171,7 +172,7 @@ public class UI {
      * Method to book a hotel
      */
     public void BookHotel(){
-        System.out.print("Please input the following");
+        System.out.println("Please input the following");
         System.err.println("Destination City: ");
         String destinationCity = scanner.next();
         System.out.println();
@@ -185,17 +186,17 @@ public class UI {
         System.out.println("How would you like to sort the hotels?");
         ArrayList<Hotel> sortedHotels= new ArrayList<Hotel>();
 
-        // switch (pickSortingMethod(hotelSortingOptions)) { // 1 = cheapest, 2 = highest rated
-        //     case (1):
-        //         sortedHotels = bookingFacade.sortCheapestHotels(destinationCity);
-        //         break;
-        //     case (2):
-        //         sortedHotels = bookingFacade.sortRatingHotels(destinationCity);
-        //         break;
-        //     default:
-        //         System.out.println("Showing cheapest hotles"); //make sure defualt sort is cheap
-        //         break;
-        // }
+        switch (pickSortingMethod(hotelSortingOptions)) { // 1 = cheapest, 2 = highest rated
+            case (1):
+                sortedHotels = bookingFacade.sortCheapestHotels(sortedHotels);
+                break;
+            case (2):
+                sortedHotels = bookingFacade.sortRatingHotels(sortedHotels);
+                break;
+            default:
+                System.out.println("Showing cheapest hotles"); //make sure defualt sort is cheap
+                break;
+        }
 
         if (sortedHotels!= null) { // how to check if its just a default? SOS
             bookingFacade.printSortedHotels(sortedHotels);
@@ -249,7 +250,7 @@ public class UI {
 
         int input = scanner.nextInt();
         if (input == 1) {
-            System.out.println("Input the following login information");
+            System.out.println("Please input the following login information");
             System.out.print("Username: ");
             String username = scanner.next();
             System.out.print("Password: ");
