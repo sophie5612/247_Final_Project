@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Collections;
 
+
+
 public class BookingFacade {
+    public int AvailableTickets;
     
     public void signUp(String username, String password){
         // add a user to the User database
@@ -164,7 +167,7 @@ public class BookingFacade {
         return validHotel;
     }
 
-    public String printHotel(Hotel hotel){
+    public String printHotel(Hotel hotel) {
         // nice formating of a hotel
         String hotelString = ("Hotel Name: " + hotel.getHotel() + '\n' + "Hotel price: " + hotel.getPrice() + '\n' 
             + "Rating: " + hotel.getRatings() + '\n' + "Amenities: " + hotel.getPool());
@@ -192,26 +195,25 @@ public class BookingFacade {
         
     }
 
-    public boolean flightAvailable(int numTickets, String destinationCity, String departCity, ArrayList<Flight> allFlights){
-        int available numTicketsAvailable(numTickets);
+    public boolean flightAvailable(int totalTickets, String destinationCity, String departCity, ArrayList<Flight> allFlights){
+        //int available numTicketsAvailable(numTickets);
         // search for city
         for(int i = 0; i < allFlights.size(); i++) {
-            if (numTickets >= numTicketsAvailable(numTickets) && departCity == allFlights.get(i).getDepartureAirport() && destinationCity == allFlights.get(i).getArrivalAirport()) { //check for the citys
-                return true;
-            }
+                if (numTicketsAvailable(allFlights.get(i)) >= totalTickets && departCity == allFlights.get(i).getDepartureAirport() && destinationCity == allFlights.get(i).getArrivalAirport()) { //check for the citys
+                    return true;
+                }
         }
         return false;
     }
     public int numTicketsAvailable(Flight flight){
         //return the number of tickets available
-        int AvailableSeats = 0;
+        int AvailableTickets = 0;
                                                             //Determine which Seats are taken in the list
         for(int i = 0; i < flight.getSeat().size(); i++) {
             if(flight.getSeat().get(i).getSeatAvailablity() == true) {
-                AvailableSeats++;
+                AvailableTickets++;
             }
         }                                                       
-        return AvailableSeats;//Return integer of Seats still available
+        return AvailableTickets; //Return integer of Seats still available
     }
-
 }
