@@ -26,6 +26,7 @@ import Enums.FlightType;
     private FlightType flightType;
     private ArrayList<Seat> seats;
     private Airline airline;
+    private int AvailableTickets;
 
     /**
      * A default constructor

@@ -13,6 +13,7 @@ public class Hotel {
     private boolean hasPool;
     private double price;
     private ArrayList<Room> rooms;
+    private int rating;
 
     public Hotel(){
         this.ID = UUID.randomUUID();
@@ -21,9 +22,10 @@ public class Hotel {
         this.checkOutDate = new Date();
         this.noSmoking = false;
         this.hasPool = false;
+        this.rating = 0;
     }
 
-    public Hotel(UUID ID, String namOfHotel, Date checkInDate, Date checkOutDate, boolean noSmoking, ArrayList<Room> rooms, boolean hasPool){
+    public Hotel(UUID ID, String namOfHotel, int rating, Date checkInDate, Date checkOutDate, boolean noSmoking, ArrayList<Room> rooms, boolean hasPool){
             this.ID = ID;
             this.nameOfHotel = namOfHotel;
             this.checkInDate = checkInDate;
@@ -31,6 +33,7 @@ public class Hotel {
             this.noSmoking = noSmoking;
             this.rooms = rooms;
             this.hasPool = hasPool;
+            this.rating = rating;
         }
 
     public UUID getUuid() {
@@ -56,6 +59,9 @@ public class Hotel {
     }
     public double getPrice() {
         return price;
+    }
+    public int getRatings() {
+        return rating;
     }
 }
 

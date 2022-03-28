@@ -8,8 +8,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Collections;
+import java.util.Comparator;
+
+
 
 public class BookingFacade {
+    public int AvailableTickets;
     
     public void signUp(String username, String password){
         // add a user to the User database
@@ -56,16 +60,36 @@ public class BookingFacade {
 
     public ArrayList<Flight> sortMostAvailableFlights(ArrayList<Flight> flights){
         // search the Flights for most available flight, return the sorted ArrayList
-        for(int i = 0; i < flights.size(); i++) {
-
+        Flight temp = new Flight();
+        Flight temp2 = new Flight();
+        
+            Collections.sort(flights, new Comparator<Flight>()
+            {
+                //Ascending sort (might scrap)
+                public int compare(Flight f1, Flight f2)
+                {
+                    return Integer.valueOf(f1.getSeats().compareTo(f2.getSeats());
+                }
+            });
+            for (int i = 0; i < flights.size(); i++) {
+                System.out.println(flights.get(i));
+            }
+            //if(numTicketsAvailable(flights.get(i)) < numTicketsAvailable(flights.get(i+1))) {
+            //    temp = flights.get(i);
+            //    temp2 = flights.get(i+1);
+            //    flights.get(i+1) = temp;
+            //    temp = flights.get(i+1);
+            //
+            //}
         }
-        return null;
-    }
 
     public String printFlight(Flight flight){
+        String flightString = ("Flight type: " + flight.getFlightType() + '\n' + "Departure Airport: " + flight.getDepartureAirport() +
+            '\n' + "Arrival Airport: " + flight.getArrivalAirport() + '\n' + "Total Travel Time: "
+            + calculateFlightTime(flight.getDepartureTime(), flight.getArrivalTime()));
         // print out a nice overview of a flight
         // calculate the flight time and include it here
-        return null;
+        return flightString;
     }
 
     public String calculateFlightTime(int departTime, int arrivalTime){
@@ -144,13 +168,28 @@ public class BookingFacade {
     }
 
     public ArrayList<Hotel> sortRatingHotels(ArrayList<Hotel> hotels){
+        ArrayList<Integer> tempHotel = new ArrayList<Integer>();
+        ArrayList<Hotel> validHotel = new ArrayList<Hotel>();
+        for(int i = 0; i < hotels.size(); i++) {
+            tempHotel.add(hotels.get(i).getRatings());
+        }
+        Collections.sort(tempHotel, Collections.reverseOrder());
+        for(int i = 0; i < hotels.size(); i++) {
+            for(int j = 0; j < hotels.size()-1; j++) {
+                if(tempHotel.get(i) == hotels.get(i).getRatings()) {
+                    validHotel.add(hotels.get(i));
+                }
+            }
+        }
         // search Hotels for highest rating
-        return null;
+        return validHotel;
     }
 
-    public String printHotel(Hotel hotel){
+    public String printHotel(Hotel hotel) {
         // nice formating of a hotel
-        return null;
+        String hotelString = ("Hotel Name: " + hotel.getHotel() + '\n' + "Hotel price: " + hotel.getPrice() + '\n' 
+            + "Rating: " + hotel.getRatings() + '\n' + "Amenities: " + hotel.getPool());
+        return hotelString;
     }
 
     public String printSortedHotels(ArrayList<Hotel> hotels){ 
@@ -174,26 +213,25 @@ public class BookingFacade {
         
     }
 
-    public boolean flightAvailable(int numTickets, String destinationCity, String departCity, ArrayList<Flight> allFlights){
-        int available tnumTicketsAvailable(numTickets);
+    public boolean flightAvailable(int totalTickets, String destinationCity, String departCity, ArrayList<Flight> allFlights){
+        //int available numTicketsAvailable(numTickets);
         // search for city
         for(int i = 0; i < allFlights.size(); i++) {
-            if (numTickets >= numTicketsAvailable(numTickets) && departCity == allFlights.get(i).getDepartureAirport() && destinationCity == allFlights.get(i).getArrivalAirport()) { //check for the citys
-                return true;
-            }
+                if (numTicketsAvailable(allFlights.get(i)) >= totalTickets && departCity == allFlights.get(i).getDepartureAirport() && destinationCity == allFlights.get(i).getArrivalAirport()) { //check for the citys
+                    return true;
+                }
         }
         return false;
     }
     public int numTicketsAvailable(Flight flight){
         //return the number of tickets available
-        int AvailableSeats = 0;
+        int AvailableTickets = 0;
                                                             //Determine which Seats are taken in the list
         for(int i = 0; i < flight.getSeat().size(); i++) {
             if(flight.getSeat().get(i).getSeatAvailablity() == true) {
-                AvailableSeats++;
+                AvailableTickets++;
             }
         }                                                       
-        return AvailableSeats;//Return integer of Seats still available
+        return AvailableTickets; //Return integer of Seats still available
     }
-
 }
