@@ -117,6 +117,7 @@ public class UI {
         System.out.println();
         System.out.println("How many tickets would you like to book?");
         int numTickets = scanner.nextInt();
+        scanner.nextLine();
 
         // Family member stuff
         ArrayList<String> familyMemberSelectedList = new ArrayList<String>();
@@ -127,16 +128,17 @@ public class UI {
             System.out.println("It looks like your booking a ticket for other people!");
             for (int i = 0; i < numTickets - 1; i++) {
                 System.out.println("If your trying to book a flight for someone that is not on this list please type \"New\"");
-                scanner.nextLine();
                 System.out.println(bookingFacade.printFamilyMembers());
                 String familyMemberInput = scanner.nextLine();
                 if (familyMemberInput.equalsIgnoreCase("New")) {
                     // NEW FAMILY MEMBER
-                    familyMemberSelectedList.add(familyMemberInput);
-                    addNewFamilyMember();
+                    String name = addNewFamilyMember();
+                    System.out.println("Horray! You added " + name + " to your flight!");
+                    familyMemberSelectedList.add(name);
                 } else if (bookingFacade.checkFamilyMember(familyMemberInput)) {
                     // FAMILY MEMBER FOUND
                     familyMemberSelectedList.add(familyMemberInput);
+                    System.out.println("Horray! You added " + familyMemberInput + " to your flight!");
                 } else {
                     // NO FAMILY MEMBER FOUND
                     System.out.println("Invald input, please try again");
@@ -202,12 +204,13 @@ public class UI {
         }
     }
 
-    public void addNewFamilyMember() {
+    public String addNewFamilyMember() {
         System.out.println("\nPlease input thier name: ");
         String name = scanner.nextLine();
         System.out.println("\nPlease input their DOB dd-mm-yyyy: ");
         String DOB = scanner.nextLine();
         bookingFacade.currentUser.addFamilyMember(UUID.randomUUID(), name, DOB);
+        return name;
     }
 
     /**

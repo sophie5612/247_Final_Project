@@ -270,12 +270,15 @@ public class BookingFacade {
     }
 
     public String printFamilyMembers() {
-        String ret = " ";
+        String ret = "";
         if (currentUser.getFamilyMembers().size() == 0) {
             return "Looks like you dont have anyone saved to your account, please type in \"New\"";
         } else {
             for (int i = 0; i < currentUser.getFamilyMembers().size(); i++) {
-                ret += " | " + currentUser.getFamilyMembers().get(i).getName(); 
+                ret += currentUser.getFamilyMembers().get(i).getName();
+                if (i + 1 < currentUser.getFamilyMembers().size())  {
+                    ret += ", ";
+                }
             }
         }
         return ret;
