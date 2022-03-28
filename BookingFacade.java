@@ -13,16 +13,16 @@ import java.util.Comparator;
 
 
 public class BookingFacade {
-    private Flights flights;
-    private Hotels hotels;
-    private Users users;
-    private User user; // Current user
+    // private Flights flights;
+    // private Hotels hotels;
+    // private Users users;
+    // private User user; // Current user
 
-    public BookingFacade(){
-        flights = Flights.getInstance();
-        hotels = Hotels.getInstance();
-        users = Users.getInstance();
-    }
+    // public BookingFacade(){
+    //     flights = Flights.getInstance();
+    //     hotels = Hotels.getInstance();
+    //     users = Users.getInstance();
+    // }
     
     public void signUp(String name, Date DOB, String username, String password){
         Users.addUser(name, DOB, username, password);
@@ -73,18 +73,18 @@ public class BookingFacade {
     public ArrayList<Flight> sortMostAvailableFlights(ArrayList<Flight> flights){ // search the Flights for most available flight, return the sorted ArrayList
         Flight temp = new Flight();
         Flight temp2 = new Flight();
-        
-            Collections.sort(flights, new Comparator<Flight>()
-            {
+        return null;
+            // Collections.sort(flights, new Comparator<Flight>()
+            // {
                 //Ascending sort (might scrap)
-                public int compare(Flight f1, Flight f2)
-                {
-                    return Integer.valueOf(f1.getSeats().compareTo(f2.getSeats());
-                }
-            });
-            for (int i = 0; i < flights.size(); i++) {
-                System.out.println(flights.get(i));
-            }
+            //     public int compare(Flight f1, Flight f2)
+            //     {
+            //         return Integer.valueOf(f1.getSeats().compareTo(f2.getSeats());
+            //     }
+            // });
+            // for (int i = 0; i < flights.size(); i++) {
+            //     System.out.println(flights.get(i));
+            // }
             //if(numTicketsAvailable(flights.get(i)) < numTicketsAvailable(flights.get(i+1))) {
             //    temp = flights.get(i);
             //    temp2 = flights.get(i+1);
@@ -213,18 +213,19 @@ public class BookingFacade {
         // save all the users data
     }
 
-    //valid flights?
-    public ArrayList<Flight> validFlights(int numTickets, String destinationCity, String departCity, ArrayList<Flight> allFlights){
+    public ArrayList<Flight> validFlights(int numTickets, String destinationCity, String departCity){
         // loop through and see if the flight is available and add to the string
         ArrayList<Flight> validFlights = new ArrayList<Flight>();
-        for(int i = 0; i < allFlights.size(); i++) {
-            if(allFlights.get(i).getDepartureAirport() == departCity && allFlights.get(i).getDestination() == destinationCity) {
-                validFlights.add(allFlights.get(i));
-            }
-        } 
+        // for(int i = 0; i < this.flights.size(); i++) { // idk how we're creating the initial flights ArrayList
+        //     if(numTicketsAvailable(flights.get(i)) >= numTickets )&& this.flights.getDepartureAirport(i) == departCity && this.flights.getDestination(i) == destinationCity) {
+        //         validFlights.add(flights.get(i));
+        //     }
+        // } 
         return validFlights;
         
     }
+
+
 
     public boolean flightAvailable(int totalTickets, String destinationCity, String departCity, ArrayList<Flight> allFlights){
         //int available numTicketsAvailable(numTickets);
@@ -270,4 +271,28 @@ public class BookingFacade {
     }
 
 
+    /**
+     * Method to pick a seat
+     * 
+     * @return The flight at the requested location
+     */
+    // public Seat SeatPicker(Flight flight) { // should this be done in the UI? No,
+    // will move
+    // Seat.initalizeSeats();
+    // Seat.printSeats();
+    // System.out.print("Please pick which seat you would like\nInput the row: ");
+    // int row = scanner.nextInt();
+    // System.out.print("Input the column: ");
+    // int col = scanner.nextInt();
+    // if(Seat.isSeatAvailable(row, col) == true) {
+    // Seat.printSeats();
+    // System.out.println("Booking your seat.");
+    // } else {
+    // System.out.println("That seat is already taken, please select another
+    // seat.");
+    // }
+
+    // // return the seat, update the double array
+    // return null;
+    // }
 }
