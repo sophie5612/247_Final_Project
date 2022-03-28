@@ -63,9 +63,12 @@ public class BookingFacade {
     }
 
     public String printFlight(Flight flight){
+        String flightString = ("Flight type: " + flight.getFlightType() + '\n' + "Departure Airport: " + flight.getDepartureAirport() +
+            '\n' + "Arrival Airport: " + flight.getArrivalAirport() + '\n' + "Total Travel Time: "
+            + calculateFlightTime(flight.getDepartureTime(), flight.getArrivalTime()));
         // print out a nice overview of a flight
         // calculate the flight time and include it here
-        return null;
+        return flightString;
     }
 
     public String calculateFlightTime(int departTime, int arrivalTime){
@@ -144,13 +147,28 @@ public class BookingFacade {
     }
 
     public ArrayList<Hotel> sortRatingHotels(ArrayList<Hotel> hotels){
+        ArrayList<Integer> tempHotel = new ArrayList<Integer>();
+        ArrayList<Hotel> validHotel = new ArrayList<Hotel>();
+        for(int i = 0; i < hotels.size(); i++) {
+            tempHotel.add(hotels.get(i).getRatings());
+        }
+        Collections.sort(tempHotel, Collections.reverseOrder());
+        for(int i = 0; i < hotels.size(); i++) {
+            for(int j = 0; j < hotels.size()-1; j++) {
+                if(tempHotel.get(i) == hotels.get(i).getRatings()) {
+                    validHotel.add(hotels.get(i));
+                }
+            }
+        }
         // search Hotels for highest rating
-        return null;
+        return validHotel;
     }
 
     public String printHotel(Hotel hotel){
         // nice formating of a hotel
-        return null;
+        String hotelString = ("Hotel Name: " + hotel.getHotel() + '\n' + "Hotel price: " + hotel.getPrice() + '\n' 
+            + "Rating: " + hotel.getRatings() + '\n' + "Amenities: " + hotel.getPool());
+        return hotelString;
     }
 
     public String printSortedHotels(ArrayList<Hotel> hotels){ 
