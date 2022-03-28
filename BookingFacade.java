@@ -60,25 +60,17 @@ public class BookingFacade {
 
     public ArrayList<Flight> sortMostAvailableFlights(ArrayList<Flight> flights){
         // search the Flights for most available flight, return the sorted ArrayList
-
-            Collections.sort(flights, new Comparator<Flight>()
-            {
-                //Ascending sort (might scrap)
-                public int compare(Flight f1, Flight f2)
-                {
-                    return Integer.valueOf(f1.getSeats().compareTo(f2.row);
+            Flight temp = new Flight();
+            Flight temp2 = new Flight();
+            for(int i = 0; i < flights.size(); i++ ) {
+                if(numTicketsAvailable(flights.get(i)) < numTicketsAvailable(flights.get(i+1))) {
+                    temp = flights.get(i);
+                    temp2 = flights.get(i+1);
+                    flights.get(i+1) = temp;
+                    temp = flights.get(i+1);
+            
                 }
-            });
-            for (int i = 0; i < flights.size(); i++) {
-                System.out.println(flights.get(i));
             }
-            //if(numTicketsAvailable(flights.get(i)) < numTicketsAvailable(flights.get(i+1))) {
-            //    temp = flights.get(i);
-            //    temp2 = flights.get(i+1);
-            //    flights.get(i+1) = temp;
-            //    temp = flights.get(i+1);
-            //
-            //}
         }
 
     public String printFlight(Flight flight){
