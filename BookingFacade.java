@@ -189,7 +189,7 @@ public class BookingFacade {
     }
 
     public String printHotel(Hotel hotel) {
-        String hotelString = ("Hotel Name: " + hotel.getHotel() + '\n' + "Hotel price: " + hotel.getPrice() + '\n' 
+        String hotelString = ("Hotel Name: " + hotel.getName() + '\n' + "Hotel price: " + hotel.getPrice() + '\n' 
             + "Rating: " + hotel.getRatings() + '\n' + "Amenities: " + hotel.getPool());
         return hotelString;
     }
