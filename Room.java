@@ -9,20 +9,18 @@ public class Room {
     private UUID ID;
     private int numOfBeds;
     private boolean smoking;
-    private boolean isAvailable;
     private ArrayList<String> bookedDates;
-    private int row;
-    private int col;
+    private int floor;
+    private int roomNumber;
 
 
-    public Room(int row, int col, UUID uuid, int numOfBeds, boolean smoking, boolean isAvailable, ArrayList<String> bookedDates) {
+    public Room(int floor, int roomNumber, UUID uuid, int numOfBeds, boolean smoking, boolean isAvailable, ArrayList<String> bookedDates) {
         this.ID = uuid;
         this.numOfBeds = numOfBeds;
         this.smoking = smoking;
-        this.isAvailable = isAvailable;
         this.bookedDates = bookedDates;
-        this.row = row;
-        this.col = col;
+        this.floor = floor;
+        this.roomNumber = roomNumber;
     }
 
     public UUID getUUID() {
@@ -37,16 +35,12 @@ public class Room {
         return smoking;
     }
 
-    public boolean getIsAvailable() {
-        return isAvailable;
+    public int getFloor() {
+        return floor;
     }
 
-    public int getRow() {
-        return row;
-    }
-
-    public int getCol() {
-        return col;
+    public int getRoomNumber() {
+        return roomNumber;
     }
     
     public ArrayList<String> getBookedDates() {

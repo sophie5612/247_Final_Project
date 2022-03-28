@@ -93,6 +93,8 @@ public class DataWriter extends DataContatnts{
             roomDetails.put(NUM_OF_BEDS, temp.getNumOfBeds());
             roomDetails.put(SMOKING, temp.getSmoking());
             roomDetails.put(BOOKED_DATES, temp.getBookedDates());
+            roomDetails.put(FLOOR, temp.getFloor());
+            roomDetails.put(ROOM_NUMBER, temp.getRoomNumber());
             roomArr.add(roomDetails);
         }
         hotelDetails.put(ROOMS, roomArr);

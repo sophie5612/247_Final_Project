@@ -117,10 +117,10 @@ public class UI {
         System.out.print("Depart City: ");
         String departCity = scanner.next();
         System.out.println();
-
         System.out.println("How many tickets would you like to book?");
         int numTickets = scanner.nextInt();
 
+        // Family member stuff
         ArrayList<Flight> sortedFlights = new ArrayList<Flight>();
         sortedFlights = bookingFacade.validFlights(numTickets, destinationCity, departCity);
 

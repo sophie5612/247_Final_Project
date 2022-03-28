@@ -27,12 +27,14 @@ public abstract class DataContatnts {
     protected static final String HOTEL_PRICE = "hotelPrice";
     protected static final String RATING = "hotelRating";
     protected static final String ROOMS = "rooms";
+    protected static final String CITY = "city";
     // Rooms
     protected static final String ROOM_ID = "roomID";
     protected static final String NUM_OF_BEDS = "numOfBeds";
     protected static final String SMOKING = "smoking";
     protected static final String BOOKED_DATES = "bookedDates";
-    protected static final String CITY = "city";
+    protected static final String FLOOR = "floor";
+    protected static final String ROOM_NUMBER = "roomNumber";
     // Users
     protected static final String USER_ID = "userID";
     protected static final String USER_NAME = "userName";

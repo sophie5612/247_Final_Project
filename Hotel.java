@@ -19,7 +19,6 @@ public class Hotel implements Comparable<Hotel>{
         this.city = "";
         this.rating = 0;
         this.rooms = null;
-
     }
 
     public Hotel(UUID ID, String namOfHotel, boolean hasPool, double price, double rating, ArrayList<Room> rooms, String city){
