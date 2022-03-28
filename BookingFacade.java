@@ -13,14 +13,27 @@ import java.util.Comparator;
 
 
 public class BookingFacade {
-    public int AvailableTickets;
-    
-    public void signUp(String username, String password){
-        // add a user to the User database
+    private Flights flights;
+    private Hotels hotels;
+    private Users users;
+    private User user; // Current user
+
+    public BookingFacade(){
+        flights = Flights.getInstance();
+        hotels = Hotels.getInstance();
+        users = Users.getInstance();
     }
+    
+    public void signUp(String name, Date DOB, String username, String password){
+        Users.addUser(name, DOB, username, password);
+    }
+
     public boolean login(String username, String password){
-        return true;
-        // return true if the username and password match with an account in the User database
+        boolean exists = false;
+        for(int i = 0; i < users.getUsers().size(); i ++){
+            // check if there exists a user
+        }
+        return exists;
     }
 
     public void logOut(){
@@ -40,8 +53,7 @@ public class BookingFacade {
         // ^^ see above
     }
 
-    public ArrayList<Flight> sortCheapestFlights(ArrayList<Flight> flights){
-        // search the Flights for cheapest flight, return the sorted ArrayList
+    public ArrayList<Flight> sortCheapestFlights(ArrayList<Flight> flights){ // search the Flights for cheapest flight, return the sorted ArrayList
         ArrayList<Double> tempFlights = new ArrayList<Double>();
         ArrayList<Flight> validFlights = new ArrayList<Flight>();
         for(int i = 0; i < flights.size(); i++) {
@@ -58,8 +70,7 @@ public class BookingFacade {
         return validFlights;
     }
 
-    public ArrayList<Flight> sortMostAvailableFlights(ArrayList<Flight> flights){
-        // search the Flights for most available flight, return the sorted ArrayList
+    public ArrayList<Flight> sortMostAvailableFlights(ArrayList<Flight> flights){ // search the Flights for most available flight, return the sorted ArrayList
         Flight temp = new Flight();
         Flight temp2 = new Flight();
         
@@ -87,8 +98,6 @@ public class BookingFacade {
         String flightString = ("Flight type: " + flight.getFlightType() + '\n' + "Departure Airport: " + flight.getDepartureAirport() +
             '\n' + "Arrival Airport: " + flight.getArrivalAirport() + '\n' + "Total Travel Time: "
             + calculateFlightTime(flight.getDepartureTime(), flight.getArrivalTime()) + '\n' + '\n');
-        // print out a nice overview of a flight
-        // calculate the flight time and include it here
         return flightString;
     }
 
@@ -144,17 +153,15 @@ public class BookingFacade {
         return timeconvert;
     }
 
-    public String printSortedFlights(ArrayList<Flight> flights){ // or rename to printFlights?? idk just want to make it distinguishable
-        // use printFlight, loop through each flight and print out, number each flight 1 - length of flights
+    public String printSortedFlights(ArrayList<Flight> flights){
         String sortedFlights = " ";
         for(int i = 0; i < flights.size(); i++) {
-            sortedFlights += printFlight(flights.get(i));
+            sortedFlights += (i + 1) + ") " + printFlight(flights.get(i));
         }
         return sortedFlights;
     }
 
     public ArrayList<Hotel> sortCheapestHotels(ArrayList<Hotel> hotels){
-        // search Hotels for cheapest
         ArrayList<Double> tempHotel = new ArrayList<Double>();
         ArrayList<Hotel> validHotel = new ArrayList<Hotel>();
         for(int i = 0; i < hotels.size(); i++) {
@@ -185,22 +192,19 @@ public class BookingFacade {
                 }
             }
         }
-        // search Hotels for highest rating
         return validHotel;
     }
 
     public String printHotel(Hotel hotel) {
-        // nice formating of a hotel
         String hotelString = ("Hotel Name: " + hotel.getHotel() + '\n' + "Hotel price: " + hotel.getPrice() + '\n' 
             + "Rating: " + hotel.getRatings() + '\n' + "Amenities: " + hotel.getPool());
         return hotelString;
     }
 
     public String printSortedHotels(ArrayList<Hotel> hotels){ 
-        // numbered list of hotels
         String sortedHotels = " ";
         for(int i = 0; i < hotels.size(); i++) {
-            sortedHotels += printHotel(hotels.get(i));
+            sortedHotels += (i + 1) + ") " + printHotel(hotels.get(i));
         }
         return sortedHotels;
     }
@@ -209,6 +213,7 @@ public class BookingFacade {
         // save all the users data
     }
 
+    //valid flights?
     public ArrayList<Flight> validFlights(int numTickets, String destinationCity, String departCity, ArrayList<Flight> allFlights){
         // loop through and see if the flight is available and add to the string
         ArrayList<Flight> validFlights = new ArrayList<Flight>();
@@ -234,7 +239,7 @@ public class BookingFacade {
     public int numTicketsAvailable(Flight flight){
         //return the number of tickets available
         int AvailableTickets = 0;
-                                                            //Determine which Seats are taken in the list
+        //Determine which Seats are taken in the list
         for(int i = 0; i < flight.getSeat().size(); i++) {
             if(flight.getSeat().get(i).getSeatAvailablity() == true) {
                 AvailableTickets++;
@@ -242,4 +247,27 @@ public class BookingFacade {
         }                                                       
         return AvailableTickets; //Return integer of Seats still available
     }
+
+    public String showSeats(Flight flight) { //should this be done in the UI
+        String output = " ";
+        int rows = 6;
+        int cols = 10;
+        char[][] seats = new char[rows][cols]; // will change to adapt
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; i < cols; j++) {
+                // if (flight.getSeat().isAvailable()){
+                // seats[i][j] = 'O';
+                // }
+                // else{
+                // seats[i][j] = 'X';
+                // }
+                output += (seats[i][j]);
+                ;
+            }
+        }
+        return output;
+    }
+
+
 }

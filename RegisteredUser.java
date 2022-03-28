@@ -3,49 +3,70 @@
  */
 
 import java.util.ArrayList;
+import java.util.Date;
+
 
 public class RegisteredUser extends User{
-    private Login login;
+    private String username;
+    private String password;
     private ArrayList<Flight> flightData;
     private ArrayList<Hotel> hotelData;
     private ArrayList<User> familyList;
-    private boolean frequentFlier;
     
     /**
      * A default constructor for Registered User
      */
     public RegisteredUser(){
         super();
-        this.login = new Login();
+        this.username = " ";
+        this.password = " ";
         this.flightData = new ArrayList<Flight>();
         this.hotelData = new ArrayList<Hotel>();
         this.familyList = new ArrayList<User>();
-        this.frequentFlier = false;
     }
 
     /**
      * A parameterized constructor for Registered User
-     * @param login
      * @param flightData
      * @param hotelData
      * @param familyList
-     * @param frequentFlier
      */
-    public RegisteredUser(Login login, ArrayList<Flight> flightData, ArrayList<Hotel> hotelData, 
-    ArrayList<User> familyList, boolean frequentFlier){
-        super();
-        this.login = login;
-        this.flightData = flightData;
-        this.hotelData = hotelData;
-        this.familyList = familyList;
-        this.frequentFlier = frequentFlier;
+    public RegisteredUser(String name, Date DOB, String username, String password){
+        super(name, DOB);
+        this.username = username;
+        this.password = password;
+        this.flightData = new ArrayList<Flight> ();
+        this.hotelData = new ArrayList<Hotel>();
+        this.familyList = new ArrayList<User>();
+    }
+
+    public String getUserName(){
+        return username;
+    }
+
+    public String getPassword(){
+        return password;
+    }
+
+    public ArrayList<Flight> getFlightData(){
+        return this.flightData;
+    }
+
+    public ArrayList<Hotel> getHotelData(){
+        return this.hotelData;
+    }
+
+    public ArrayList<User> getFamilyList(){
+        return this.familyList;
     }
 
     /**
      * Determines if the user is 18
      * @return
      */
-    public boolean isEighteen(){ return false;}
+    public boolean isEighteen(){ 
+        return (calculateAge(this.getDOB()) >= 18);
+    }
 
     /**
      * Adds a flight to the User data
@@ -64,9 +85,4 @@ public class RegisteredUser extends User{
      * @param familyMember
      */
     public void addFamilyMember(User familyMember){}
-
-    /**
-     * Updates the User's frequent flier status
-     */
-    public void updateFrequentFlier(){}
 }
