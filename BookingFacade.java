@@ -86,7 +86,7 @@ public class BookingFacade {
     public String printFlight(Flight flight){
         String flightString = ("Flight type: " + flight.getFlightType() + '\n' + "Departure Airport: " + flight.getDepartureAirport() +
             '\n' + "Arrival Airport: " + flight.getArrivalAirport() + '\n' + "Total Travel Time: "
-            + calculateFlightTime(flight.getDepartureTime(), flight.getArrivalTime()));
+            + calculateFlightTime(flight.getDepartureTime(), flight.getArrivalTime()) + '\n' + '\n');
         // print out a nice overview of a flight
         // calculate the flight time and include it here
         return flightString;
@@ -146,7 +146,11 @@ public class BookingFacade {
 
     public String printSortedFlights(ArrayList<Flight> flights){ // or rename to printFlights?? idk just want to make it distinguishable
         // use printFlight, loop through each flight and print out, number each flight 1 - length of flights
-        return null;
+        String sortedFlights = " ";
+        for(int i = 0; i < flights.size(); i++) {
+            sortedFlights += printFlight(flights.get(i));
+        }
+        return sortedFlights;
     }
 
     public ArrayList<Hotel> sortCheapestHotels(ArrayList<Hotel> hotels){
@@ -194,7 +198,11 @@ public class BookingFacade {
 
     public String printSortedHotels(ArrayList<Hotel> hotels){ 
         // numbered list of hotels
-        return null;
+        String sortedHotels = " ";
+        for(int i = 0; i < hotels.size(); i++) {
+            sortedHotels += printHotel(hotels.get(i));
+        }
+        return sortedHotels;
     }
 
     public void saveData(){
