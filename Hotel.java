@@ -2,7 +2,7 @@ import java.util.*;
 /**
  * @author Ben Goodman
  */
-public class Hotel {
+public class Hotel implements Comparable<Hotel>{
     private UUID ID;
     private String nameOfHotel; 
     private boolean hasPool;
@@ -19,6 +19,7 @@ public class Hotel {
         this.city = "";
         this.rating = 0;
         this.rooms = null;
+
     }
 
     public Hotel(UUID ID, String namOfHotel, boolean hasPool, double price, double rating, ArrayList<Room> rooms, String city){
@@ -51,6 +52,16 @@ public class Hotel {
     }
     public String getCity() {
         return city;
+    }
+
+    public int compareTo(Hotel hotel) {
+        if (price == hotel.price) {
+            return 0;
+        } else if (price > hotel.price) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }
 
