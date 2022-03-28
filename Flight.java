@@ -135,6 +135,14 @@ import Enums.FlightType;
     public ArrayList<Seat> getSeat() {
         return seats;
     }
+    //New Method
+    public int getSeats(ArrayList<Seat> seats) {
+        int numSeats = 0;
+        for(int i = 0; i < seats.size(); i++) {
+            numSeats++;
+        }
+        return numSeats;
+    }
     public Airline getAirline() {
         return airline;
     }

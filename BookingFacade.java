@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Collections;
+import java.util.Comparator;
 
 
 
@@ -59,11 +60,26 @@ public class BookingFacade {
 
     public ArrayList<Flight> sortMostAvailableFlights(ArrayList<Flight> flights){
         // search the Flights for most available flight, return the sorted ArrayList
-        for(int i = 0; i < flights.size(); i++) {
 
+            Collections.sort(flights, new Comparator<Flight>()
+            {
+                //Ascending sort (might scrap)
+                public int compare(Flight f1, Flight f2)
+                {
+                    return Integer.valueOf(f1.getSeats().compareTo(f2.row);
+                }
+            });
+            for (int i = 0; i < flights.size(); i++) {
+                System.out.println(flights.get(i));
+            }
+            //if(numTicketsAvailable(flights.get(i)) < numTicketsAvailable(flights.get(i+1))) {
+            //    temp = flights.get(i);
+            //    temp2 = flights.get(i+1);
+            //    flights.get(i+1) = temp;
+            //    temp = flights.get(i+1);
+            //
+            //}
         }
-        return null;
-    }
 
     public String printFlight(Flight flight){
         String flightString = ("Flight type: " + flight.getFlightType() + '\n' + "Departure Airport: " + flight.getDepartureAirport() +
