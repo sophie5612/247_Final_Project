@@ -9,7 +9,7 @@ import Enums.Airline;
 import Enums.FlightType;
 
 public class DataLoader extends DataContatnts {
-    
+
     public static ArrayList<Flight> loadFlights() {
         ArrayList<Flight> flights = new ArrayList<Flight>();
 

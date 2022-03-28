@@ -146,7 +146,7 @@ public class UI {
 
         System.out.println("Which flight would you like to book?");
         int input = scanner.nextInt();
-        Flight pickedFlight;
+        Flight pickedFlight = null;
         if (input > 0 && input <= sortedFlights.size()) { // check the number picked is in bounds
             pickedFlight = sortedFlights.get(input - 1); // get the flight at the user's request
             System.out.println("\nNow that you have picked a flight, please choose a seat! The open seats are marked with O's");
