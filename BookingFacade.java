@@ -237,7 +237,7 @@ public class BookingFacade {
 
         }
         int roomFloor = Character.getNumericValue(room.charAt(0)) - 1;
-        int roomNumber = room.charAt(1);
+        int roomNumber = room.charAt(1) - 1;
 
         for (int i = 0; i < rooms.size(); i++) {
             Room temp = rooms.get(i);
