@@ -42,8 +42,6 @@ import Enums.FlightType;
         this.arrivalTime = 0000;
         this.stops = 0;
         this.flightType = FlightType.ONE_WAY;
-        //String[][] seats = new String[rows][columns]; //Dont know if this is neccessary.
-        //this.seats = new ArrayList<Seat>();
         this.airline = Airline.DELTA;
     }
 

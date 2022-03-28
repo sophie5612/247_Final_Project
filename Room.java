@@ -14,7 +14,7 @@ public class Room {
     private int roomNumber;
 
 
-    public Room(int floor, int roomNumber, UUID uuid, int numOfBeds, boolean smoking, boolean isAvailable, ArrayList<String> bookedDates) {
+    public Room(int floor, int roomNumber, UUID uuid, int numOfBeds, boolean smoking, ArrayList<String> bookedDates) {
         this.ID = uuid;
         this.numOfBeds = numOfBeds;
         this.smoking = smoking;

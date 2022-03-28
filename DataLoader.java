@@ -80,13 +80,10 @@ public class DataLoader extends DataContatnts {
                     UUID uuid = UUID.fromString((String)roomDetails.get(ROOM_ID));
                     int numOfBeds = ((Long)roomDetails.get(NUM_OF_BEDS)).intValue();
                     boolean smoking = (boolean)roomDetails.get(SMOKING);
-                    boolean isAvailable = (boolean)roomDetails.get(AVAILABILITY);
                     int floor = ((Long)roomDetails.get(FLOOR)).intValue();
                     int rooomNumber = ((Long)roomDetails.get(ROOM_NUMBER)).intValue();
                     ArrayList<String> bookedDates = (ArrayList<String>) roomDetails.get(BOOKED_DATES);
-                    int col = ((Long)roomDetails.get(COL)).intValue();
-                    int row = ((Long)roomDetails.get(ROW)).intValue();
-                    roomList.add(new Room(floor, rooomNumber, uuid, numOfBeds, smoking, isAvailable, bookedDates));
+                    roomList.add(new Room(floor, rooomNumber, uuid, numOfBeds, smoking, bookedDates));
                 }
 				hotels.add(new Hotel(hotelID, namOfHotel, hasPool, price, rating, roomList, city));
 			}

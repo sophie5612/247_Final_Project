@@ -232,11 +232,66 @@ public class BookingFacade {
     }
 
     public boolean pickedSeat(Flight flight, String seat) {
+        ArrayList<Seat> seats = flight.getSeat();
+        if (seat.length() != 2) {
+            return false;
+        }
+        int seatRow = Character.getNumericValue(seat.charAt(0)) - 1;
+        char seatLetter = seat.charAt(1);
+        int seatCol = 0;
+        switch (seatLetter) {
+            case('A'):
+                seatCol = 0;
+                break;
+            case('B'):
+                seatCol = 1;
+                break;
+            case('C'):
+                seatCol = 2;
+                break;
+            case('D'):
+                seatCol = 3;
+                break;
+            case('E'):
+                seatCol = 4;
+                break;
+            case('F'):
+                seatCol = 5;
+                break;
+        }
+        for (int i = 0; i < seats.size(); i++) {
+            Seat temp = seats.get(i);
+            if (temp.getRow() == seatRow && temp.getCol() == seatCol && temp.getIsAvailable()) {
+                temp.setSeatToTaken();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String printFamilyMembers() {
+        String ret = " ";
+        if (currentUser.getFamilyMembers().size() == 0) {
+            return "Looks like you dont have anyone saved to your account, please type in \"New\"";
+        } else {
+            for (int i = 0; i < currentUser.getFamilyMembers().size(); i++) {
+                ret += " | " + currentUser.getFamilyMembers().get(i).getName(); 
+            }
+        }
+        return ret;
+    }
+
+    public boolean checkFamilyMember(String famName) {
+        for (int i = 0; i < currentUser.getFamilyMembers().size(); i++) {
+            if (famName.equalsIgnoreCase(currentUser.getFamilyMembers().get(i).getName())) {
+                return true;
+            }
+        }
         return false;
     }
 
     public String showSeats(Flight flight) { //should this be done in the UI
-        String output = "  A B C  D E F";
+        String output = "   A B C  D E F";
         int rows = 10;
         int cols = 6;
         ArrayList<Seat> seats = flight.getSeat();
@@ -251,9 +306,17 @@ public class BookingFacade {
             }
         }
         for (int i = 0; i < seatsChart.length; i++) {
-            output += "\n" + (i + 1) + " ";
+            output += "\n" + (i + 1);
+            if (i < 9) {
+                output += "  ";
+            } else {
+                output += " ";
+            }
             for (int j = 0; j < seatsChart[i].length; j++) {
                 output += seatsChart[i][j] + " ";
+                if (j == 2) {
+                    output += " ";
+                }
             }
         }
         return output;

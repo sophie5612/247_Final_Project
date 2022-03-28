@@ -5,10 +5,8 @@
  */
 
 import java.util.Scanner;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.UUID;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class UI {
     private Scanner scanner;
@@ -121,6 +119,31 @@ public class UI {
         int numTickets = scanner.nextInt();
 
         // Family member stuff
+        ArrayList<String> familyMemberSelectedList = new ArrayList<String>();
+        if (numTickets <= 0) {
+            System.out.println("Invalid number of tickets, please pick again");
+            BookFlight();
+        } else if (numTickets > 1) {
+            System.out.println("It looks like your booking a ticket for other people!");
+            for (int i = 0; i < numTickets - 1; i++) {
+                System.out.println("If your trying to book a flight for someone that is not on this list please type \"New\"");
+                scanner.nextLine();
+                System.out.println(bookingFacade.printFamilyMembers());
+                String familyMemberInput = scanner.nextLine();
+                if (familyMemberInput.equalsIgnoreCase("New")) {
+                    // NEW FAMILY MEMBER
+                    familyMemberSelectedList.add(familyMemberInput);
+                    addNewFamilyMember();
+                } else if (bookingFacade.checkFamilyMember(familyMemberInput)) {
+                    // FAMILY MEMBER FOUND
+                    familyMemberSelectedList.add(familyMemberInput);
+                } else {
+                    // NO FAMILY MEMBER FOUND
+                    System.out.println("Invald input, please try again");
+                    i--;
+                }
+            }
+        }
         ArrayList<Flight> sortedFlights = new ArrayList<Flight>();
         sortedFlights = bookingFacade.validFlights(numTickets, destinationCity, departCity);
 
@@ -150,17 +173,41 @@ public class UI {
         if (input > 0 && input <= sortedFlights.size()) { // check the number picked is in bounds
             pickedFlight = sortedFlights.get(input - 1); // get the flight at the user's request
             System.out.println("\nNow that you have picked a flight, please choose a seat! The open seats are marked with O's");
-            showSeats(pickedFlight);
         } else {
             System.out.println("\nInvalid Flight was entered, sending you back to the main menu");
             MainMenu();
         }
-        System.out.println("\nPlease enter the seat(s) you would like by following this example. If I wanted the B seat in row 3 I would type in B3 then hit enter.");
+        System.out.println("\nPlease enter the seat(s) you would like by following this example. If I wanted the B seat in row 3 I would type in 3B then hit enter.");
+        scanner.nextLine();
+        ArrayList<String> selectedSeats = new ArrayList<String>();
         for (int i = 0; i < numTickets; i++) {
+            showSeats(pickedFlight);
             String seatPick = scanner.nextLine();
-            bookingFacade.pickedSeat(pickedFlight, seatPick);
+            if(bookingFacade.pickedSeat(pickedFlight, seatPick)) {
+                // GOT A SEAT
+                System.out.println("Horray! You selected Seat " + seatPick);
+                selectedSeats.add(seatPick);
+            } else {
+                // Somethign went wrong
+                System.out.println("Seat is taken please pick again");
+                i--;
+            }
         }
-        
+        System.out.println("Flight is being added to your account, check out your User information to find your flight booking history!\n");
+        bookingFacade.currentUser.addFlight(pickedFlight);
+        System.out.println("Do you want to print out your flight information? (Y/N)");
+        String printInput = scanner.nextLine();
+        if (printInput.equalsIgnoreCase("Y")) {
+            // PRINT OUT FLIGHT INFORMATION USE FAMILY MEMBER LIST AND THEIR SEATS
+        }
+    }
+
+    public void addNewFamilyMember() {
+        System.out.println("\nPlease input thier name: ");
+        String name = scanner.nextLine();
+        System.out.println("\nPlease input their DOB dd-mm-yyyy: ");
+        String DOB = scanner.nextLine();
+        bookingFacade.currentUser.addFamilyMember(UUID.randomUUID(), name, DOB);
     }
 
     /**
