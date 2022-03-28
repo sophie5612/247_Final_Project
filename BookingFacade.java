@@ -258,7 +258,29 @@ public class BookingFacade {
         }
         return output;
     }
+    public String showRooms(Hotel hotel) {
+        String output = " A B C  D E F";
+        int rows = 10;
+        int cols = 10;
+        ArrayList<Room> rooms = hotel.getRooms();
+        char[][] roomsChart = new char[rows][cols];
 
+        for(int i = 0; i < rooms.size(); i++) {
+            Room temp = rooms.get(i);
+            if(temp.getIsAvailable()) {
+                roomsChart[temp.getRow()][temp.getCol()] = 'O';
+            } else {
+                roomsChart[temp.getRow()][temp.getCol()] = 'X';
+            }
+        }
+        for (int i = 0; i < roomsChart.length; i++) {
+            output += "\n" + (i + 1) + " ";
+            for(int j = 0; j < roomsChart[i].length; j++) {
+                output += roomsChart[i][j] + " ";
+            }
+        }
+        return output;
+    }
 
     /**
      * Method to pick a seat
