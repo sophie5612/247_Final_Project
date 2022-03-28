@@ -21,14 +21,7 @@ public class Seat {
     }
 
     public boolean getSeatAvailablity() {
-        //if(seat.taken != 'X') {
-        //    isAvailable = true;
-            return isAvailable;
-        //}
-        //else {
-        //    isAvailable = false;
-        //    return isAvailable;
-        //}
+        return isAvailable;        
     }
 
     public void setSeatToTaken() {
