@@ -31,7 +31,7 @@ public class Seat {
     public UUID getUuid() {
         return uuid;
     }
-
+    //same as get SeatAvailability
     public boolean getIsAvailable() {
         return isAvailable;
     }

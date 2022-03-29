@@ -242,7 +242,7 @@ public class BookingFacade {
         for (int i = 0; i < rooms.size(); i++) {
             Room temp = rooms.get(i);
             if (temp.getFloor() == roomFloor && temp.getRoomNumber() == roomNumber && temp.getIsAvailable()) {
-                temp.setSeatToTaken();
+                temp.setRoomToTaken();
                 return true;
             }
         }
