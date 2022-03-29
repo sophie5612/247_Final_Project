@@ -54,19 +54,6 @@ public class BookingFacade {
         Users.logout();
     }
 
-    public void addFamilyMember(String name){
-        // add the family member's name to the User database
-    }
-
-    public void bookFlight(Seat seat){
-        // add a flight to the Users database
-        // we're going to start running into issues of objects not knowing about each other, should restructure this
-    }
-
-    public void bookHotel(Room room){
-        // ^^ see above
-    }
-
     public ArrayList<Flight> sortCheapestFlights(ArrayList<Flight> flights){ // search the Flights for cheapest flight, return the sorted ArrayList
         Collections.sort(flights);
         return flights;
