@@ -455,8 +455,9 @@ public class BookingFacade {
         String ret = "";
         for (int i = 0; i < currentUser.getFlightHistory().size(); i++) {
             UUID uuid = UUID.fromString(currentUser.getFlightHistory().get(i));
+            // System.out.println(uuid);;
             for (int j = 0; j < flightList.size(); j++) {
-                if (uuid == flightList.get(j).getUuid()) {
+                if (uuid.equals(flightList.get(j).getUuid())) {
                     ret += printFlight(flightList.get(j));
                 }
             }
@@ -469,36 +470,11 @@ public class BookingFacade {
         for (int i = 0; i < currentUser.getHotelHistory().size(); i++) {
             UUID uuid = UUID.fromString(currentUser.getHotelHistory().get(i));
             for (int j = 0; j < hotelList.size(); j++) {
-                if (uuid == hotelList.get(j).getUuid()) {
+                if (uuid.equals(hotelList.get(j).getUuid())) {
                     ret += printHotel(hotelList.get(j));
                 }
             }
         }
         return ret;
     }
-
-    /**
-     * Method to pick a seat
-     * 
-     * @return The flight at the requested location
-     */
-    // public Seat SeatPicker(Flight flight) { // should this be done in the UI? No,
-    // will move
-    // Seat.initalizeSeats();
-    // Seat.printSeats();
-    // System.out.print("Please pick which seat you would like\nInput the row: ");
-    // int row = scanner.nextInt();
-    // System.out.print("Input the column: ");
-    // int col = scanner.nextInt();
-    // if(Seat.isSeatAvailable(row, col) == true) {
-    // Seat.printSeats();
-    // System.out.println("Booking your seat.");
-    // } else {
-    // System.out.println("That seat is already taken, please select another
-    // seat.");
-    // }
-
-    // // return the seat, update the double array
-    // return null;
-    // }
 }

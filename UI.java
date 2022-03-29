@@ -51,6 +51,7 @@ public class UI {
                     break;
                 case (3):
                     ViewAccount();
+                    break;
                 case (4):
                     bookingFacade.logOut();
                     quit = true;
@@ -318,6 +319,7 @@ public class UI {
                     break;
                 case (3):
                     printOutBookings();
+                    break;
                 case (4):
                     MainMenu();
             }
