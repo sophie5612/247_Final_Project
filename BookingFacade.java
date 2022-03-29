@@ -174,7 +174,10 @@ public class BookingFacade {
         }
         return sortedFlights;
     }
-
+    public int numOfFlightOptions(ArrayList<Flight> tempArr) {
+        int i = tempArr.size();
+        return i;
+    }
     public ArrayList<Hotel> sortCheapestHotels(ArrayList<Hotel> hotels){
         Collections.sort(hotels);
         return hotels;
