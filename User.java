@@ -60,7 +60,6 @@ public class User {
         hotelData.add(hotel.getUuid().toString());
     }
 
-    // TODO
     public int calculateAge(){
         return 0;
     }

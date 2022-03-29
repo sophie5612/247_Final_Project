@@ -31,7 +31,7 @@ public class Flights {
         flightType, airline, price, departTime, arrivalTime, seats, stops));
     }
 
-    public void logout() {
+    public static void logout() {
         DataWriter.saveFlight();
     }
 }

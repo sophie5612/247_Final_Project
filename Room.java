@@ -9,7 +9,6 @@ public class Room {
     private UUID ID;
     private int numOfBeds;
     private boolean smoking;
-    private boolean isAvailable;
     private ArrayList<String> bookedDates;
     private int floor;
     private int roomNumber;
@@ -19,7 +18,6 @@ public class Room {
         this.ID = uuid;
         this.numOfBeds = numOfBeds;
         this.smoking = smoking;
-        this.isAvailable = isAvailable;
         this.bookedDates = bookedDates;
         this.floor = floor;
         this.roomNumber = roomNumber;
@@ -40,12 +38,7 @@ public class Room {
     public int getFloor() {
         return floor;
     }
-    public void setRoomToTaken() {
-        isAvailable = false;
-    }
-    public boolean getIsAvailable() {
-        return isAvailable;
-    }
+
     public int getRoomNumber() {
         return roomNumber;
     }

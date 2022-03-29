@@ -29,7 +29,7 @@ public class Users {
         userList.add(user);
     }
 
-    public void logout() {
+    public static void logout() {
         DataWriter.saveUsers();
     }
 

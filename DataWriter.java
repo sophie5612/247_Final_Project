@@ -8,8 +8,7 @@ import org.json.simple.JSONObject;
 public class DataWriter extends DataContatnts{
 
     public static void saveFlight() {
-        Flights flights = Flights.getInstance();
-        ArrayList<Flight> flightList = flights.getFlights();
+        ArrayList<Flight> flightList = Flights.getFlights();
         JSONArray jsonFlights = new JSONArray();
 
         for(int i=0; i< flightList.size(); i++) {
@@ -58,8 +57,7 @@ public class DataWriter extends DataContatnts{
 	}
 
     public static void saveHotels() {
-        Hotels hotels = Hotels.getInstance();
-        ArrayList<Hotel> hotelList = hotels.getHotels();
+        ArrayList<Hotel> hotelList = Hotels.getHotels();
         JSONArray jsonHotels = new JSONArray();
 
         for(int i=0; i< hotelList.size(); i++) {
@@ -104,8 +102,7 @@ public class DataWriter extends DataContatnts{
 
     // USERS TIME
     public static void saveUsers() {
-        Users users = Users.getInstance();
-        ArrayList<User> userList = users.getUsers();
+        ArrayList<User> userList = Users.getUsers();
         JSONArray jsonUsers = new JSONArray();
 
         for(int i=0; i< userList.size(); i++) {

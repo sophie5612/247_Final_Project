@@ -8,15 +8,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.UUID;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class BookingFacade {
 
@@ -52,9 +49,9 @@ public class BookingFacade {
     }
 
     public void logOut(){
-        flights.logout();
-        hotels.logout();
-        users.logout();
+        Flights.logout();
+        Hotels.logout();
+        Users.logout();
     }
 
     public void addFamilyMember(String name){
@@ -107,14 +104,29 @@ public class BookingFacade {
         return flightString;
     }
 
-    public void printOutFlight(Flight flight, ArrayList<String> selectedSeats, ArrayList<String> selectedFamilyMembersNames) {
+    public void printOutFlight(String text) {
         try {
             File myObj = new File("FlightTicket.txt");
             myObj.createNewFile();
                 // Create File
             FileWriter myWriter = new FileWriter("FlightTicket.txt");
             // WIRTE FLIGHT INFORMATION
-            myWriter.write("");
+            myWriter.write(text);
+            myWriter.close();
+          } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
+    }
+
+    public void printOutHotel(String text) {
+        try {
+            File myObj = new File("HotelInfo.txt");
+            myObj.createNewFile();
+                // Create File
+            FileWriter myWriter = new FileWriter("HotelInfo.txt");
+            // WIRTE FLIGHT INFORMATION
+            myWriter.write(text);
             myWriter.close();
           } catch (IOException e) {
             System.out.println("An error occurred.");
@@ -216,9 +228,9 @@ public class BookingFacade {
     }
 
     public String printSortedHotels(ArrayList<Hotel> hotels){ 
-        String sortedHotels = " ";
+        String sortedHotels = "";
         for(int i = 0; i < hotels.size(); i++) {
-            sortedHotels += (i + 1) + ") " + printHotel(hotels.get(i));
+            sortedHotels += "\n" + (i + 1) + ") " + printHotel(hotels.get(i));
         }
         return sortedHotels;
     }
@@ -407,9 +419,11 @@ public class BookingFacade {
         // Check each room for their availability
         for (int i = 0; i < pickedHotel.getRooms().size(); i++) {
             Room temp = pickedHotel.getRooms().get(i);
-            if (temp.getNumOfBeds() == numOfBeds && doesntContainDay(temp, daysToBook)) {
+            if (temp.getNumOfBeds() == numOfBeds && doesntContainDay(temp, daysToBook) && numRooms > 0) {
                 // ROOM IS GOOD! Send data to UI and save it to user's profile, 
+                ret += "\nAdded room";
                 ret += printRoom(temp);
+                numRooms--;
                 for (int j = 0; j < daysToBook.size(); j++) {
                     temp.getBookedDates().add(daysToBook.get(j));
                 }
@@ -432,6 +446,32 @@ public class BookingFacade {
             String dateCheck = room.getBookedDates().get(i);
             if (daysToBook.contains(dateCheck)) {
                 ret = false;
+            }
+        }
+        return ret;
+    }
+
+    public String getFlightHistory() {
+        String ret = "";
+        for (int i = 0; i < currentUser.getFlightHistory().size(); i++) {
+            UUID uuid = UUID.fromString(currentUser.getFlightHistory().get(i));
+            for (int j = 0; j < flightList.size(); j++) {
+                if (uuid == flightList.get(j).getUuid()) {
+                    ret += printFlight(flightList.get(j));
+                }
+            }
+        }
+        return ret;
+    }
+
+    public String getHotelHistory() {
+        String ret = "";
+        for (int i = 0; i < currentUser.getHotelHistory().size(); i++) {
+            UUID uuid = UUID.fromString(currentUser.getHotelHistory().get(i));
+            for (int j = 0; j < hotelList.size(); j++) {
+                if (uuid == hotelList.get(j).getUuid()) {
+                    ret += printHotel(hotelList.get(j));
+                }
             }
         }
         return ret;

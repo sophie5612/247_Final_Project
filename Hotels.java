@@ -25,7 +25,7 @@ public class Hotels {
         hotelList.add(new Hotel(ID, namOfHotel, hasPool, price, rating, rooms, city));
     }
 
-    public void logout() {
+    public static void logout() {
         DataWriter.saveHotels();
     }
 }
