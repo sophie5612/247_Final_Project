@@ -44,7 +44,6 @@ public class Room {
         isAvailable = false;
     }
     public boolean getIsAvailable() {
-        //if()
         return isAvailable;
     }
     public int getRoomNumber() {

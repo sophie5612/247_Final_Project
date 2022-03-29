@@ -3,11 +3,17 @@
  * @author Sophie Azula
  */
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.UUID;
 import java.util.Collections;
 import java.util.Comparator;
@@ -70,7 +76,7 @@ public class BookingFacade {
     }
 
     public ArrayList<Flight> sortMostAvailableFlights(ArrayList<Flight> flights){ // search the Flights for most available flight, return the sorted ArrayList
-        String ret = "";
+        ArrayList<Flight> ret = new ArrayList<Flight>();
         while (flights.size() > 0) {
             double mostAvailable = 0;
             Flight mostAvailableFlight = null;
@@ -84,7 +90,7 @@ public class BookingFacade {
                     mostAvailableIndex = i;
                 }
             }
-            ret += printFlight(mostAvailableFlight);
+            ret.add(mostAvailableFlight);
             flights.remove(mostAvailableIndex);
         }
         return ret;
@@ -94,10 +100,26 @@ public class BookingFacade {
         if (flight == null) {
             return " ";
         }
-        String flightString = ("Flight type: " + flight.getFlightType() + '\n' + "Departure Airport: " + flight.getDepartureAirport() +
-            '\n' + "Arrival Airport: " + flight.getArrivalAirport() + '\n' + "Total Travel Time: "
-            + calculateFlightTime(flight.getDepartureTime(), flight.getArrivalTime()) + '\n' + "Number of Stops: " + flight.getStops() + '\n' + "Price: " + flight.getPrice());
+        String flightString = ("\nDeparture Airport: " + flight.getDepartureAirport() +
+            '\n' + "Arrival Airport: " + flight.getArrivalAirport() + '\n' + "Departure City(s): " + flight.getDepartureCity() + '\n' +
+            "Arrival City: " + flight.getDestination() + '\n' + "Total Travel Time: "
+            + calculateFlightTime(flight.getDepartureTime(), flight.getArrivalTime()) + '\n' + "Price: " + flight.getPrice() + '\n' + "Stops: " + flight.getStops());
         return flightString;
+    }
+
+    public void printOutFlight(Flight flight, ArrayList<String> selectedSeats, ArrayList<String> selectedFamilyMembersNames) {
+        try {
+            File myObj = new File("FlightTicket.txt");
+            myObj.createNewFile();
+                // Create File
+            FileWriter myWriter = new FileWriter("FlightTicket.txt");
+            // WIRTE FLIGHT INFORMATION
+            myWriter.write("");
+            myWriter.close();
+          } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
     }
 
     public String calculateFlightTime(int departTime, int arrivalTime){
@@ -160,7 +182,7 @@ public class BookingFacade {
     }
 
     public ArrayList<Hotel> sortRatingHotels(ArrayList<Hotel> hotels){
-        ArrayList<Integer> tempHotel = new ArrayList<Integer>();
+        ArrayList<Double> tempHotel = new ArrayList<Double>();
         ArrayList<Hotel> validHotel = new ArrayList<Hotel>();
         for(int i = 0; i < hotels.size(); i++) {
             tempHotel.add(hotels.get(i).getRatings());
@@ -176,9 +198,20 @@ public class BookingFacade {
         return validHotel;
     }
 
+    public ArrayList<Hotel> validHotels(String city) {
+        ArrayList<Hotel> validHotels = new ArrayList<Hotel>();
+        for (int i = 0; i < hotelList.size(); i++) {
+            Hotel temp = hotelList.get(i);
+            if (temp.getCity().equalsIgnoreCase(city)) {
+                validHotels.add(temp);
+            }
+        }
+        return validHotels;
+    }
+
     public String printHotel(Hotel hotel) {
         String hotelString = ("Hotel Name: " + hotel.getName() + '\n' + "Hotel price: " + hotel.getPrice() + '\n' 
-            + "Rating: " + hotel.getRatings() + '\n' + "Amenities: " + hotel.getPool());
+            + "Rating: " + hotel.getRatings() + '\n' + "Pool?: " + hotel.getPool());
         return hotelString;
     }
 
@@ -201,13 +234,53 @@ public class BookingFacade {
             Flight temp = flightList.get(i);
             // Check to see how many seats are available
             int seatsLeft = howManySeatsLeft(temp);
-            if (seatsLeft >= numTickets && destinationCity.equalsIgnoreCase(temp.getDestination()) && departCity.equalsIgnoreCase(temp.getDepartureCity())) {
+            if (seatsLeft >= numTickets && destinationCity.equalsIgnoreCase(temp.getDestination()) && temp.getDepartureCity().contains(departCity)) {
                 validFlights.add(temp);
+            }
+            // check connecting flights too
+            if ((seatsLeft >= numTickets && destinationCity.equalsIgnoreCase(temp.getDestination()))) {
+                // Destination matches
+                ConnectedFlights connection = connectFlights(temp, departCity);
+                if(connection != null) {
+                    // Have a connection
+                    Flight con = connection.combine();
+                    // Check if the flight already exsists, if it does, do not add it
+                    boolean isItThere = false;
+                    for (int j = 0; j < flightList.size(); j++) {
+                        if (con.getDepartureCity().equals(flightList.get(j).getDepartureCity())) {
+                            isItThere = true;
+                        }
+                    }
+                    if (!isItThere) {
+                        flightList.add(con);
+                        validFlights.add(con);
+                    }
+                }
             }
         }
         return validFlights;
     }
 
+    public ConnectedFlights connectFlights(Flight compare, String startLocation) {
+        // Create list of all connections;
+        ConnectedFlights ret = new ConnectedFlights();
+        ret.addFlight(compare);
+        for (int i = 0; i < flightList.size(); i++) {
+            Flight temp = flightList.get(i);
+            if (compare.getDepartureCity().equalsIgnoreCase(temp.getDestination())) {
+                if (temp.getDepartureCity().equalsIgnoreCase(startLocation)) {
+                    // DONE
+                    ret.addFlight(temp);
+                    return ret;
+                } else {
+                    // ANOTHER CONNECTION
+                    ret.absorb(connectFlights(temp, startLocation));
+                    return ret;
+                }
+            }
+        }
+        return null;
+    }
     public int howManySeatsLeft(Flight flight) {
         ArrayList<Seat> seats = flight.getSeat();
         int seatsLeft = 0;
@@ -217,24 +290,6 @@ public class BookingFacade {
             }
         }
         return seatsLeft;
-    }
-    public boolean pickedRoom(Hotel hotel, String room) {
-        ArrayList<Room> rooms = hotel.getRooms();
-        if (room.length() != 2) {
-            return false;
-
-        }
-        int roomFloor = Character.getNumericValue(room.charAt(0)) - 1;
-        int roomNumber = room.charAt(1) - 1;
-
-        for (int i = 0; i < rooms.size(); i++) {
-            Room temp = rooms.get(i);
-            if (temp.getFloor() == roomFloor && temp.getRoomNumber() == roomNumber && temp.getIsAvailable()) {
-                temp.setRoomToTaken();
-                return true;
-            }
-        }
-        return false;
     }
     public boolean pickedSeat(Flight flight, String seat) {
         ArrayList<Seat> seats = flight.getSeat();
@@ -329,28 +384,57 @@ public class BookingFacade {
         }
         return output;
     }
-    public String showRooms(Hotel hotel) {
-        String output = " A B C  D E F";
-        int rows = 10;
-        int cols = 10;
-        ArrayList<Room> rooms = hotel.getRooms();
-        char[][] roomsChart = new char[rows][cols];
 
-        for(int i = 0; i < rooms.size(); i++) {
-            Room temp = rooms.get(i);
-            if(temp.getIsAvailable()) {
-                roomsChart[temp.getRow()][temp.getCol()] = 'O';
-            } else {
-                roomsChart[temp.getRow()][temp.getCol()] = 'X';
+    public String getRoom(Hotel pickedHotel, int numRooms, int numOfBeds, String dateBooked, int numOfDays) {
+        String ret = "";
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy");
+        Calendar c = Calendar.getInstance();
+        Date date = null;
+        try {
+            date = formatter.parse(dateBooked);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        c.setTime(date);
+        // Making an arraylist of the days the user wants to book it for
+        ArrayList<String> daysToBook = new ArrayList<String>();
+        daysToBook.add(formatter.format(c.getTime()));
+        for (int i = 0; i < numOfDays; i++) {
+            c.add(Calendar.DATE, 1);
+            daysToBook.add(formatter.format(c.getTime()));
+        }
+        // Check each room for their availability
+        for (int i = 0; i < pickedHotel.getRooms().size(); i++) {
+            Room temp = pickedHotel.getRooms().get(i);
+            if (temp.getNumOfBeds() == numOfBeds && doesntContainDay(temp, daysToBook)) {
+                // ROOM IS GOOD! Send data to UI and save it to user's profile, 
+                ret += printRoom(temp);
+                for (int j = 0; j < daysToBook.size(); j++) {
+                    temp.getBookedDates().add(daysToBook.get(j));
+                }
+                currentUser.addHotel(pickedHotel);
             }
         }
-        for (int i = 0; i < roomsChart.length; i++) {
-            output += "\n" + (i + 1) + " ";
-            for(int j = 0; j < roomsChart[i].length; j++) {
-                output += roomsChart[i][j] + " ";
+        if (ret.equalsIgnoreCase("")) {
+            ret = "No Rooms available in this hotel";
+        }
+        return ret;
+    }
+
+    public String printRoom(Room room) {
+        return "\nFloor: " + room.getFloor() + "\nRoom Number: " + room.getRoomNumber() + "\nNumber of beds: " + room.getNumOfBeds();
+    }
+
+    public boolean doesntContainDay(Room room, ArrayList<String> daysToBook) {
+        boolean ret = true;
+        for (int i = 0; i < room.getBookedDates().size(); i++) {
+            String dateCheck = room.getBookedDates().get(i);
+            if (daysToBook.contains(dateCheck)) {
+                ret = false;
             }
         }
-        return output;
+        return ret;
     }
 
     /**
