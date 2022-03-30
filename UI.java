@@ -29,6 +29,7 @@ public class UI {
 
     /**
      * Main menu for the program
+     * @return quit if the boolean quit equals true the method will exit
      */
     public void MainMenu() {
         boolean quit = false;
@@ -60,6 +61,8 @@ public class UI {
 
     /**
      * Method to log a user in or create account
+     * This method alows the user to create a new user name and password of a new account or log into an
+     * existing account saved in the program/
      */
     public void Login() {
         printStars();
@@ -109,6 +112,8 @@ public class UI {
 
     /**
      * Method to book a flight
+     * This method propts the user with a series of questions about their flight (Amount of tickets, who is going on the flight). 
+     * Then, the program saves the users flight information is saved to the users account if they wish to have a copy of it.
      */
     public void BookFlight() {
         System.out.println("Let's book a flight! Please input the following");
@@ -216,7 +221,10 @@ public class UI {
             bookingFacade.printOutFlight(prettyFlightBooking); // print to file
         }
     }
-
+    /**
+     * A method that creates a new family member object passing in their name and DOB given by the user
+     * @return name the family members name
+     */
     public String addNewFamilyMember() {
         System.out.print("\nPlease input thier name: ");
         String name = scanner.next();
@@ -229,6 +237,7 @@ public class UI {
     /**
      * Display the seats in a 2x2 matrix
      * Note: X represents booked, O represents open
+     * @param flight a flight object
      */
     public void showSeats(Flight flight) { // should this be done in the UI
         System.out.println(bookingFacade.showSeats(flight));
@@ -236,6 +245,9 @@ public class UI {
 
     /**
      * Method to book a hotel
+     * This method asks the user a series of questions to determine what kind of hotel they would like
+     * and where they would like to book it.  Once the user has booked their hotel, they are asked if they 
+     * would like to save their inforamtion.  If they do, it is saved to the users account.
      */
     public void BookHotel() {
         System.out.println("Let's book a hotel! Please input the following");
@@ -310,7 +322,11 @@ public class UI {
             bookingFacade.printOutHotel(prettyHotelBooking); // print to file
         }
     }
-
+    /**
+     * This method allows the user to veiw their purchase history for flights and hotels.  Additionally, they 
+     * can print out information of what they currently have booked or return to the main menu.
+     * @param input An integer that determines what the user would like to do in View Account.
+     */
     public void ViewAccount() {
         int input = usersChoice(accountOptions, "Viewing account information. What would you like to do?");
 
@@ -329,19 +345,27 @@ public class UI {
         }
         System.out.println();
     }
-
+    /**
+     * A method that returns flight history
+     */
     public void checkFlightHistory() {
         System.out.println(bookingFacade.getFlightHistory());
     }
-
+    /**
+     * A method that returns hotel history
+     */
     public void checkHotelHistory() {
         System.out.println(bookingFacade.getHotelHistory());
     }
-
+    /**
+     * A method that prints out all the hotels and flights the user currently has booked
+     */
     public void printOutBookings() {
         System.out.println(bookings);
     }
-
+    /**
+     * A method that prints a list of stars to separate the title of the page and the options.
+     */
     public void printStars() {
         System.out.println("***************************************************\n");
     }
@@ -368,11 +392,15 @@ public class UI {
         Login();
         MainMenu();
     }
-
+    /**
+     * A method that is used to log the user out of their account and end the program
+     */
     public void logOut() {
         bookingFacade.logOut();
     }
-
+    /**
+     * A method used to run a new instance of ui
+     */
     public static void main(String[] args) {
         UI ui = new UI();
         ui.run();
