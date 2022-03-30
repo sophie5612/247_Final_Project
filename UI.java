@@ -199,6 +199,12 @@ public class UI {
             if(i == 0) {
                 prettyFlightBooking += "You are in seat " + seatPick;
             }
+            if (bookingFacade.pickedSeat(pickedFlight, seatPick)) {
+                System.out.println("You picked Seat: " + seatPick);
+            } else {
+                System.out.println("Invalid Seat please pick again");
+                i--;
+            }
             //prettyFlightBooking += seatPick;
             if(i > 0) {
                 for(int j = 0; j < familyMemberSelectedList.size(); j++) {
