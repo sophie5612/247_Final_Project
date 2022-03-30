@@ -31,12 +31,23 @@ public class BookingFacade {
         userList = Users.getUsers();
         currentUser = null;
     }
-
+    /**
+     * A method that is used to create a new user in the json
+     * @param name the name of the user
+     * @param DOB the date of birth of the user
+     * @param username the username for the user
+     * @param password the password for the user
+     */
     public void signUp(String name, String DOB, String username, String password){
         currentUser = new User(UUID.randomUUID(), name, DOB, username, password, new ArrayList<String>(), new ArrayList<String>(), new ArrayList<FamilyMember>());
         Users.addUser(currentUser);
     }
-
+    /**
+     * A method that logs a user in if the username and password match what is stored in the json
+     * @param username the users username 
+     * @param password the users password
+     * @return true if the information is valid or false if the information is invalid
+     */
     public boolean login(String username, String password){
         for (int i = 0; i < userList.size(); i++) {
             User temp = userList.get(i);
@@ -47,18 +58,28 @@ public class BookingFacade {
         }
         return false;
     }
-
+    /**
+     * A method that logs the user out of the program and saves all of their changes.
+     */
     public void logOut(){
         Flights.logout();
         Hotels.logout();
         Users.logout();
     }
-
+    /**
+     * A method that uses collection sort to sort a list of flights based on their price.
+     * @param flights The Arraylist of total flights from a departure locations to and arrival location
+     * @return flights the in order
+     */
     public ArrayList<Flight> sortCheapestFlights(ArrayList<Flight> flights){ // search the Flights for cheapest flight, return the sorted ArrayList
         Collections.sort(flights);
         return flights;
     }
-
+    /**
+     * A method that sorts flights based on how many seats are left on the plane.
+     * @param flights The ArrayList of all flights from a specified departure and arrival location
+     * @return ret A new arraylist sorted by most available flights.
+     */
     public ArrayList<Flight> sortMostAvailableFlights(ArrayList<Flight> flights){ // search the Flights for most available flight, return the sorted ArrayList
         ArrayList<Flight> ret = new ArrayList<Flight>();
         while (flights.size() > 0) {
@@ -79,7 +100,11 @@ public class BookingFacade {
         }
         return ret;
         }
-
+    /**
+     * A method that prints all the information for a flight
+     * @param flight a flight
+     * @return flightString a new string that displays all the information about a flight
+     */
     public String printFlight(Flight flight){
         if (flight == null) {
             return " ";
@@ -90,7 +115,10 @@ public class BookingFacade {
             + calculateFlightTime(flight.getDepartureTime(), flight.getArrivalTime()) + '\n' + "Price: " + flight.getPrice() + '\n' + "Stops: " + flight.getStops());
         return flightString;
     }
-
+    /**
+     * A method that saves what flight the user booked and its information to a new text file.
+     * @param text A string of text to be saved to a text file.
+     */
     public void printOutFlight(String text) {
         try {
             File myObj = new File("FlightTicket.txt");
@@ -105,7 +133,10 @@ public class BookingFacade {
             e.printStackTrace();
           }
     }
-
+    /**
+     * A method that prints all the information about a hotel to a new text file
+     * @param text A string of text to be saved to a text file.
+     */
     public void printOutHotel(String text) {
         try {
             File myObj = new File("HotelInfo.txt");
@@ -120,7 +151,12 @@ public class BookingFacade {
             e.printStackTrace();
           }
     }
-
+    /**
+     * A method that determines the total amout of time the flight will take
+     * @param departTime a given depart time for a flight
+     * @param arrivalTime a given arrival time for a flight
+     * @return the amount of time that the flight will take to get to its destination.
+     */
     public String calculateFlightTime(int departTime, int arrivalTime){
         int totalMinutes;
         int hours;
@@ -133,7 +169,11 @@ public class BookingFacade {
         String total = "Total Time " + hours + " Hours " + minutes + " Minutes";
         return total;
     }
-
+    /**
+     * A method that converts 12 hour time to 24 hour time
+     * @param time a given integer of time
+     * @return timeConvert a converted 12 hour time in AM or PM to a 24 hour time
+     */
     public String militaryTimeConvert(int time){
 
         String timeconvert = Integer.toString(time);
@@ -166,7 +206,12 @@ public class BookingFacade {
         timeconvert = hour + ":" + minutes + " " + AmOrPm;
         return timeconvert;
     }
-
+    /**
+     * A method that prints out the flights that have been sorted and labels them 
+     * @param tempArr A new temporary arry of all flights the user is interested in (based on departure location
+     * and arrival location)
+     * @return sortedFlights flights sorted based on user specification
+     */
     public String printSortedFlights(ArrayList<Flight> tempArr){
         String sortedFlights = "";
         for(int i = 0; i < tempArr.size(); i++) {
@@ -174,15 +219,29 @@ public class BookingFacade {
         }
         return sortedFlights;
     }
+    /**
+     * A method that tells the user the ammount of flights that can be booked
+     * @param tempArr A temp arraylist of all the flights the user is interested in.
+     * @return i where i is the amount of flights in the ArrayList
+     */
     public int numOfFlightOptions(ArrayList<Flight> tempArr) {
         int i = tempArr.size();
         return i;
     }
+    /**
+     * A method that returns A sorted arraylist of hotels based on price using collection sort.
+     * @param hotels an ArrayList of the total amount of hotels the user is interested in
+     * @return hotels the sorted ArrayList of hotels based on their price
+     */
     public ArrayList<Hotel> sortCheapestHotels(ArrayList<Hotel> hotels){
         Collections.sort(hotels);
         return hotels;
     }
-
+    /**
+     * A method that sort hotels based on their ratings
+     * @param hotels and ArrayList of the total amount of hotels the user is interested in
+     * @return validHotels the sorted ArrayList of hotels based on their ratings
+     */
     public ArrayList<Hotel> sortRatingHotels(ArrayList<Hotel> hotels){
         ArrayList<Double> tempHotel = new ArrayList<Double>();
         ArrayList<Hotel> validHotel = new ArrayList<Hotel>();

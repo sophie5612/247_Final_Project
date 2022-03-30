@@ -117,6 +117,7 @@ import Enums.FlightType;
     public ArrayList<Seat> getSeat() {
         return seats;
     }
+    
     public Airline getAirline() {
         return airline;
     }

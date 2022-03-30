@@ -187,17 +187,18 @@ public class UI {
         System.out.println("\nPlease enter the seat(s) you would like by following this example. If I wanted the B seat in row 3 I would type in 3B then hit enter.");
         scanner.nextLine();
         ArrayList<String> selectedSeats = new ArrayList<String>();
+        String prettyFlightBooking = "";
         for (int i = 0; i < numTickets; i++) {
             showSeats(pickedFlight);
             String seatPick = scanner.nextLine();
-            if(bookingFacade.pickedSeat(pickedFlight, seatPick)) {
-                // GOT A SEAT
-                System.out.println("Horray! You selected Seat " + seatPick);
-                selectedSeats.add(seatPick);
-            } else {
-                // Somethign went wrong
-                System.out.println("Seat is taken please pick again");
-                i--;
+            if(i == 0) {
+                prettyFlightBooking += "You are in seat " + seatPick;
+            }
+            //prettyFlightBooking += seatPick;
+            if(i > 0) {
+                for(int j = 0; j < familyMemberSelectedList.size(); j++) {
+                        prettyFlightBooking += "\n" + familyMemberSelectedList.get(j) + " is in seat " + seatPick;
+                }
             }
         }
         System.out.println("Flight is being added to your account, check out your User information to find your flight booking history!\n");
@@ -206,7 +207,6 @@ public class UI {
         //
         //
         //
-        String prettyFlightBooking = "";
         bookings.add(prettyFlightBooking);
         System.out.println("Do you want to print out your flight information? (Y/N)");
         String printInput = scanner.nextLine();
