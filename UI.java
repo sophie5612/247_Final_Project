@@ -130,7 +130,7 @@ public class UI {
             BookFlight();
         } else if (numTickets > 1) { // booking for others
             System.out.println("It seems you're booking a ticket for other people!");
-            for (int i = 1; i < numTickets - 1; i++) {
+            for (int i = 0; i < numTickets - 1; i++) {
                 System.out.println("Enter the name of your guest, or if they're not listed, type \"New\"");
                 System.out.println(bookingFacade.printFamilyMembers());
                 System.out.print("Guest: ");
