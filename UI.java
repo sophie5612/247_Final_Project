@@ -54,7 +54,7 @@ public class UI {
             }
             System.out.println();
         }
-        System.out.println("Goodbye!");
+        System.out.println("Goodbye!\n");
         printStars();
         scanner.close();
     }
@@ -339,7 +339,7 @@ public class UI {
     }
 
     public void printOutBookings() {
-        // Use the bookings array list to save everything to a file
+        System.out.println(bookings);
     }
 
     public void printStars() {
