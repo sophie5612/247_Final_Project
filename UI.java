@@ -148,7 +148,7 @@ public class UI {
                     i--;
                 }
             }
-        } System.out.println(); // booking for one
+        } // booking for one
 
         ArrayList<Flight> sortedFlights = new ArrayList<Flight>();
         sortedFlights = bookingFacade.validFlights(numTickets, destinationCity, departCity);
@@ -173,9 +173,8 @@ public class UI {
         System.out.println(bookingFacade.printSortedFlights(sortedFlights)); // display sorted flights
 
         System.out.println("Which flight would you like to book?");
-        System.out.println("Enter number 1 - " + sortedFlights.size());
-        System.out.print("Choice: ");
-        //System.out.print(bookingFacade.numOfFlightOptions(sortedFlights) + "\n"); //why not directly using size? this method seems useless
+        System.out.print("Enter number 1 - ");
+        System.out.print(bookingFacade.numOfFlightOptions(sortedFlights) + "\n");
         int input = scanner.nextInt();
         Flight pickedFlight = null;
 
@@ -187,21 +186,18 @@ public class UI {
             System.out.println("\nInvalid Flight was entered, returning to Main Menu");
             MainMenu();
         }
-
-        System.out.println("\nPlease enter the seat(s) you would like. (Example: To get B seat in Row 3, type in 3B and hit enter.)");
-        
+        System.out.println(
+                "\nPlease enter the seat(s) you would like. (Example: To get B seat in Row 3, type in 3B and hit enter.)");
         scanner.nextLine();
+        ArrayList<String> selectedSeats = new ArrayList<String>();
+        String prettyFlightBooking = "";
 
-        // ArrayList<String> selectedSeats = new ArrayList<String>();
-        String prettyFlightBooking = bookingFacade.printFlight(pickedFlight); // will hold all information of flight and seats
-
-        for (int i = 0; i < numTickets; i++) { 
+        for (int i = 0; i < numTickets; i++) {
             showSeats(pickedFlight);
             String seatPick = scanner.nextLine();
-            if(i == 0) { // add first seat
-                prettyFlightBooking += "\nYou are in seat " + seatPick;
+            if(i == 0) {
+                prettyFlightBooking += "You are in seat " + seatPick;
             }
-<<<<<<< HEAD
             if (bookingFacade.pickedSeat(pickedFlight, seatPick)) {
                 System.out.println("You picked Seat: " + seatPick);
             } else {
@@ -213,24 +209,25 @@ public class UI {
                 for(int j = 0; j < familyMemberSelectedList.size(); j++) {
                         prettyFlightBooking += "\n" + familyMemberSelectedList.get(j) + " is in seat " + seatPick;
                 }
-=======
-            else{
-            prettyFlightBooking += "\n" + familyMemberSelectedList.get(i - 1) + " is in seat " + seatPick;
->>>>>>> 62655e67925b99096f28cca822bd68d2f9e8ce98
             }
         }
-
         System.out.println(
-                "\nFlight is being added to your account, View Account Information to find your flight booking history!\n");
+                "Flight is being added to your account, View Account Information to find your flight booking history!\n");
         bookingFacade.currentUser.addFlight(pickedFlight);
 
+        // String prettyFlightBooking = "You are departing from  " + pickedFlight.getDepartureCity() + " at the "
+        //         + pickedFlight.getDepartureAirport() + " airport on " + pickedFlight.getDepartureDate() + " at "
+        //         + pickedFlight.getDepartureTime()
+        //         + "You are arriving at " + pickedFlight.getArrivalAirport() + " on " + pickedFlight.getArrivalDate()
+        //         + " at " + pickedFlight.getArrivalTime()
+        //         + "Airline: " + pickedFlight.getAirline() + "\nPrice: " + pickedFlight.getPrice() + "\nFlight type: "
+        //         + pickedFlight.getFlightType() + "\nNumber of strops: " + pickedFlight.getStops();
         bookings.add(prettyFlightBooking);
 
         System.out.println("Do you want to print out your flight information? (Y/N)");
         String printInput = scanner.nextLine();
         if (printInput.equalsIgnoreCase("Y")) {
-            bookingFacade.printOutFlight(prettyFlightBooking); // print to text file
-            System.out.println(prettyFlightBooking); // show user
+            bookingFacade.printOutFlight(prettyFlightBooking);
         }
     }
 
