@@ -173,8 +173,8 @@ public class UI {
         System.out.println(bookingFacade.printSortedFlights(sortedFlights)); // display sorted flights
 
         System.out.println("Which flight would you like to book?");
-        System.out.print("Enter number 1 - ");
-        System.out.print(bookingFacade.numOfFlightOptions(sortedFlights) + "\n");
+        System.out.print("Enter number 1 - " + sortedFlights.size());
+        //System.out.print(bookingFacade.numOfFlightOptions(sortedFlights) + "\n"); //why not directly using size? this method seems useless
         int input = scanner.nextInt();
         Flight pickedFlight = null;
 
@@ -186,19 +186,20 @@ public class UI {
             System.out.println("\nInvalid Flight was entered, returning to Main Menu");
             MainMenu();
         }
+
         System.out.println(
                 "\nPlease enter the seat(s) you would like. (Example: To get B seat in Row 3, type in 3B and hit enter.)");
         scanner.nextLine();
         ArrayList<String> selectedSeats = new ArrayList<String>();
-        String prettyFlightBooking = "";
+        String prettyFlightBooking = "Seats: "; // will hold all information of flight and seats
 
-        for (int i = 0; i < numTickets; i++) {
+        for (int i = 0; i < numTickets; i++) { //dont understand this logic (shouldn't it be offset by 1?)
             showSeats(pickedFlight);
             String seatPick = scanner.nextLine();
-            if(i == 0) {
+            if(i == 0) { // ?
                 prettyFlightBooking += "You are in seat " + seatPick;
             }
-            //prettyFlightBooking += seatPick;
+            // prettyFlightBooking += seatPick + " ";
             if(i > 0) {
                 for(int j = 0; j < familyMemberSelectedList.size(); j++) {
                         prettyFlightBooking += "\n" + familyMemberSelectedList.get(j) + " is in seat " + seatPick;
