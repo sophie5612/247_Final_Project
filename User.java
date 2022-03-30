@@ -60,10 +60,6 @@ public class User {
         hotelData.add(hotel.getUuid().toString());
     }
 
-    public int calculateAge(){
-        return 0;
-    }
-
     public UUID getUuid() {
         return ID;
     }
@@ -95,7 +91,9 @@ public class User {
     public ArrayList<String> getHotelHistory() {
         return hotelData;
     }
-
+    public int calculateAge() {
+        return 0;
+    }
     public ArrayList<FamilyMember> getFamilyMembers() {
         return familyList;
     }

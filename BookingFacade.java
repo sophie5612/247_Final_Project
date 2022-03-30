@@ -54,19 +54,6 @@ public class BookingFacade {
         Users.logout();
     }
 
-    public void addFamilyMember(String name){
-        // add the family member's name to the User database
-    }
-
-    public void bookFlight(Seat seat){
-        // add a flight to the Users database
-        // we're going to start running into issues of objects not knowing about each other, should restructure this
-    }
-
-    public void bookHotel(Room room){
-        // ^^ see above
-    }
-
     public ArrayList<Flight> sortCheapestFlights(ArrayList<Flight> flights){ // search the Flights for cheapest flight, return the sorted ArrayList
         Collections.sort(flights);
         return flights;
@@ -187,7 +174,10 @@ public class BookingFacade {
         }
         return sortedFlights;
     }
-
+    public int numOfFlightOptions(ArrayList<Flight> tempArr) {
+        int i = tempArr.size();
+        return i;
+    }
     public ArrayList<Hotel> sortCheapestHotels(ArrayList<Hotel> hotels){
         Collections.sort(hotels);
         return hotels;
@@ -455,8 +445,9 @@ public class BookingFacade {
         String ret = "";
         for (int i = 0; i < currentUser.getFlightHistory().size(); i++) {
             UUID uuid = UUID.fromString(currentUser.getFlightHistory().get(i));
+            // System.out.println(uuid);;
             for (int j = 0; j < flightList.size(); j++) {
-                if (uuid == flightList.get(j).getUuid()) {
+                if (uuid.equals(flightList.get(j).getUuid())) {
                     ret += printFlight(flightList.get(j));
                 }
             }
@@ -469,36 +460,11 @@ public class BookingFacade {
         for (int i = 0; i < currentUser.getHotelHistory().size(); i++) {
             UUID uuid = UUID.fromString(currentUser.getHotelHistory().get(i));
             for (int j = 0; j < hotelList.size(); j++) {
-                if (uuid == hotelList.get(j).getUuid()) {
+                if (uuid.equals(hotelList.get(j).getUuid())) {
                     ret += printHotel(hotelList.get(j));
                 }
             }
         }
         return ret;
     }
-
-    /**
-     * Method to pick a seat
-     * 
-     * @return The flight at the requested location
-     */
-    // public Seat SeatPicker(Flight flight) { // should this be done in the UI? No,
-    // will move
-    // Seat.initalizeSeats();
-    // Seat.printSeats();
-    // System.out.print("Please pick which seat you would like\nInput the row: ");
-    // int row = scanner.nextInt();
-    // System.out.print("Input the column: ");
-    // int col = scanner.nextInt();
-    // if(Seat.isSeatAvailable(row, col) == true) {
-    // Seat.printSeats();
-    // System.out.println("Booking your seat.");
-    // } else {
-    // System.out.println("That seat is already taken, please select another
-    // seat.");
-    // }
-
-    // // return the seat, update the double array
-    // return null;
-    // }
 }
