@@ -173,6 +173,8 @@ public class UI {
         System.out.println(bookingFacade.printSortedFlights(sortedFlights)); // display sorted flights
 
         System.out.println("Which flight would you like to book?");
+        System.out.print("Enter number 1 - ");
+        System.out.print(bookingFacade.numOfFlightOptions(sortedFlights) + "\n");
         int input = scanner.nextInt();
         Flight pickedFlight = null;
 
@@ -188,28 +190,32 @@ public class UI {
                 "\nPlease enter the seat(s) you would like. (Example: To get B seat in Row 3, type in 3B and hit enter.)");
         scanner.nextLine();
         ArrayList<String> selectedSeats = new ArrayList<String>();
+        String prettyFlightBooking = "";
+
         for (int i = 0; i < numTickets; i++) {
             showSeats(pickedFlight);
             String seatPick = scanner.nextLine();
-            if (bookingFacade.pickedSeat(pickedFlight, seatPick)) {
-                System.out.println("Horray! You selected Seat " + seatPick);
-                selectedSeats.add(seatPick);
-            } else { // catch all error case
-                System.out.println("Seat is taken please pick again");
-                i--;
+            if(i == 0) {
+                prettyFlightBooking += "You are in seat " + seatPick;
+            }
+            //prettyFlightBooking += seatPick;
+            if(i > 0) {
+                for(int j = 0; j < familyMemberSelectedList.size(); j++) {
+                        prettyFlightBooking += "\n" + familyMemberSelectedList.get(j) + " is in seat " + seatPick;
+                }
             }
         }
         System.out.println(
                 "Flight is being added to your account, View Account Information to find your flight booking history!\n");
         bookingFacade.currentUser.addFlight(pickedFlight);
 
-        String prettyFlightBooking = "You are departing from  " + pickedFlight.getDepartureCity() + " at the "
-                + pickedFlight.getDepartureAirport() + " airport on " + pickedFlight.getDepartureDate() + " at "
-                + pickedFlight.getDepartureTime()
-                + "You are arriving at " + pickedFlight.getArrivalAirport() + " on " + pickedFlight.getArrivalDate()
-                + " at " + pickedFlight.getArrivalTime()
-                + "Airline: " + pickedFlight.getAirline() + "\nPrice: " + pickedFlight.getPrice() + "\nFlight type: "
-                + pickedFlight.getFlightType() + "\nNumber of strops: " + pickedFlight.getStops();
+        // String prettyFlightBooking = "You are departing from  " + pickedFlight.getDepartureCity() + " at the "
+        //         + pickedFlight.getDepartureAirport() + " airport on " + pickedFlight.getDepartureDate() + " at "
+        //         + pickedFlight.getDepartureTime()
+        //         + "You are arriving at " + pickedFlight.getArrivalAirport() + " on " + pickedFlight.getArrivalDate()
+        //         + " at " + pickedFlight.getArrivalTime()
+        //         + "Airline: " + pickedFlight.getAirline() + "\nPrice: " + pickedFlight.getPrice() + "\nFlight type: "
+        //         + pickedFlight.getFlightType() + "\nNumber of strops: " + pickedFlight.getStops();
         bookings.add(prettyFlightBooking);
 
         System.out.println("Do you want to print out your flight information? (Y/N)");
