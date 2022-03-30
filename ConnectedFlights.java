@@ -1,17 +1,25 @@
 import java.util.ArrayList;
 import java.util.UUID;
-
 import Enums.Airline;
 import Enums.FlightType;
-
+/**
+ * A class that takes in multiple departures and arrivals of a given flight in order to tell the user how many stops they will
+ * have to make to get to their desired location.
+ */
 public class ConnectedFlights {
     
     private ArrayList<Flight> connectList;
-
+    /**
+     * Default constructor for connectList.
+     */
     public ConnectedFlights() {
         connectList = new ArrayList<Flight>();
     }
-
+    /**
+     * A method that takes in a flight and adds it to an arraylist of connected flight departure and arrival locations
+     * to print a continuous stream.
+     * @param flight
+     */
     public void addFlight(Flight flight) {
         connectList.add(flight);
     }
@@ -21,7 +29,10 @@ public class ConnectedFlights {
             this.connectList.add(flightList.getList().get(i));
         }
     }
-
+    /**
+     * A method that returns a new "flight" that accounts for layovers at multiple depart locations
+     * @return Flight a new flight will all departure airports and the final arrival airport.
+     */
     public Flight combine() {
         // 0 is first flight
         double price = 0;
@@ -47,7 +58,10 @@ public class ConnectedFlights {
     public ArrayList<Flight> getList() {
         return connectList;
     }
-
+    /**
+     * A method that creates a new ArrayList of seats for a flight
+     * @return seats a new arraylsit of Seats
+     */
     public static ArrayList<Seat> createSeats() {
         ArrayList<Seat> seats = new ArrayList<Seat>();
         for (int i = 0; i < 60; i++) {

@@ -20,7 +20,16 @@ public class Hotels {
     public static ArrayList<Hotel> getHotels() {
         return hotelList;
     }
-
+    /**
+     * A method that adds a new hotel
+     * @param ID a new hotel id
+     * @param namOfHotel a new name of a hotel
+     * @param hasPool a boolean taht returns true if the hotel has a pool
+     * @param price the hotel price
+     * @param rating the hotel rating
+     * @param rooms the list of rooms that a hotel has
+     * @param city the city a hotel is in
+     */
     public void addHotel(UUID ID, String namOfHotel, boolean hasPool, double price, double rating, ArrayList<Room> rooms, String city) {
         hotelList.add(new Hotel(ID, namOfHotel, hasPool, price, rating, rooms, city));
     }

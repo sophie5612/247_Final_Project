@@ -32,9 +32,9 @@ public class User {
 
     /**
      * A parameterized constructor for USer
-     * @param ID
-     * @param name
-     * @param DOB
+     * @param ID a new user ID
+     * @param name a user name 
+     * @param DOB a users date of birth
      */
     public User(UUID ID, String name, String DOB, String userName, String passWord, ArrayList<String> flightData, ArrayList<String> hotelData, ArrayList<FamilyMember> familyList){
         this.ID = ID;
