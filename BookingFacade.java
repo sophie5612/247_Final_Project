@@ -215,7 +215,7 @@ public class BookingFacade {
     public String printSortedFlights(ArrayList<Flight> tempArr){
         String sortedFlights = "";
         for(int i = 0; i < tempArr.size(); i++) {
-            sortedFlights += "\nFlight " + (i + 1) + ") " + printFlight(tempArr.get(i)) + "\n";
+            sortedFlights += "\nFlight " + (i + 1) + ")\n" + printFlight(tempArr.get(i)) + "\n";
         }
         return sortedFlights;
     }
@@ -283,7 +283,7 @@ public class BookingFacade {
     public String printSortedHotels(ArrayList<Hotel> hotels){ 
         String sortedHotels = "";
         for(int i = 0; i < hotels.size(); i++) {
-            sortedHotels += "\n" + (i + 1) + ") " + printHotel(hotels.get(i));
+            sortedHotels += "\nHotel " + (i + 1) + ")\n" + printHotel(hotels.get(i)) + "\n";
         }
         return sortedHotels;
     }

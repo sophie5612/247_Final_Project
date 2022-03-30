@@ -119,9 +119,8 @@ public class UI {
         String departCity = scanner.next();
         System.out.print("How many tickets would you like to book? ");
         int numTickets = scanner.nextInt();
+        scanner.nextLine();
         System.out.println();
-
-        // scanner.next(); // eat random input?
 
         ArrayList<String> familyMemberSelectedList = new ArrayList<String>();
 
@@ -183,11 +182,11 @@ public class UI {
             System.out.println(
                     "\nNow that you have picked a flight, please choose a seat! The open seats are marked with O's");
         } else {
-            System.out.println("\nInvalid Flight was entered, returning to Main Menu");
-            MainMenu();
+            System.out.println("\nInvalid Flight was entered, please try again");
+            BookFlight();
         }
-        System.out.println(
-                "Please enter the seat(s) you would like. (Example: To get B seat in Row 3, type in 3B and hit enter.)");
+
+        System.out.println( "Please enter the seat(s) you would like. (Example: To get B seat in Row 3, type in 3B and hit enter.)");
         String prettyFlightBooking = bookingFacade.printFlight(pickedFlight);
 
         for (int i = 0; i < numTickets; i++) {
@@ -206,12 +205,11 @@ public class UI {
                 prettyFlightBooking += "\n" + familyMemberSelectedList.get(i -  1) + " is in seat " + seatPick;
             }
         }
-        System.out.println(
-                "Flight is being added to your account...");
+        System.out.println("Flight is being added to your account...");
         bookingFacade.currentUser.addFlight(pickedFlight);
         bookings.add(prettyFlightBooking);
 
-        System.out.println("Do you want to print out your flight information? (Y/N)");
+        System.out.println("Would you like to print out your flight information? (Y/N)");
         String printInput = scanner.nextLine();
         if (printInput.equalsIgnoreCase("Y")) {
             System.out.println(prettyFlightBooking); // print to user
@@ -240,16 +238,17 @@ public class UI {
      * Method to book a hotel
      */
     public void BookHotel() {
-        System.out.println("Please input the following");
-        scanner.nextLine();
-        System.err.println("Destination City: ");
-        String destinationCity = scanner.nextLine();
+        System.out.println("Let's book a hotel! Please input the following");
+        System.err.print("Destination City: ");
+        String destinationCity = scanner.next();
         System.out.println();
 
         ArrayList<Hotel> sortedHotels = new ArrayList<Hotel>();
         sortedHotels = bookingFacade.validHotels(destinationCity); // check enough rooms and exists
+        
         if (sortedHotels.size() == 0) {
             System.out.println("No hotels available");
+            return;
         }
 
         switch (usersChoice(hotelSortingOptions, "How would you like to sort your hotel options?")) { // 1 = cheapest, 2 = highest rated
@@ -260,45 +259,55 @@ public class UI {
                 sortedHotels = bookingFacade.sortRatingHotels(sortedHotels);
                 break;
             default:
-                System.out.println("Showing cheapest hotles");
+                sortedHotels = bookingFacade.sortCheapestHotels(sortedHotels);
+                System.out.println("Showing cheapest hotles"); // default sort
                 break;
         }
 
-        System.out.println(bookingFacade.printSortedHotels(sortedHotels));
+        System.out.println(bookingFacade.printSortedHotels(sortedHotels)); //display sorted hotels
 
-        System.out.println("Which hotel would you like to book?");
+        System.out.println("Which hotel would you like to book? Choose from the hotels 1 - " + sortedHotels.size());
+        System.out.print("Choice: ");
         int input = scanner.nextInt();
+        scanner.nextLine();
         Hotel pickedHotel = null;
+
         if (input > 0 && input <= sortedHotels.size()) { // check the number picked is in bounds
             pickedHotel = sortedHotels.get(input - 1);// get the hotel at the user's request
         } else {
-            System.out.println("Invalid hotel number, please try again");
+            System.out.println("Invalid hotel number, please try again\n");
             BookHotel();
         }
-        System.out.println("How many rooms would you like to book?");
-        int numRooms = scanner.nextInt();
 
-        System.out.println("How many beds would you like in each room?");
+        System.out.print("How many rooms would you like to book? ");
+        int numRooms = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.print("How many beds would you like in each room? ");
         int numOfBeds = scanner.nextInt();
         scanner.nextLine();
 
         System.out.println("When would you like to book the room? (dd-mm-yyyy)");
         String dateBooked = scanner.nextLine();
 
-        System.out.println("How long would you like to book the room for?");
+        System.out.println("How many days would you like to book the room for?");
         int numOfDays = scanner.nextInt();
         scanner.nextLine(); 
 
         String roomsInformation = bookingFacade.getRoom(pickedHotel, numRooms, numOfBeds, dateBooked, numOfDays);
         System.out.println(roomsInformation);
 
-        String prettyHotelBooking = "Hotel: " + pickedHotel.getName() + "\nCity: " + pickedHotel.getCity() + "\nRating: " + pickedHotel.getRatings() + "\nPrice: " + pickedHotel.getPrice() + "\nPool: " + pickedHotel.getPool();
+        String prettyHotelBooking = bookingFacade.printHotel(pickedHotel) + "\n" + roomsInformation;
+
+        System.out.println("Hotel is being added to your account...");
+        bookingFacade.currentUser.addHotel(pickedHotel);
         bookings.add(prettyHotelBooking);
 
-        System.out.println("\nWould you like to print this information? (Y/N)");
+        System.out.println("\nWould you like to print our your hotel information? (Y/N)");
         String printChoice = scanner.nextLine();
-        if (printChoice.equalsIgnoreCase("y")) {
-            bookingFacade.printOutHotel(prettyHotelBooking);
+        if (printChoice.equalsIgnoreCase("Y")) {
+            System.out.println(prettyHotelBooking); // print to user
+            bookingFacade.printOutHotel(prettyHotelBooking); // print to file
         }
     }
 
