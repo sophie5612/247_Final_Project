@@ -195,6 +195,7 @@ public class UI {
         for (int i = 0; i < numTickets; i++) {
             showSeats(pickedFlight);
             String seatPick = scanner.nextLine();
+            bookingFacade.pickedSeat(pickedFlight, seatPick);
             if(i == 0) {
                 prettyFlightBooking += "You are in seat " + seatPick;
             }
