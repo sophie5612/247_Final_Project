@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class DataWriter extends DataContatnts{
+public class DataWriter extends DataContants {
 
     public static void saveFlight() {
         ArrayList<Flight> flightList = Flights.getFlights();

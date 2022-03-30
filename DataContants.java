@@ -1,4 +1,4 @@
-public abstract class DataContatnts {
+public abstract class DataContants {
     // Flight Information
     protected static final String FLIGHT_FILE_NAME = "Flight.JSON";
     protected static final String FLIGHT_ID = "flightID";
