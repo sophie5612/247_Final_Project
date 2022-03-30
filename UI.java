@@ -13,8 +13,9 @@ public class UI {
     private BookingFacade bookingFacade;
     private static final String WELCOME = "Welcome to Syntax Errorz Beautiful Booking System.\n";
     private String[] loginOptions = { "Login", "Sign up" };
-    private String[] mainOptions = { "Book a flight", "Book a hotel", "View Account", "Log out" };
-    private String[] accountOptions = { "Check flight history", "Check hotel history", "Print out this sessions bookings", "Main menu"};
+    private String[] mainOptions = { "Book a flight", "Book a hotel", "View Account Information", "Log out" };
+    private String[] accountOptions = { "Check flight history", "Check hotel history",
+            "Print out this sessions bookings", "Main menu" };
     private String[] flightSortingOptions = { "Find cheapest", "Find most available" };
     private String[] hotelSortingOptions = { "Find cheapest", "Find highest rated" };
     private ArrayList<String> bookings = new ArrayList<String>();
@@ -34,13 +35,8 @@ public class UI {
         boolean quit = false;
 
         while (!quit) {
-            System.out.println("What would you like to do?"); // print User's options
-            for (int i = 0; i < mainOptions.length; i++) {
-                System.out.println("(" + (i + 1) + ") " + mainOptions[i]);
-            }
-
-            int input = scanner.nextInt();
-            System.out.println();
+            printStars();
+            int input = usersChoice(mainOptions, "                  Main Menu");
 
             switch (input) {
                 case (1):
@@ -59,39 +55,37 @@ public class UI {
             System.out.println();
         }
         System.out.println("Goodbye!");
+        printStars();
         scanner.close();
     }
 
     /**
      * Method to log a user in or create account
      */
-    public void Login()  {
-        System.out.println("What would you like to do?");
-        for (int i = 0; i < loginOptions.length; i++) {
-            System.out.println("(" + (i + 1) + ") " + loginOptions[i]);
-        }
-        int input = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Please input the following information");
+    public void Login() {
+        printStars();
+        int input = usersChoice(loginOptions, "Please Login or Sign Up");
+        System.out.println("Please enter your account information");
         System.out.print("Username: ");
-        String username = scanner.nextLine();
+        String username = scanner.next();
         System.out.print("Password: ");
-        String password = scanner.nextLine();
-        if (input == 1) {
-            if(bookingFacade.login(username, password)) {
-                System.out.println("\nLogin Successful!");
+        String password = scanner.next();
+
+        if (input == 1) { // Login
+            if (bookingFacade.login(username, password)) {
+                System.out.print("\nLogin Successful! ");
                 System.out.println("Welcome " + bookingFacade.currentUser.getName() + "\n");
             } else {
-                System.out.println("Username or password do not match anything in our system, please either try to login again or make a new account!\n");
+                System.out.println("Invalid Username or Password!\n");
                 Login();
             }
-        } else {
+        } else { // Sign Up
             System.out.print("Name: ");
-            String name = scanner.nextLine();
+            String name = scanner.next();
             System.out.print("DOB (dd-mm-yyyy): ");
-            String DOB = scanner.nextLine();
+            String DOB = scanner.next();
             bookingFacade.signUp(name, DOB, username, password);
-            System.out.println("Welcome " + bookingFacade.currentUser.getName() + "\n");
+            System.out.println("Welcome " + bookingFacade.currentUser.getName() + ".\n");
         }
     }
 
@@ -100,55 +94,62 @@ public class UI {
      * 
      * @return Integer of sorting method
      */
-    public int pickSortingMethod(String[] options) {
-        System.out.println("How would you like to sort your options?");
+    public int usersChoice(String[] options, String prompt) {
+        System.out.println(prompt + "\n");
         for (int i = 0; i < options.length; i++) {
             System.out.println("(" + (i + 1) + ") " + options[i]);
         }
-        return scanner.nextInt();
+        System.out.print("\nChoice: ");
+        int choice = scanner.nextInt();
+        if (choice < 0 || choice > options.length) { // check for valid choice
+            System.out.println("Not a valid input\n");
+        }
+        System.out.println();
+        return choice;
     }
 
     /**
      * Method to book a flight
      */
     public void BookFlight() {
-        System.out.println("Please input the following");
+        System.out.println("Let's book a flight! Please input the following");
         System.out.print("Destination City: ");
         String destinationCity = scanner.next();
         System.out.print("Depart City: ");
         String departCity = scanner.next();
-        System.out.println();
-        System.out.println("How many tickets would you like to book?");
+        System.out.print("How many tickets would you like to book? ");
         int numTickets = scanner.nextInt();
-        scanner.nextLine();
+        System.out.println();
 
-        // Family member stuff
+        // scanner.next(); // eat random input?
+
         ArrayList<String> familyMemberSelectedList = new ArrayList<String>();
-        if (numTickets <= 0) {
+
+        if (numTickets <= 0) { // invalid number of tickets
             System.out.println("Invalid number of tickets, please pick again");
             BookFlight();
-        } else if (numTickets > 1) {
-            System.out.println("It looks like your booking a ticket for other people!");
-            for (int i = 0; i < numTickets - 1; i++) {
-                System.out.println("If your trying to book a flight for someone that is not on this list please type \"New\"");
+        } else if (numTickets > 1) { // booking for others
+            System.out.println("It seems you're booking a ticket for other people!");
+            for (int i = 1; i < numTickets - 1; i++) {
+                System.out.println("Enter the name of your guest, or if they're not listed, type \"New\"");
                 System.out.println(bookingFacade.printFamilyMembers());
-                String familyMemberInput = scanner.nextLine();
-                if (familyMemberInput.equalsIgnoreCase("New")) {
-                    // NEW FAMILY MEMBER
+                System.out.print("Guest: ");
+                String familyMemberInput = scanner.next();
+
+                if (familyMemberInput.equalsIgnoreCase("New")) { // Add new family member
                     String name = addNewFamilyMember();
                     System.out.println("Horray! You added " + name + " to your flight!");
                     familyMemberSelectedList.add(name);
-                } else if (bookingFacade.checkFamilyMember(familyMemberInput)) {
-                    // FAMILY MEMBER FOUND
+                } else if (bookingFacade.checkFamilyMember(familyMemberInput)) {// Family member found
                     familyMemberSelectedList.add(familyMemberInput);
                     System.out.println("Horray! You added " + familyMemberInput + " to your flight!");
-                } else {
-                    // NO FAMILY MEMBER FOUND
+                } else { // No family matching member
                     System.out.println("Invald input, please try again");
                     i--;
                 }
             }
-        }
+        } // booking for one
+
         ArrayList<Flight> sortedFlights = new ArrayList<Flight>();
         sortedFlights = bookingFacade.validFlights(numTickets, destinationCity, departCity);
 
@@ -157,55 +158,60 @@ public class UI {
             return;
         }
 
-        switch (pickSortingMethod(flightSortingOptions)) {
+        switch (usersChoice(flightSortingOptions, "How would you like to sort your flight options?")) {
             case (1):
                 sortedFlights = bookingFacade.sortCheapestFlights(sortedFlights);
                 break;
             case (2):
-                sortedFlights= bookingFacade.sortMostAvailableFlights(sortedFlights);
+                sortedFlights = bookingFacade.sortMostAvailableFlights(sortedFlights);
                 break;
             default:
                 sortedFlights = bookingFacade.sortCheapestFlights(sortedFlights);
-                System.out.println("Showing cheapest flights");
+                System.out.println("Showing cheapest flights"); // default sort
                 break;
         }
-        String sortedFlightsString = bookingFacade.printSortedFlights(sortedFlights);
-        System.out.println(sortedFlightsString); // display sorted flights
+        System.out.println(bookingFacade.printSortedFlights(sortedFlights)); // display sorted flights
 
         System.out.println("Which flight would you like to book?");
         int input = scanner.nextInt();
         Flight pickedFlight = null;
+
         if (input > 0 && input <= sortedFlights.size()) { // check the number picked is in bounds
             pickedFlight = sortedFlights.get(input - 1); // get the flight at the user's request
-            System.out.println("\nNow that you have picked a flight, please choose a seat! The open seats are marked with O's");
+            System.out.println(
+                    "\nNow that you have picked a flight, please choose a seat! The open seats are marked with O's");
         } else {
-            System.out.println("\nInvalid Flight was entered, sending you back to the main menu");
+            System.out.println("\nInvalid Flight was entered, returning to Main Menu");
             MainMenu();
         }
-        System.out.println("\nPlease enter the seat(s) you would like by following this example. If I wanted the B seat in row 3 I would type in 3B then hit enter.");
+        System.out.println(
+                "\nPlease enter the seat(s) you would like. (Example: To get B seat in Row 3, type in 3B and hit enter.)");
         scanner.nextLine();
         ArrayList<String> selectedSeats = new ArrayList<String>();
         for (int i = 0; i < numTickets; i++) {
             showSeats(pickedFlight);
             String seatPick = scanner.nextLine();
-            if(bookingFacade.pickedSeat(pickedFlight, seatPick)) {
-                // GOT A SEAT
+            if (bookingFacade.pickedSeat(pickedFlight, seatPick)) {
                 System.out.println("Horray! You selected Seat " + seatPick);
                 selectedSeats.add(seatPick);
-            } else {
-                // Somethign went wrong
+            } else { // catch all error case
                 System.out.println("Seat is taken please pick again");
                 i--;
             }
         }
-        System.out.println("Flight is being added to your account, check out your User information to find your flight booking history!\n");
+        System.out.println(
+                "Flight is being added to your account, View Account Information to find your flight booking history!\n");
         bookingFacade.currentUser.addFlight(pickedFlight);
-        // MAKE THE PRETTY BOOKING HERE
-        //
-        //
-        //
-        String prettyFlightBooking = "";
+
+        String prettyFlightBooking = "You are departing from  " + pickedFlight.getDepartureCity() + " at the "
+                + pickedFlight.getDepartureAirport() + " airport on " + pickedFlight.getDepartureDate() + " at "
+                + pickedFlight.getDepartureTime()
+                + "You are arriving at " + pickedFlight.getArrivalAirport() + " on " + pickedFlight.getArrivalDate()
+                + " at " + pickedFlight.getArrivalTime()
+                + "Airline: " + pickedFlight.getAirline() + "\nPrice: " + pickedFlight.getPrice() + "\nFlight type: "
+                + pickedFlight.getFlightType() + "\nNumber of strops: " + pickedFlight.getStops();
         bookings.add(prettyFlightBooking);
+
         System.out.println("Do you want to print out your flight information? (Y/N)");
         String printInput = scanner.nextLine();
         if (printInput.equalsIgnoreCase("Y")) {
@@ -214,10 +220,10 @@ public class UI {
     }
 
     public String addNewFamilyMember() {
-        System.out.println("\nPlease input thier name: ");
-        String name = scanner.nextLine();
-        System.out.println("\nPlease input their DOB dd-mm-yyyy: ");
-        String DOB = scanner.nextLine();
+        System.out.print("\nPlease input thier name: ");
+        String name = scanner.next();
+        System.out.print("\nPlease input their DOB dd-mm-yyyy: ");
+        String DOB = scanner.next();
         bookingFacade.currentUser.addFamilyMember(UUID.randomUUID(), name, DOB);
         return name;
     }
@@ -242,12 +248,11 @@ public class UI {
 
         ArrayList<Hotel> sortedHotels = new ArrayList<Hotel>();
         sortedHotels = bookingFacade.validHotels(destinationCity); // check enough rooms and exists
-        // at a city
         if (sortedHotels.size() == 0) {
             System.out.println("No hotels available");
         }
 
-        switch (pickSortingMethod(hotelSortingOptions)) { // 1 = cheapest, 2 = highest rated
+        switch (usersChoice(hotelSortingOptions, "How would you like to sort your hotel options?")) { // 1 = cheapest, 2 = highest rated
             case (1):
                 sortedHotels = bookingFacade.sortCheapestHotels(sortedHotels);
                 break;
@@ -287,43 +292,33 @@ public class UI {
         System.out.println(roomsInformation);
 
         scanner.nextLine();
-        // MAKE THE PRETTY BOOKING HERE
-        //
-        //
-        //
-        String prettyHotelBooking = "";
+        String prettyHotelBooking = "Hotel: " + pickedHotel.getName() + "\nCity: " + pickedHotel.getCity() + "\nRating: " + pickedHotel.getRatings() + "\nPrice: " + pickedHotel.getPrice() + "\nPool: " + pickedHotel.getPool();
         bookings.add(prettyHotelBooking);
+
         System.out.println("\nWould you like to print this information? (Y/N)");
         String printChoice = scanner.nextLine();
         if (printChoice.equalsIgnoreCase("y")) {
-            // PRINT HOTEL INFOMRATION
             bookingFacade.printOutHotel(prettyHotelBooking);
         }
     }
 
     public void ViewAccount() {
-        System.out.println("What would you like to do?"); // print User's options
-            for (int i = 0; i < accountOptions.length; i++) {
-                System.out.println("(" + (i + 1) + ") " + accountOptions[i]);
-            }
+        int input = usersChoice(accountOptions, "Viewing account information. What would you like to do?");
 
-            int input = scanner.nextInt();
-            System.out.println();
-
-            switch (input) {
-                case (1):
-                    checkFlightHistory();
-                    break;
-                case (2):
-                    checkHotelHistory();
-                    break;
-                case (3):
-                    printOutBookings();
-                    break;
-                case (4):
-                    MainMenu();
-            }
-            System.out.println();
+        switch (input) {
+            case (1):
+                checkFlightHistory();
+                break;
+            case (2):
+                checkHotelHistory();
+                break;
+            case (3):
+                printOutBookings();
+                break;
+            case (4):
+                MainMenu();
+        }
+        System.out.println();
     }
 
     public void checkFlightHistory() {
@@ -338,11 +333,20 @@ public class UI {
         // Use the bookings array list to save everything to a file
     }
 
+    public void printStars() {
+        System.out.println("***************************************************\n");
+    }
+
     /**
      * Method to run the program
      */
     public void run() {
+        printStars();
+        System.out.println(
+                "                   __|__"
+                        + "\n             *---o--(_)--o---*\n");
         System.out.println(WELCOME);
+
         Login();
         MainMenu();
     }

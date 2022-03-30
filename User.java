@@ -45,7 +45,6 @@ public class User {
         this.flightData = flightData;
         this.hotelData = hotelData;
         this.familyList = familyList;
-        age = calculateAge();
     }
 
     public void addFamilyMember(UUID uuid, String name, String DOB) {
