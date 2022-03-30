@@ -14,8 +14,7 @@ public class UI {
     private static final String WELCOME = "Welcome to Syntax Errorz Beautiful Booking System.\n";
     private String[] loginOptions = { "Login", "Sign up" };
     private String[] mainOptions = { "Book a flight", "Book a hotel", "View Account Information", "Log out" };
-    private String[] accountOptions = { "Check flight history", "Check hotel history",
-            "Print out this sessions bookings", "Main menu" };
+    private String[] accountOptions = { "Check flight history", "Check hotel history","Print out this sessions bookings", "Main menu" };
     private String[] flightSortingOptions = { "Find cheapest", "Find most available" };
     private String[] hotelSortingOptions = { "Find cheapest", "Find highest rated" };
     private ArrayList<String> bookings = new ArrayList<String>();
