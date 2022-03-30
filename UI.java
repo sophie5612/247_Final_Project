@@ -171,7 +171,7 @@ public class UI {
         }
         System.out.println(bookingFacade.printSortedFlights(sortedFlights)); // display sorted flights
 
-        System.out.print("Which flight would you like to book? Choose from flights 1 - " + sortedFlights.size());
+        System.out.println("Which flight would you like to book? Choose from flights 1 - " + sortedFlights.size());
         System.out.print("Choice: ");
         int input = scanner.nextInt();
         scanner.nextLine(); 
@@ -197,6 +197,7 @@ public class UI {
             } else {
                 System.out.println("Invalid Seat please pick again");
                 i--; // try again
+                continue;
             }
             if(i == 0) {
                 prettyFlightBooking += "\nYou are in seat " + seatPick; 
@@ -220,7 +221,7 @@ public class UI {
     public String addNewFamilyMember() {
         System.out.print("\nPlease input thier name: ");
         String name = scanner.next();
-        System.out.print("\nPlease input their DOB dd-mm-yyyy: ");
+        System.out.print("Please input their DOB dd-mm-yyyy: ");
         String DOB = scanner.next();
         bookingFacade.currentUser.addFamilyMember(UUID.randomUUID(), name, DOB);
         return name;

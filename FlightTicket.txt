@@ -1,10 +1,10 @@
 
 Departure Airport: CAE
 Arrival Airport: SEA
-Departure City(s): Denver Nashville Columbia 
+Departure City(s): Columbia
 Arrival City: Seattle
-Total Travel Time: Total Time 7 Hours 30 Minutes
-Price: 65.0
-Stops: 3
-You are in seat 4A
-Ben is in seat 5A
+Total Travel Time: Total Time 5 Hours 0 Minutes
+Price: 100.0
+Stops: 0
+You are in seat 3A
+Ben is in seat 6C
