@@ -219,15 +219,7 @@ public class BookingFacade {
         }
         return sortedFlights;
     }
-    /**
-     * A method that tells the user the ammount of flights that can be booked
-     * @param tempArr A temp arraylist of all the flights the user is interested in.
-     * @return i where i is the amount of flights in the ArrayList
-     */
-    public int numOfFlightOptions(ArrayList<Flight> tempArr) {
-        int i = tempArr.size();
-        return i;
-    }
+
     /**
      * A method that returns A sorted arraylist of hotels based on price using collection sort.
      * @param hotels an ArrayList of the total amount of hotels the user is interested in

@@ -210,7 +210,6 @@ public class UI {
         System.out.println(
                 "Flight is being added to your account...");
         bookingFacade.currentUser.addFlight(pickedFlight);
-
         bookings.add(prettyFlightBooking);
 
         System.out.println("Do you want to print out your flight information? (Y/N)");
@@ -289,11 +288,11 @@ public class UI {
 
         System.out.println("How long would you like to book the room for?");
         int numOfDays = scanner.nextInt();
+        scanner.nextLine(); 
 
         String roomsInformation = bookingFacade.getRoom(pickedHotel, numRooms, numOfBeds, dateBooked, numOfDays);
         System.out.println(roomsInformation);
 
-        scanner.nextLine();
         String prettyHotelBooking = "Hotel: " + pickedHotel.getName() + "\nCity: " + pickedHotel.getCity() + "\nRating: " + pickedHotel.getRatings() + "\nPrice: " + pickedHotel.getPrice() + "\nPool: " + pickedHotel.getPool();
         bookings.add(prettyHotelBooking);
 
@@ -345,8 +344,8 @@ public class UI {
     public void run() {
         printStars();
         System.out.println(
-                "                   __|__"
-                        + "\n             *---o--(_)--o---*\n");
+            "                   __|__"
+        + "\n             *---o--(_)--o---*\n");
         System.out.println(WELCOME);
 
         Login();
