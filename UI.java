@@ -172,11 +172,10 @@ public class UI {
         }
         System.out.println(bookingFacade.printSortedFlights(sortedFlights)); // display sorted flights
 
-        System.out.print("Which flight would you like to book? Choose from flights 1 - ");
-        System.out.print(bookingFacade.numOfFlightOptions(sortedFlights) + "\n");
+        System.out.print("Which flight would you like to book? Choose from flights 1 - " + sortedFlights.size());
         System.out.print("Choice: ");
         int input = scanner.nextInt();
-        scanner.nextLine(); // advance scanner
+        scanner.nextLine(); 
         Flight pickedFlight = null;
 
         if (input > 0 && input <= sortedFlights.size()) { // check the number picked is in bounds
