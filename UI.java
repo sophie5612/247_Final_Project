@@ -187,7 +187,7 @@ public class UI {
         }
 
         System.out.println( "Please enter the seat(s) you would like. (Example: To get B seat in Row 3, type in 3B and hit enter.)");
-        String prettyFlightBooking = bookingFacade.printFlight(pickedFlight);
+        String prettyFlightBooking = "\n" + bookingFacade.printFlight(pickedFlight);
 
         for (int i = 0; i < numTickets; i++) {
             showSeats(pickedFlight); // display seats
@@ -298,7 +298,7 @@ public class UI {
         String roomsInformation = bookingFacade.getRoom(pickedHotel, numRooms, numOfBeds, dateBooked, numOfDays);
         System.out.println(roomsInformation);
 
-        String prettyHotelBooking = bookingFacade.printHotel(pickedHotel) + "\n" + roomsInformation;
+        String prettyHotelBooking = "\n" + bookingFacade.printHotel(pickedHotel) + "\n" + roomsInformation;
 
         System.out.println("Hotel is being added to your account...");
         bookingFacade.currentUser.addHotel(pickedHotel);
