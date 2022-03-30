@@ -8,7 +8,7 @@ import org.json.simple.parser.JSONParser;
 import Enums.Airline;
 import Enums.FlightType;
 
-public class DataLoader extends DataContatnts {
+public class DataLoader extends DataContants {
 
     public static ArrayList<Flight> loadFlights() {
         ArrayList<Flight> flights = new ArrayList<Flight>();
