@@ -119,7 +119,7 @@ public class BookingFacade {
      * A method that saves what flight the user booked and its information to a new text file.
      * @param text A string of text to be saved to a text file.
      */
-    public void printOutFlight(String text) {
+    public void printFlightToText(String text) {
         try {
             File myObj = new File("FlightTicket.txt");
             myObj.createNewFile();
@@ -137,7 +137,7 @@ public class BookingFacade {
      * A method that prints all the information about a hotel to a new text file
      * @param text A string of text to be saved to a text file.
      */
-    public void printOutHotel(String text) {
+    public void printHotelToText(String text) {
         try {
             File myObj = new File("HotelInfo.txt");
             myObj.createNewFile();
@@ -287,12 +287,7 @@ public class BookingFacade {
         }
         return sortedHotels;
     }
-    /**
-     * A method that saves user data
-     */
-    public void saveData(){
-        // save all the users data
-    }
+
     /**
      * A method that returns an ArrayList of valid flights that the user is interested in
      * @param numTickets The amount of tickets the flight has availbile
@@ -502,7 +497,6 @@ public class BookingFacade {
         try {
             date = formatter.parse(dateBooked);
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         c.setTime(date);

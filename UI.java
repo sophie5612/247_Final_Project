@@ -213,7 +213,7 @@ public class UI {
         String printInput = scanner.nextLine();
         if (printInput.equalsIgnoreCase("Y")) {
             System.out.println(prettyFlightBooking); // print to user
-            bookingFacade.printOutFlight(prettyFlightBooking); // print to file
+            bookingFacade.printFlightToText(prettyFlightBooking); // print to file
         }
     }
 
@@ -307,7 +307,7 @@ public class UI {
         String printChoice = scanner.nextLine();
         if (printChoice.equalsIgnoreCase("Y")) {
             System.out.println(prettyHotelBooking); // print to user
-            bookingFacade.printOutHotel(prettyHotelBooking); // print to file
+            bookingFacade.printHotelToText(prettyHotelBooking); // print to file
         }
     }
 
