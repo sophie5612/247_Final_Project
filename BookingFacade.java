@@ -215,7 +215,7 @@ public class BookingFacade {
     public String printSortedFlights(ArrayList<Flight> tempArr){
         String sortedFlights = "";
         for(int i = 0; i < tempArr.size(); i++) {
-            sortedFlights += (i + 1) + ") " + printFlight(tempArr.get(i)) + "\n";
+            sortedFlights += "\nFlight " + (i + 1) + ") " + printFlight(tempArr.get(i)) + "\n";
         }
         return sortedFlights;
     }
