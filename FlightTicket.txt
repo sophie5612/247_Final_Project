@@ -1,10 +1,11 @@
 
+
 Departure Airport: CAE
 Arrival Airport: SEA
-Departure City(s): Columbia
+Departure City(s): Atlanta Columbia 
 Arrival City: Seattle
-Total Travel Time: Total Time 5 Hours 0 Minutes
-Price: 100.0
-Stops: 0
-You are in seat 3A
-Ben is in seat 6C
+Total Travel Time: Total Time 4 Hours 0 Minutes
+Price: 80.0
+Stops: 2
+You are in seat 1A
+Reagan is in seat 1B
