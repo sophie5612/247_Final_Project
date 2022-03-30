@@ -1,2 +1,10 @@
-You are in seat 1A
-Macie is in seat 4A
+
+Departure Airport: CAE
+Arrival Airport: SEA
+Departure City(s): Denver Nashville Columbia 
+Arrival City: Seattle
+Total Travel Time: Total Time 7 Hours 30 Minutes
+Price: 65.0
+Stops: 3
+You are in seat 3B
+Ben is in seat 2A
