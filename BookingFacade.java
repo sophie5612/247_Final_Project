@@ -23,7 +23,7 @@ public class BookingFacade {
     ArrayList<Flight> flightList;
     ArrayList<Hotel> hotelList;
     ArrayList<User> userList;
-    User currentUser;
+    static User currentUser;
 
     public BookingFacade(){
         flightList = Flights.getFlights();
@@ -105,7 +105,7 @@ public class BookingFacade {
      * @param flight a flight
      * @return flightString a new string that displays all the information about a flight
      */
-    public String printFlight(Flight flight){
+    public static String printFlight(Flight flight){
         if (flight == null) {
             return " ";
         }
@@ -157,7 +157,7 @@ public class BookingFacade {
      * @param arrivalTime a given arrival time for a flight
      * @return total the amount of time that the flight will take to get to its destination.
      */
-    public String calculateFlightTime(int departTime, int arrivalTime){
+    public static String calculateFlightTime(int departTime, int arrivalTime){
         int totalMinutes;
         int hours;
         int minutes;
@@ -270,7 +270,7 @@ public class BookingFacade {
      * @param hotel a new hotel
      * @return hotelString a String that displays all the details of the hotel passed in
      */
-    public String printHotel(Hotel hotel) {
+    public static String printHotel(Hotel hotel) {
         String hotelString = ("Hotel Name: " + hotel.getName() + '\n' + "Hotel price: " + hotel.getPrice() + '\n' 
             + "Rating: " + hotel.getRatings() + '\n' + "Pool?: " + hotel.getPool());
         return hotelString;
@@ -280,7 +280,7 @@ public class BookingFacade {
      * @param hotels An ArrayList of hotels that have been sorted
      * @return sortedHotels a String of hotels that have been sorted to user specifications
      */
-    public String printSortedHotels(ArrayList<Hotel> hotels){ 
+    public static String printSortedHotels(ArrayList<Hotel> hotels){ 
         String sortedHotels = "";
         for(int i = 0; i < hotels.size(); i++) {
             sortedHotels += "\nHotel " + (i + 1) + ")\n" + printHotel(hotels.get(i)) + "\n";
@@ -489,7 +489,7 @@ public class BookingFacade {
      * @param numOfDays the number of days the hotel was booked for
      * @return ret will print out any rooms that are availible if any are, or print that is invalid if there is none.
      */
-    public String getRoom(Hotel pickedHotel, int numRooms, int numOfBeds, String dateBooked, int numOfDays) {
+    public static String getRoom(Hotel pickedHotel, int numRooms, int numOfBeds, String dateBooked, int numOfDays) {
         String ret = "";
         SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy");
         Calendar c = Calendar.getInstance();
@@ -531,7 +531,7 @@ public class BookingFacade {
      * @param room a room
      * @return a String of the rooms details
      */
-    public String printRoom(Room room) {
+    public static String printRoom(Room room) {
         return "\nFloor: " + room.getFloor() + "\nRoom Number: " + room.getRoomNumber() + "\nNumber of beds: " + room.getNumOfBeds();
     }
     /**
@@ -540,7 +540,7 @@ public class BookingFacade {
      * @param daysToBook
      * @return
      */
-    public boolean doesntContainDay(Room room, ArrayList<String> daysToBook) {
+    public static boolean doesntContainDay(Room room, ArrayList<String> daysToBook) {
         boolean ret = true;
         for (int i = 0; i < room.getBookedDates().size(); i++) {
             String dateCheck = room.getBookedDates().get(i);

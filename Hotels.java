@@ -24,7 +24,7 @@ public class Hotels {
      * A method that adds a new hotel
      * @param ID a new hotel id
      * @param namOfHotel a new name of a hotel
-     * @param hasPool a boolean taht returns true if the hotel has a pool
+     * @param hasPool a boolean that returns true if the hotel has a pool
      * @param price the hotel price
      * @param rating the hotel rating
      * @param rooms the list of rooms that a hotel has
