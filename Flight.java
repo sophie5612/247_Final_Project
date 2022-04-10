@@ -125,7 +125,6 @@ import Enums.FlightType;
         return price;
     }
 
-    // Sophie
     public int compareTo(Flight flight) {
         if (price == flight.price) {
             return 0;
