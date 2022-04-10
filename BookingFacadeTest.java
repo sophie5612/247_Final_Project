@@ -88,6 +88,59 @@ class BookingFacadeTest {
         String ret = BookingFacade.getRoom(null, 0, 0, "", 0);
         assertEquals(ret, "No Rooms available in this hotel");
     }
+
+    @Test
+    public void TestPrintFlight() {
+        Flight flight = new Flight();
+        String ret = BookingFacade.printFlight(flight);
+        assertEquals(ret, "Departure Airport: " + flight.getDepartureAirport() + '\n' + "Arrival Airport: " +  flight.getArrivalAirport() + '\n' + "Departure City(s): " + flight.getDepartureCity()
+        + '\n' + "Arrival City: " + flight.getArrivalAirport() + '\n' + "Total Travel Time: " + BookingFacade.calculateFlightTime(flight.getDepartureTime(), flight.getArrivalTime()) + '\n' + "Price: " 
+        + flight.getPrice() + '\n' + "Stops: " + flight.getStops());
+    }
+
+    @Test
+    public void TestPrintFlightNull() {
+        Flight flight = null;
+        String ret = BookingFacade.printFlight(flight);
+        assertEquals(ret, " ");
+    }
+
+    @Test
+    public void testSortCheapestFlights() {
+        ArrayList<Flight> temp = new ArrayList<Flight>();
+        Flight flight = new Flight();
+        temp.add(0, flight);
+        ArrayList<Flight> sorted = BookingFacade.sortCheapestFlights(temp);
+        assertEquals(sorted, flight.getArrivalAirport());
+    }
+    
+    @Test
+    public void testPickedSeatValidSeat() {
+        Flight flight = new Flight();
+        boolean seat = BookingFacade.pickedSeat(flight, "A");
+        assertEquals(seat, false);
+    }
+    @Test
+    public void testPickedSeatNull() {
+        Flight flight = new Flight();
+        boolean seat = BookingFacade.pickedSeat(flight, "null");
+        assertEquals(seat, false);
+    }
+    @Test
+    public void testSortCheapestHotel() {
+        ArrayList<Flight> temp = new ArrayList<Flight>();
+        Flight flight = new Flight();
+        temp.add(0, flight);
+        ArrayList<Flight> sorted = BookingFacade.sortCheapestFlights(temp);
+        assertEquals(sorted, flight.getArrivalAirport());
+    }
+
+    @Test
+    public void testFamilyMember() {
+        String ret = BookingFacade.printFamilyMembers();
+        assertEquals(ret, null);
+    }
+    
     
     // @Test
     // public void testgetRoomOneRoomTwoBedsTwoDays() {
