@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.UUID;
 
 /**
@@ -93,9 +94,10 @@ class BookingFacadeTest {
     public void TestPrintFlight() {
         Flight flight = new Flight();
         String ret = BookingFacade.printFlight(flight);
-        assertEquals(ret, "Departure Airport: " + flight.getDepartureAirport() + '\n' + "Arrival Airport: " +  flight.getArrivalAirport() + '\n' + "Departure City(s): " + flight.getDepartureCity()
-        + '\n' + "Arrival City: " + flight.getArrivalAirport() + '\n' + "Total Travel Time: " + BookingFacade.calculateFlightTime(flight.getDepartureTime(), flight.getArrivalTime()) + '\n' + "Price: " 
-        + flight.getPrice() + '\n' + "Stops: " + flight.getStops());
+        assertEquals(ret,  "\nDeparture Airport: " + flight.getDepartureAirport() +
+        '\n' + "Arrival Airport: " + flight.getArrivalAirport() + '\n' + "Departure City(s): " + flight.getDepartureCity() + '\n' +
+        "Arrival City: " + flight.getDestination() + '\n' + "Total Travel Time: "
+        + BookingFacade.calculateFlightTime(flight.getDepartureTime(), flight.getArrivalTime()) + '\n' + "Price: " + flight.getPrice() + '\n' + "Stops: " + flight.getStops());
     }
 
     @Test
@@ -123,10 +125,17 @@ class BookingFacadeTest {
     @Test
     public void testSortCheapestFlights() {
         ArrayList<Flight> temp = new ArrayList<Flight>();
-        Flight flight = new Flight();
-        temp.add(0, flight);
-        ArrayList<Flight> sorted = BookingFacade.sortCheapestFlights(temp);
-        assertEquals(sorted, flight);
+        ArrayList<Flight> sorted = new ArrayList<Flight>();
+        Collections.sort(sorted);
+        assertEquals(sorted, BookingFacade.sortCheapestFlights(temp));
+    }
+
+    @Test
+    public void testSortCheapestFlightsNull() {
+        ArrayList<Flight> temp = null;
+        ArrayList<Flight> sorted = null;
+        Collections.sort(sorted);
+        assertEquals(sorted, BookingFacade.sortCheapestFlights(temp));
     }
     
     @Test
@@ -142,14 +151,20 @@ class BookingFacadeTest {
         assertEquals(seat, false);
     }
     @Test
-    public void testSortCheapestHotel() {
-        ArrayList<Flight> temp = new ArrayList<Flight>();
-        Flight flight = new Flight();
-        temp.add(0, flight);
-        ArrayList<Flight> sorted = BookingFacade.sortCheapestFlights(temp);
-        assertEquals(sorted, flight.getArrivalAirport());
+    public void testSortCheapestHotels() {
+        ArrayList<Hotel> temp = new ArrayList<Hotel>();
+        ArrayList<Hotel> sorted = new ArrayList<Hotel>();
+        Collections.sort(sorted);
+        assertEquals(sorted, BookingFacade.sortCheapestHotels(temp));
     }
 
+    @Test
+    public void testSortCheapestHotelsNull() {
+        ArrayList<Flight> temp = null;
+        ArrayList<Flight> sorted = null;
+        Collections.sort(sorted);
+        assertEquals(sorted, BookingFacade.sortCheapestFlights(temp));
+    }
     @Test
     public void testFamilyMember() {
         String ret = BookingFacade.printFamilyMembers();

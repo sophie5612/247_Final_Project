@@ -236,7 +236,7 @@ public class BookingFacade {
      * @return hotels the sorted ArrayList of hotels based on their price
      */
     // Reagan
-    public ArrayList<Hotel> sortCheapestHotels(ArrayList<Hotel> hotels){
+    public static ArrayList<Hotel> sortCheapestHotels(ArrayList<Hotel> hotels){
         Collections.sort(hotels);
         return hotels;
     }
