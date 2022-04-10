@@ -1,3 +1,4 @@
+/*
 import org.junit.Test;
 
 class HotelTest {
@@ -13,3 +14,4 @@ class HotelTest {
 
     }
 }
+*/
