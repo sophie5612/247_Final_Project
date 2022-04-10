@@ -1,16 +1,5 @@
-<<<<<<< HEAD
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-
-=======
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
->>>>>>> 3ad84e85a10f5202887fae43206231585079f6a6
 import java.util.ArrayList;
 
 /**
