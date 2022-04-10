@@ -1,21 +1,20 @@
-import static org.junit.Assert.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
-import org.junit.Test;
 /**
  * @author Ben Goodman
  */
 class BookingFacadeTest {
 
     @Test
-    public static void testPrintHotelNull(){
+    public void testPrintHotelNull(){
         String hotel = BookingFacade.printHotel(null);
         assertEquals(hotel, "");
     }
 
     @Test
-    public static void testPrintHotelWorks() {
+    public void testPrintHotelWorks() {
         Hotel hotelOne = new Hotel();
         String hotel = BookingFacade.printHotel(hotelOne);
         assertEquals(hotel, ("Hotel Name: " + hotelOne.getName() + '\n' + "Hotel price: " + hotelOne.getPrice() + '\n' 
@@ -23,39 +22,39 @@ class BookingFacadeTest {
     }
 
     @Test
-    public static void testPrintSortedHotelsNull() {
+    public void testPrintSortedHotelsNull() {
         String sortedHotels = BookingFacade.printSortedHotels(null);
         assertEquals(sortedHotels, "");
     }
 
     @Test
-    public static void testPrintSortedHotelsWorks() {
+    public void testPrintSortedHotelsWorks() {
         ArrayList<Hotel> hotels = new ArrayList<Hotel>();
         String sortedHotels = BookingFacade.printSortedHotels(hotels);
         assertEquals(sortedHotels, "");
     }
 
     @Test
-    public static void testPrintRoomNull() {
+    public void testPrintRoomNull() {
         String ret = BookingFacade.printRoom(null);
         assertEquals(ret, "\nFloor: \nRoom Number: \nNumber of beds: ");
     }
 
     @Test
-    public static void testgetRoomNull() {
+    public void testgetRoomNull() {
         String ret = BookingFacade.getRoom(null, 0, 0, "", 0);
         assertEquals(ret, "No Rooms available in this hotel");
     }
-    /*
+    
     @Test
-    public static void testgetRoomOneRoomTwoBedsTwoDays() {
+    public void testgetRoomOneRoomTwoBedsTwoDays() {
         Hotel hotel = new Hotel();
+        Room temp;
         String ret = BookingFacade.getRoom(hotel, 1, 2, "02-02-2022", 2);
         for (int i = 0; i < hotel.getRooms().size(); i++) {
-        Room temp = hotel.getRooms().get(i);
+            temp = hotel.getRooms().get(i);
         }
-        assertEquals(ret, "\nAdded room" + printRoom(temp));
-
+        assertEquals(ret, "\nAdded room" + BookingFacade.printRoom(temp));
     }
-    */
+    
 }

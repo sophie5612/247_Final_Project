@@ -1,3 +1,4 @@
+
 Hotel Name: Marriot
 Hotel price: 100.0
 Rating: 4.1
@@ -5,9 +6,5 @@ Pool?: true
 
 Added room
 Floor: 0
-Room Number: 1
-Number of beds: 3
-Added room
-Floor: 0
-Room Number: 3
-Number of beds: 3
+Room Number: 4
+Number of beds: 1

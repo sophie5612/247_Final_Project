@@ -4,8 +4,7 @@ class HotelTest {
 
     //@Test
     public void testCompareToEquals(){
-        int hotel = Hotel.compareTo();
-        assertEquals(-1, hotel);
+        
     }
 
     //@Test
