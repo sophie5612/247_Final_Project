@@ -11,10 +11,10 @@ import java.util.UUID;
  */
 class BookingFacadeTest {
     BookingFacade bookingFacade = new BookingFacade();
-    Flights flights = Flights.getInstance();
+    static Flights flights = Flights.getInstance();
     Hotels hotels = Hotels.getInstance();
     Users users = Users.getInstance();
-    ArrayList<Flight> flightList;
+    static ArrayList<Flight> flightList;
     ArrayList<Hotel> hotelList;
     ArrayList<User> userList;
 
@@ -106,12 +106,27 @@ class BookingFacadeTest {
     }
 
     @Test
+    public void testMilitaryTimeConvertBaseCase() {
+        String ret = BookingFacade.militaryTimeConvert(1400);
+        assertEquals(ret, "02:00 PM");
+    }
+    @Test
+    public void testMilitaryTimeConvertAllZeros() {
+        String ret = BookingFacade.militaryTimeConvert(0000);
+        assertEquals(ret, "12:00 AM");
+    }
+    @Test
+    public void testMilitaryTimeConvertExtraDigits() {
+        String ret = BookingFacade.militaryTimeConvert(130113232);
+        assertEquals(ret, "Not a valid Military Time");
+    }
+    @Test
     public void testSortCheapestFlights() {
         ArrayList<Flight> temp = new ArrayList<Flight>();
         Flight flight = new Flight();
         temp.add(0, flight);
         ArrayList<Flight> sorted = BookingFacade.sortCheapestFlights(temp);
-        assertEquals(sorted, flight.getArrivalAirport());
+        assertEquals(sorted, flight);
     }
     
     @Test
@@ -140,7 +155,11 @@ class BookingFacadeTest {
         String ret = BookingFacade.printFamilyMembers();
         assertEquals(ret, null);
     }
-    
+    @Test
+    public void testCheckFamilyMember() {
+        String ret = BookingFacade.printFamilyMembers();
+        assertEquals(ret, " ");
+    }
     
     // @Test
     // public void testgetRoomOneRoomTwoBedsTwoDays() {

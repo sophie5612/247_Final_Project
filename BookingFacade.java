@@ -183,7 +183,7 @@ public class BookingFacade {
      * @return timeConvert a converted 12 hour time in AM or PM to a 24 hour time
      */
     // Reagan
-    public String militaryTimeConvert(int time){
+    public static String militaryTimeConvert(int time){
 
         String timeconvert = Integer.toString(time);
         String hour = timeconvert.substring(0,2);
