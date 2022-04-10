@@ -1,14 +1,57 @@
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * @author Ben Goodman
  */
 class BookingFacadeTest {
+    BookingFacade bookingFacade = new BookingFacade();
+    Flights flights = Flights.getInstance();
+    Hotels hotels = Hotels.getInstance();
+    Users users = Users.getInstance();
+    ArrayList<Flight> flightList;
+    ArrayList<Hotel> hotelList;
+    ArrayList<User> userList;
+
+    UUID uuID = UUID.randomUUID(); 
+    User austin = new User(uuID, "Austin", "01-01-2001", "cap", "password", null, null, null);
+
+
+    @Before
+    public static void setUp(){
+        //if yall need to set anything up
+    }
+    @After
+    public static void tearDown(){
+        //take it down
+    }
+
+    @Test 
+    void testSignUp(){
+        bookingFacade.signUp("Austin", "01-01-2001", "cap", "password");
+        User user = userList.get(0);
+        assertSame(austin, user);
+    }
 
     @Test
-    public void testPrintHotelNull(){
+    void testLogInPass(){
+        boolean temp = bookingFacade.login("cap", "password");
+        assertTrue(temp);
+    }
+
+    @Test
+    void testLogInFail(){
+        boolean temp = bookingFacade.login("x", "y");
+        assertFalse(temp);
+    }
+
+    @Test
+    void testPrintHotelNull(){
         String hotel = BookingFacade.printHotel(null);
         assertEquals(hotel, "");
     }

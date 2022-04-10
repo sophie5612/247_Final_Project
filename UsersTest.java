@@ -11,7 +11,7 @@ class UsersTest{
     private UUID uuID = UUID.randomUUID(); 
 
    @Before
-   public void setUp(){
+   public void setUp(){ //static
        userList.add(new User( uuID, "Austin", "01-01-2001", "cap", "password", null, null, null));
         DataWriter.saveUsers();
     }

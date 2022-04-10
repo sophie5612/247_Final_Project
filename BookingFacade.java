@@ -32,19 +32,18 @@ public class BookingFacade {
         currentUser = null;
     }
     /**
-     * A method that is used to create a new user in the json
+     * A method that is used to create a new user in the JSON
      * @param name the name of the user
      * @param DOB the date of birth of the user
      * @param username the username for the user
      * @param password the password for the user
      */
-    // Sophie 
     public void signUp(String name, String DOB, String username, String password){
         currentUser = new User(UUID.randomUUID(), name, DOB, username, password, new ArrayList<String>(), new ArrayList<String>(), new ArrayList<FamilyMember>());
         Users.addUser(currentUser);
     }
     /**
-     * A method that logs a user in if the username and password match what is stored in the json
+     * A method that logs a user in if the username and password match what is stored in the JSON
      * @param username the users username 
      * @param password the users password
      * @return true if the information is valid or false if the information is invalid
