@@ -43,7 +43,7 @@ public class Seat {
     public int getCol() {
         return col;
     }
-
+    // Austin
     public String toString() {
         return "\nID: " + uuid.toString() + "\nRow:" + row + "\nCol:" + col;
     }

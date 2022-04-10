@@ -38,6 +38,7 @@ public class BookingFacade {
      * @param username the username for the user
      * @param password the password for the user
      */
+    // Sophie 
     public void signUp(String name, String DOB, String username, String password){
         currentUser = new User(UUID.randomUUID(), name, DOB, username, password, new ArrayList<String>(), new ArrayList<String>(), new ArrayList<FamilyMember>());
         Users.addUser(currentUser);
@@ -48,6 +49,7 @@ public class BookingFacade {
      * @param password the users password
      * @return true if the information is valid or false if the information is invalid
      */
+    // Sophie
     public boolean login(String username, String password){
         for (int i = 0; i < userList.size(); i++) {
             User temp = userList.get(i);
@@ -61,6 +63,7 @@ public class BookingFacade {
     /**
      * A method that logs the user out of the program and saves all of their changes.
      */
+    // Sophie
     public void logOut(){
         Flights.logout();
         Hotels.logout();
@@ -71,6 +74,7 @@ public class BookingFacade {
      * @param flights The Arraylist of total flights from a departure locations to and arrival location
      * @return flights the in order
      */
+    // Reagan
     public ArrayList<Flight> sortCheapestFlights(ArrayList<Flight> flights){ // search the Flights for cheapest flight, return the sorted ArrayList
         Collections.sort(flights);
         return flights;
@@ -80,6 +84,7 @@ public class BookingFacade {
      * @param flights The ArrayList of all flights from a specified departure and arrival location
      * @return ret A new arraylist sorted by most available flights.
      */
+    // Sophie
     public ArrayList<Flight> sortMostAvailableFlights(ArrayList<Flight> flights){ // search the Flights for most available flight, return the sorted ArrayList
         ArrayList<Flight> ret = new ArrayList<Flight>();
         while (flights.size() > 0) {
@@ -105,6 +110,7 @@ public class BookingFacade {
      * @param flight a flight
      * @return flightString a new string that displays all the information about a flight
      */
+    // Reagan
     public static String printFlight(Flight flight){
         if (flight == null) {
             return " ";
@@ -119,6 +125,7 @@ public class BookingFacade {
      * A method that saves what flight the user booked and its information to a new text file.
      * @param text A string of text to be saved to a text file.
      */
+    // Sophie
     public void printFlightToText(String text) {
         try {
             File myObj = new File("FlightTicket.txt");
@@ -137,6 +144,7 @@ public class BookingFacade {
      * A method that prints all the information about a hotel to a new text file
      * @param text A string of text to be saved to a text file.
      */
+    // Ben
     public void printHotelToText(String text) {
         try {
             File myObj = new File("HotelInfo.txt");
@@ -157,6 +165,7 @@ public class BookingFacade {
      * @param arrivalTime a given arrival time for a flight
      * @return total the amount of time that the flight will take to get to its destination.
      */
+    // Sophie 
     public static String calculateFlightTime(int departTime, int arrivalTime){
         int totalMinutes;
         int hours;
@@ -174,6 +183,7 @@ public class BookingFacade {
      * @param time a given integer of time
      * @return timeConvert a converted 12 hour time in AM or PM to a 24 hour time
      */
+    // Reagan
     public String militaryTimeConvert(int time){
 
         String timeconvert = Integer.toString(time);
@@ -212,6 +222,7 @@ public class BookingFacade {
      * and arrival location)
      * @return sortedFlights flights sorted based on user specification
      */
+    // Austin
     public String printSortedFlights(ArrayList<Flight> tempArr){
         String sortedFlights = "";
         for(int i = 0; i < tempArr.size(); i++) {
@@ -225,6 +236,7 @@ public class BookingFacade {
      * @param hotels an ArrayList of the total amount of hotels the user is interested in
      * @return hotels the sorted ArrayList of hotels based on their price
      */
+    // Reagan
     public ArrayList<Hotel> sortCheapestHotels(ArrayList<Hotel> hotels){
         Collections.sort(hotels);
         return hotels;
@@ -234,6 +246,7 @@ public class BookingFacade {
      * @param hotels and ArrayList of the total amount of hotels the user is interested in
      * @return validHotels the sorted ArrayList of hotels based on their ratings
      */
+    // Sophie
     public ArrayList<Hotel> sortRatingHotels(ArrayList<Hotel> hotels){
         ArrayList<Double> tempHotel = new ArrayList<Double>();
         ArrayList<Hotel> validHotel = new ArrayList<Hotel>();
@@ -255,6 +268,7 @@ public class BookingFacade {
      * @param city a city that a hotel is in
      * @return validHotels an ArrayList of hotels that have rooms in the given city
      */
+    // Austin
     public ArrayList<Hotel> validHotels(String city) {
         ArrayList<Hotel> validHotels = new ArrayList<Hotel>();
         for (int i = 0; i < hotelList.size(); i++) {
@@ -270,6 +284,7 @@ public class BookingFacade {
      * @param hotel a new hotel
      * @return hotelString a String that displays all the details of the hotel passed in
      */
+    // Ben
     public static String printHotel(Hotel hotel) {
         String hotelString = ("Hotel Name: " + hotel.getName() + '\n' + "Hotel price: " + hotel.getPrice() + '\n' 
             + "Rating: " + hotel.getRatings() + '\n' + "Pool?: " + hotel.getPool());
@@ -280,6 +295,7 @@ public class BookingFacade {
      * @param hotels An ArrayList of hotels that have been sorted
      * @return sortedHotels a String of hotels that have been sorted to user specifications
      */
+    // Ben
     public static String printSortedHotels(ArrayList<Hotel> hotels){ 
         String sortedHotels = "";
         for(int i = 0; i < hotels.size(); i++) {
@@ -295,6 +311,7 @@ public class BookingFacade {
      * @param departCity the depart city the user wants
      * @return validFlights an ArrayList of flights that are availible that the user is interested in
      */
+    // Austin or Sophie 
     public ArrayList<Flight> validFlights(int numTickets, String destinationCity, String departCity){
         // loop through and see if the flight is available and add to the string
         ArrayList<Flight> validFlights = new ArrayList<Flight>();
@@ -335,6 +352,7 @@ public class BookingFacade {
      * @param startLocation The starting location of the fist flight
      * @return ret a new instance of flights that have been connected
      */
+    // Austin
     public ConnectedFlights connectFlights(Flight compare, String startLocation) {
         // Create list of all connections;
         ConnectedFlights ret = new ConnectedFlights();
@@ -360,6 +378,7 @@ public class BookingFacade {
      * @param flight a flight
      * @return seatsLeft the amount of seats left on a given flight
      */
+    // Sophie
     public int howManySeatsLeft(Flight flight) {
         ArrayList<Seat> seats = flight.getSeat();
         int seatsLeft = 0;
@@ -376,6 +395,7 @@ public class BookingFacade {
      * @param seat a seat
      * @return true if the seat is available and false if the seat is not availible or no seats are left
      */
+    // Reagan
     public boolean pickedSeat(Flight flight, String seat) {
         ArrayList<Seat> seats = flight.getSeat();
         if (seat.length() != 2) {
@@ -417,6 +437,7 @@ public class BookingFacade {
      * A method that prints out all of a users family members
      * @return ret A String of family memebers for a given user
      */
+    // Reagan
     public String printFamilyMembers() {
         String ret = "";
         if (currentUser.getFamilyMembers().size() == 0) {
@@ -436,6 +457,7 @@ public class BookingFacade {
      * @param famName the name of a family memeber 
      * @return true if the family member is seen in the users family members.  false if it is not.
      */
+    // Reagan
     public boolean checkFamilyMember(String famName) {
         for (int i = 0; i < currentUser.getFamilyMembers().size(); i++) {
             if (famName.equalsIgnoreCase(currentUser.getFamilyMembers().get(i).getName())) {
@@ -449,6 +471,7 @@ public class BookingFacade {
      * @param flight a flight
      * @return output A string that prints like a grid to show which seats are availible and which are taken
      */
+    // Sophie
     public String showSeats(Flight flight) { //should this be done in the UI
         String output = "   A B C  D E F";
         int rows = 10;
@@ -489,6 +512,7 @@ public class BookingFacade {
      * @param numOfDays the number of days the hotel was booked for
      * @return ret will print out any rooms that are availible if any are, or print that is invalid if there is none.
      */
+    // Ben
     public static String getRoom(Hotel pickedHotel, int numRooms, int numOfBeds, String dateBooked, int numOfDays) {
         String ret = "";
         SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy");
@@ -531,6 +555,7 @@ public class BookingFacade {
      * @param room a room
      * @return a String of the rooms details
      */
+    // Ben
     public static String printRoom(Room room) {
         return "\nFloor: " + room.getFloor() + "\nRoom Number: " + room.getRoomNumber() + "\nNumber of beds: " + room.getNumOfBeds();
     }
@@ -540,6 +565,7 @@ public class BookingFacade {
      * @param daysToBook
      * @return
      */
+    // Ben
     public static boolean doesntContainDay(Room room, ArrayList<String> daysToBook) {
         boolean ret = true;
         for (int i = 0; i < room.getBookedDates().size(); i++) {
@@ -554,6 +580,7 @@ public class BookingFacade {
      * A method that returns the flights that the user has booked
      * @return ret A String list of flights that the user has been on
      */
+    // Austin or Sophie
     public String getFlightHistory() {
         String ret = "";
         for (int i = 0; i < currentUser.getFlightHistory().size(); i++) {
@@ -571,6 +598,7 @@ public class BookingFacade {
      * A method that returns the hotels that the user has booked
      * @return ret A String list of hotels that the user has booked
      */
+    // Ben
     public String getHotelHistory() {
         String ret = "";
         for (int i = 0; i < currentUser.getHotelHistory().size(); i++) {
