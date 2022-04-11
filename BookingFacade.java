@@ -461,7 +461,7 @@ public class BookingFacade {
      * @return output A string that prints like a grid to show which seats are availible and which are taken
      */
     // Sophie
-    public String showSeats(Flight flight) { //should this be done in the UI
+    public static String showSeats(Flight flight) { //should this be done in the UI
         String output = "   A B C  D E F";
         int rows = 10;
         int cols = 6;
