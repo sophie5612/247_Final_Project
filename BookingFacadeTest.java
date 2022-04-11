@@ -220,8 +220,33 @@ class BookingFacadeTest {
     }
     @Test
     public void testCheckFamilyMember() {
+<<<<<<< HEAD
     //    boolean ret = BookingFacade.checkFamilyMember("Shawn");
     //    assertEquals(ret, false);
+=======
+        Boolean ret = BookingFacade.checkFamilyMember("Shawn");
+        assertEquals(ret, false);
+>>>>>>> 581a12446900ae113c8a14c34816e1b2968c12f1
+    }
+    @Test
+    public void testCalculateFlightTime() {
+        String ret = BookingFacade.calculateFlightTime(0, 0);
+        assertEquals(ret, "Total Time " + 0 + " Hours " + 0 + " Minutes");
+    }
+    @Test
+    public void testCalculateFlightTimeBigTime() {
+        String ret = BookingFacade.calculateFlightTime(900, 690);
+        assertEquals(ret, "Total Time " + 2 + " Hours " + 30 + " Minutes");
+    }
+    @Test
+    public void testCalculateFlightTimeSmallLarge() {
+        String ret = BookingFacade.calculateFlightTime(600, 61);
+        assertEquals(ret, "Total Time " + 9 + " Hours " + 59 + " Minutes");
+    }
+    @Test
+    public void testCalculateFlightTimeNegative() {
+        String ret = BookingFacade.calculateFlightTime(-100, -50);
+        assertEquals(ret, "Not a valid time");
     }
     
 }
