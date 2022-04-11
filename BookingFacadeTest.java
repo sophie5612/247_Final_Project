@@ -172,8 +172,8 @@ class BookingFacadeTest {
     }
     @Test
     public void testCheckFamilyMember() {
-        String ret = BookingFacade.printFamilyMembers();
-        assertEquals(ret, " ");
+        Boolean ret = BookingFacade.checkFamilyMember("Shawn");
+        assertEquals(ret, false);
     }
     
     // @Test
