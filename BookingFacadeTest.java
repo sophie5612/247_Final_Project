@@ -79,7 +79,16 @@ class BookingFacadeTest {
     }
 
     @Test
-    public 
+    public void testNoValidFlightsIfZeroTix(){
+        ArrayList<Flight> validFlights = bookingFacade.validFlights(0, "Columbia", "Seattle");
+        assertEquals(null, validFlights);
+    }
+
+    @Test
+    public void testNoValidFlightsIfNullInput(){
+        ArrayList<Flight> validFlights = bookingFacade.validFlights(0, " " , " ");
+        assertEquals(null, validFlights);
+    }
 
     @Test
     void testPrintHotelNull(){
