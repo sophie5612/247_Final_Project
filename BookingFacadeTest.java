@@ -121,7 +121,7 @@ class BookingFacadeTest {
     public void testGetRoomWorks() {
         Hotel hotel = new Hotel();
         String ret = BookingFacade.getRoom(hotel, 2, 2, "20-02-2022", 4);
-        assertEquals(ret, "Added room\n Floor: 0\n Room Number: 0\n Number of beds: 2\n Added room\n Floor: 0\n Room Number: 2\n Number of beds: 2\n Hotel is being added to your account...")
+        assertEquals(ret, "Added room\n Floor: 0\n Room Number: 0\n Number of beds: 2\n Added room\n Floor: 0\n Room Number: 2\n Number of beds: 2\n Hotel is being added to your account...");
     }
 
     @Test
@@ -130,7 +130,7 @@ class BookingFacadeTest {
         assertEquals(ret, true);
     }
 
-    @Test //Error?
+    @Test
     public void testDosentContainDayWorks() {
         UUID uuid = new UUID(2,5);
         ArrayList<String> bookedDates = new ArrayList<String>();
