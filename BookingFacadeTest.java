@@ -83,11 +83,28 @@ class BookingFacadeTest {
         String ret = BookingFacade.printRoom(null);
         assertEquals(ret, "\nFloor: \nRoom Number: \nNumber of beds: ");
     }
+    
+    @Test
+    public void testPrintRoomWorks() {
+        UUID uuid = new UUID(2,5);
+        ArrayList<String> bookedDates = new ArrayList<String>();
+        Room room = new Room(0, 0, uuid, 3, true, bookedDates);
+        String ret = BookingFacade.printRoom(room);
+        assertEquals(ret, "\nFloor: 0\nRoom Number: 0\nNumber of beds: 3" );
+    }
 
     @Test
-    public void testgetRoomNull() {
+    public void testGetRoomNull() {
         String ret = BookingFacade.getRoom(null, 0, 0, "", 0);
         assertEquals(ret, "No Rooms available in this hotel");
+    }
+
+    
+    @Test
+    public void testGetRoomWorks() {
+        Hotel hotel = new Hotel();
+        String ret = BookingFacade.getRoom(hotel, 2, 2, "20-02-2022", 4);
+        assertEquals(ret, "Added room\n Floor: 0\n Room Number: 0\n Number of beds: 2\n Added room\n Floor: 0\n Room Number: 2\n Number of beds: 2\n Hotel is being added to your account...")
     }
 
     @Test
