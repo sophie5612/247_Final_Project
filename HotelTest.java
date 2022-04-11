@@ -1,24 +1,21 @@
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import java.security.DrbgParameters.Capability;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.UUID;
+import org.junit.Test;
 
-class HotelTest {
+import java.util.UUID;
+import org.junit.Test;
 
-    //@Test
+public class HotelTest {
+
+    @Test
     public void testCompareToEquals(){
+        Hotel hotel = new Hotel();
+        int ret = Hotel.compareTo(hotel);
         
     }
 
-    //@Test
+    @Test
     public static void testCompareTo(){
 
     }

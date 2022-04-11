@@ -77,10 +77,7 @@ class BookingFacadeTest {
         bookingFacade.sortMostAvailableFlights(sorted);
         assertEquals(sorted, BookingFacade.sortCheapestFlights(temp));
     }
-
-    @Test
-    public 
-
+    
     @Test
     void testPrintHotelNull(){
         String hotel = BookingFacade.printHotel(null);
