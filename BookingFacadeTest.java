@@ -165,16 +165,6 @@ class BookingFacadeTest {
         Collections.sort(sorted);
         assertEquals(sorted, BookingFacade.sortCheapestHotels(temp));
     }
-    @Test
-    public void testFamilyMember() {
-        String ret = BookingFacade.printFamilyMembers();
-        assertEquals(ret, null);
-    }
-    @Test
-    public void testCheckFamilyMember() {
-        String ret = BookingFacade.printFamilyMembers();
-        assertEquals(ret, " ");
-    }
     
     // @Test
     // public void testgetRoomOneRoomTwoBedsTwoDays() {
