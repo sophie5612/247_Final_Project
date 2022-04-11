@@ -73,7 +73,7 @@ public class BookingFacade {
      * @return flights the in order
      */
     // Reagan
-    public ArrayList<Flight> sortCheapestFlights(ArrayList<Flight> flights){ // search the Flights for cheapest flight, return the sorted ArrayList
+    public static ArrayList<Flight> sortCheapestFlights(ArrayList<Flight> flights){ // search the Flights for cheapest flight, return the sorted ArrayList
         Collections.sort(flights);
         return flights;
     }
@@ -182,7 +182,7 @@ public class BookingFacade {
      * @return timeConvert a converted 12 hour time in AM or PM to a 24 hour time
      */
     // Reagan
-    public String militaryTimeConvert(int time){
+    public static String militaryTimeConvert(int time){
 
         String timeconvert = Integer.toString(time);
         String hour = timeconvert.substring(0,2);
@@ -235,7 +235,7 @@ public class BookingFacade {
      * @return hotels the sorted ArrayList of hotels based on their price
      */
     // Reagan
-    public ArrayList<Hotel> sortCheapestHotels(ArrayList<Hotel> hotels){
+    public static ArrayList<Hotel> sortCheapestHotels(ArrayList<Hotel> hotels){
         Collections.sort(hotels);
         return hotels;
     }
@@ -394,7 +394,7 @@ public class BookingFacade {
      * @return true if the seat is available and false if the seat is not availible or no seats are left
      */
     // Reagan
-    public boolean pickedSeat(Flight flight, String seat) {
+    public static boolean pickedSeat(Flight flight, String seat) {
         ArrayList<Seat> seats = flight.getSeat();
         if (seat.length() != 2) {
             return false;
@@ -436,7 +436,7 @@ public class BookingFacade {
      * @return ret A String of family memebers for a given user
      */
     // Reagan
-    public String printFamilyMembers() {
+    public static String printFamilyMembers() {
         String ret = "";
         if (currentUser.getFamilyMembers().size() == 0) {
             return "Looks like you dont have anyone saved to your account, please type in \"New\"";

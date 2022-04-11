@@ -6,5 +6,9 @@ Pool?: true
 
 Added room
 Floor: 0
-Room Number: 4
-Number of beds: 1
+Room Number: 0
+Number of beds: 2
+Added room
+Floor: 0
+Room Number: 2
+Number of beds: 2
