@@ -308,13 +308,13 @@ class BookingFacadeTest {
     @Test
     public void testShowSeats() {
         Flight flight = new Flight();
-        String ret = BookingFacade.showSeats(flight);
+        String ret = bookingFacade.showSeats(flight);
         assertEquals(ret, null);
     }
     @Test
     public void testShowSeatsNull() {
         Flight flight = null;
-        String ret = BookingFacade.showSeats(flight);
+        String ret = bookingFacade.showSeats(flight);
         assertEquals(ret, null);
     }
 }
