@@ -2,55 +2,59 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.security.DrbgParameters.Capability;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.UUID;
 
-/**
- * @author Ben Goodman
- */
+
 class BookingFacadeTest {
     BookingFacade bookingFacade = new BookingFacade();
-    static Flights flights = Flights.getInstance();
-    Hotels hotels = Hotels.getInstance();
     Users users = Users.getInstance();
-    static ArrayList<Flight> flightList;
-    ArrayList<Hotel> hotelList;
-    ArrayList<User> userList;
+    ArrayList<User> userList = Users.getUsers();
 
-    UUID uuID = UUID.randomUUID(); 
-    User austin = new User(uuID, "Austin", "01-01-2001", "cap", "password", null, null, null);
-
-
-    @Before
-    public static void setUp(){
-        //if yall need to set anything up
+    @BeforeEach
+    public void setUp(){
+        UUID uuID1 = UUID.randomUUID(); 
+        UUID uuID2 = UUID.randomUUID();
+        User austin = new User(uuID1, "Austin", "01-01-2001", "cap", "password", null, null, null);
+        User sophie = new User(uuID2, "Sophie" , "05-09-2001", "soph", "pass", null, null, null);
+        bookingFacade.userList.add(austin);
+        bookingFacade.userList.add(sophie);
     }
-    @After
-    public static void tearDown(){
-        //take it down
+
+    @AfterEach
+    public void tearDown(){
+        bookingFacade.userList.clear();
+        DataWriter.saveUsers();
     }
 
     @Test 
-    void testAccountCreation(){
+    public void testAccountCreation(){
+        bookingFacade.signUp("Ben", "01-01-2001", "cap", "password");
+        User user = bookingFacade.userList.get(2); // 2 users already set in setUp
+        String usersName = user.getName();
+        assertSame("Ben", usersName);
+    }
+
+    @Test 
+    public void testDuplicateUserNames(){
         bookingFacade.signUp("Austin", "01-01-2001", "cap", "password");
-        User user = userList.get(0);
-        assertSame(austin, user);
-    }
-
-    @Test 
-    void testDuplicateUserNames(){
-
+        User user = bookingFacade.userList.get(2); // 2 users already set in setUp
+        String usersName = user.getName();
+        assertEquals(null, usersName); // acount should not be created
     }
 
     @Test
-    void testCreateEmptyUserName(){
-
-    }
-
-    @Test void testCreateNullUserName(){
-        
+    public void testCreateEmptyUser(){
+        bookingFacade.signUp(" ", " ", " ", " ");
+        User user = bookingFacade.userList.get(2); // 2 users already set in setUp
+        String usersName = user.getName();
+        assertEquals(null, usersName); // acount should not be created
     }
 
     @Test
@@ -61,7 +65,7 @@ class BookingFacadeTest {
 
     @Test
     void testLogInFail(){
-        boolean temp = bookingFacade.login("x", "y");
+        boolean temp = bookingFacade.login("x", "y"); // no credentials exist
         assertFalse(temp);
     }
 
@@ -118,7 +122,7 @@ class BookingFacadeTest {
     public void testGetRoomWorks() {
         Hotel hotel = new Hotel();
         String ret = BookingFacade.getRoom(hotel, 2, 2, "20-02-2022", 4);
-        assertEquals(ret, "Added room\n Floor: 0\n Room Number: 0\n Number of beds: 2\n Added room\n Floor: 0\n Room Number: 2\n Number of beds: 2\n Hotel is being added to your account...")
+        assertEquals(ret, "Added room\n Floor: 0\n Room Number: 0\n Number of beds: 2\n Added room\n Floor: 0\n Room Number: 2\n Number of beds: 2\n Hotel is being added to your account...");
     }
 
     @Test
@@ -127,7 +131,7 @@ class BookingFacadeTest {
         assertEquals(ret, true);
     }
 
-    @Test //Error?
+    @Test
     public void testDosentContainDayWorks() {
         UUID uuid = new UUID(2,5);
         ArrayList<String> bookedDates = new ArrayList<String>();
@@ -218,8 +222,33 @@ class BookingFacadeTest {
     }
     @Test
     public void testCheckFamilyMember() {
+<<<<<<< HEAD
+    //    boolean ret = BookingFacade.checkFamilyMember("Shawn");
+    //    assertEquals(ret, false);
+=======
         Boolean ret = BookingFacade.checkFamilyMember("Shawn");
         assertEquals(ret, false);
+>>>>>>> 581a12446900ae113c8a14c34816e1b2968c12f1
+    }
+    @Test
+    public void testCalculateFlightTime() {
+        String ret = BookingFacade.calculateFlightTime(0, 0);
+        assertEquals(ret, "Total Time " + 0 + " Hours " + 0 + " Minutes");
+    }
+    @Test
+    public void testCalculateFlightTimeBigTime() {
+        String ret = BookingFacade.calculateFlightTime(900, 690);
+        assertEquals(ret, "Total Time " + 2 + " Hours " + 30 + " Minutes");
+    }
+    @Test
+    public void testCalculateFlightTimeSmallLarge() {
+        String ret = BookingFacade.calculateFlightTime(600, 61);
+        assertEquals(ret, "Total Time " + 9 + " Hours " + 59 + " Minutes");
+    }
+    @Test
+    public void testCalculateFlightTimeNegative() {
+        String ret = BookingFacade.calculateFlightTime(-100, -50);
+        assertEquals(ret, "Not a valid time");
     }
     
 }
