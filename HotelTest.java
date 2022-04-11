@@ -7,25 +7,25 @@ import org.junit.Test;
 //import org.junit.Test;
 
 public class HotelTest {
-    Hotel HotelOne = new Hotel();//UUID.randomUUID(), "Hilton", true, 30.50, 4.5, null);
-    Hotel HotelTwo = new Hotel();//UUID.randomUUID(), "Motel 6", false, 20.25, 3.0, null);
-    Hotel HotelThree = new Hotel();
+    Hotel cheapHotel2 = new Hotel(UUID.randomUUID(), "Hilton", true, 20.25, 4.5, null, "Columiba");
+    Hotel cheapHotel = new Hotel(UUID.randomUUID(), "Motel 6", false, 20.25, 3.0, null, "Columbia");
+    Hotel expensiveHotel = new Hotel(UUID.randomUUID(), "Marriot", true, 50.00, 3.0, null, "Columbia");
 
     @Test
     public void testCheapestHotels(){
-       int ret = HotelOne.compareTo(HotelTwo);
+       int ret = cheapHotel.compareTo(expensiveHotel);
         assertEquals(-1, ret);
     }
 
     @Test
     public void testPriciestHotel(){
-        int ret = HotelThree.compareTo(HotelOne);
+        int ret = expensiveHotel.compareTo(cheapHotel);
         assertEquals(1, ret);
     }
 
     @Test
     public void testEqualHotels(){
-        int ret = HotelOne.compareTo(HotelTwo);
+        int ret = cheapHotel.compareTo(cheapHotel2);
         assertEquals(0, ret);
     }
 }
