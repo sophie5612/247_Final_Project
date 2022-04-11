@@ -32,10 +32,24 @@ class BookingFacadeTest {
     }
 
     @Test 
-    void testSignUp(){
+    void testAccountCreation(){
         bookingFacade.signUp("Austin", "01-01-2001", "cap", "password");
         User user = userList.get(0);
         assertSame(austin, user);
+    }
+
+    @Test 
+    void testDuplicateUserNames(){
+
+    }
+
+    @Test
+    void testCreateEmptyUserName(){
+
+    }
+
+    @Test void testCreateNullUserName(){
+        
     }
 
     @Test

@@ -48,7 +48,6 @@ public class BookingFacade {
      * @param password the users password
      * @return true if the information is valid or false if the information is invalid
      */
-    // Sophie
     public boolean login(String username, String password){
         for (int i = 0; i < userList.size(); i++) {
             User temp = userList.get(i);
@@ -62,7 +61,7 @@ public class BookingFacade {
     /**
      * A method that logs the user out of the program and saves all of their changes.
      */
-    // Sophie
+    // Sophie?
     public void logOut(){
         Flights.logout();
         Hotels.logout();
