@@ -2,34 +2,34 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.security.DrbgParameters.Capability;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.UUID;
 
-/**
- * @author Ben Goodman
- */
+
 class BookingFacadeTest {
     BookingFacade bookingFacade = new BookingFacade();
-    static Flights flights = Flights.getInstance();
-    Hotels hotels = Hotels.getInstance();
-    Users users = Users.getInstance();
-    static ArrayList<Flight> flightList;
-    ArrayList<Hotel> hotelList;
-    ArrayList<User> userList;
+    ArrayList<User> userList = new ArrayList<User>();
 
-    UUID uuID = UUID.randomUUID(); 
-    User austin = new User(uuID, "Austin", "01-01-2001", "cap", "password", null, null, null);
-
-
-    @Before
-    public static void setUp(){
-        //if yall need to set anything up
+    @BeforeEach
+    public void setUp(){
+        userList.clear();
+        UUID uuID1 = UUID.randomUUID(); 
+        UUID uuID2 = UUID.randomUUID();
+        User austin = new User(uuID1, "Austin", "01-01-2001", "cap", "password", null, null, null);
+        User sophie = new User(uuID2, "Sophie" , "05-09-2001", "soph", "pass", null, null, null);
+        userList.add(austin);
+        userList.add(sophie);
     }
-    @After
+
+    @AfterEach
     public static void tearDown(){
-        //take it down
+        DataWriter.saveUsers();
     }
 
     @Test 
@@ -41,7 +41,10 @@ class BookingFacadeTest {
 
     @Test 
     void testDuplicateUserNames(){
+        bookingFacade.signUp("Austin", "01-01-2001", "cap", "password");
+        User user = userList.get(0);
 
+        boolean temp = 
     }
 
     @Test
@@ -203,7 +206,7 @@ class BookingFacadeTest {
     }
     @Test
     public void testCheckFamilyMember() {
-        Boolean ret = BookingFacade.checkFamilyMember("Shawn");
+        boolean ret = BookingFacade.checkFamilyMember("Shawn");
         assertEquals(ret, false);
     }
     
