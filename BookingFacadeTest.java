@@ -279,4 +279,16 @@ class BookingFacadeTest {
         String ret = BookingFacade.printSortedFlights(tempArr);
         assertEquals(ret, null);
     }
+    @Test
+    public void testShowSeats() {
+        Flight flight = new Flight();
+        String ret = BookingFacade.showSeats(flight);
+        assertEquals(ret, null);
+    }
+    @Test
+    public void testShowSeatsNull() {
+        Flight flight = null;
+        String ret = BookingFacade.showSeats(flight);
+        assertEquals(ret, null);
+    }
 }
