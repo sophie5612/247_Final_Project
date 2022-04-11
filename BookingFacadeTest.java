@@ -77,7 +77,19 @@ class BookingFacadeTest {
         bookingFacade.sortMostAvailableFlights(sorted);
         assertEquals(sorted, BookingFacade.sortCheapestFlights(temp));
     }
-    
+
+    @Test
+    public void testNoValidFlightsIfZeroTix(){
+        ArrayList<Flight> validFlights = bookingFacade.validFlights(0, "Columbia", "Seattle");
+        assertEquals(null, validFlights);
+    }
+
+    @Test
+    public void testNoValidFlightsIfNullInput(){
+        ArrayList<Flight> validFlights = bookingFacade.validFlights(0, " " , " ");
+        assertEquals(null, validFlights);
+    }
+
     @Test
     void testPrintHotelNull(){
         String hotel = BookingFacade.printHotel(null);
