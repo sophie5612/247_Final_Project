@@ -125,6 +125,21 @@ class BookingFacadeTest {
     }
 
     @Test
+    public void testDosentContainDayNull() {
+        boolean ret = BookingFacade.doesntContainDay(null, null);
+        assertEquals(ret, true);
+    }
+
+    @Test //Error?
+    public void testDosentContainDayWorks() {
+        UUID uuid = new UUID(2,5);
+        ArrayList<String> bookedDates = new ArrayList<String>();
+        Room room = new Room(0, 0, uuid, 2, true, bookedDates);
+        boolean ret = BookingFacade.doesntContainDay(room, bookedDates);
+        assertEquals(ret, true);
+    }
+
+    @Test
     public void TestPrintFlight() {
         Flight flight = new Flight();
         String ret = BookingFacade.printFlight(flight);
@@ -209,16 +224,5 @@ class BookingFacadeTest {
         boolean ret = BookingFacade.checkFamilyMember("Shawn");
         assertEquals(ret, false);
     }
-    
-    // @Test
-    // public void testgetRoomOneRoomTwoBedsTwoDays() {
-    //     Hotel hotel = new Hotel();
-    //     Room temp = new Room();
-    //     String ret = BookingFacade.getRoom(hotel, 1, 2, "02-02-2022", 2);
-    //     for (int i = 0; i < hotel.getRooms().size(); i++) {
-    //         temp = hotel.getRooms().get(i);
-    //     }
-    //     assertEquals(ret, "\nAdded room" + BookingFacade.printRoom(temp));
-    // }
     
 }
