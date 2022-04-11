@@ -160,10 +160,10 @@ class BookingFacadeTest {
 
     @Test
     public void testSortCheapestHotelsNull() {
-        ArrayList<Flight> temp = null;
-        ArrayList<Flight> sorted = null;
+        ArrayList<Hotel> temp = null;
+        ArrayList<Hotel> sorted = null;
         Collections.sort(sorted);
-        assertEquals(sorted, BookingFacade.sortCheapestFlights(temp));
+        assertEquals(sorted, BookingFacade.sortCheapestHotels(temp));
     }
     @Test
     public void testFamilyMember() {
