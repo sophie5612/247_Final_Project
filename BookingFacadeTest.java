@@ -14,6 +14,8 @@ import java.util.UUID;
 
 class BookingFacadeTest {
     BookingFacade bookingFacade = new BookingFacade();
+    Users users = Users.getInstance();
+    ArrayList<User> userList = Users.getUsers();
 
     @BeforeEach
     public void setUp(){
