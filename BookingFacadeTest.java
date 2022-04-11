@@ -34,7 +34,7 @@ class BookingFacadeTest {
     @Test 
     void testAccountCreation(){
         bookingFacade.signUp("Ben", "01-01-2001", "cap", "password");
-        User user = userList.get(2); // 2 users already set in setUp
+        User user = bookingFacade.userList.get(2); // 2 users already set in setUp
         String usersName = user.getName();
         assertSame("Ben", usersName);
     }
@@ -42,7 +42,7 @@ class BookingFacadeTest {
     @Test 
     void testDuplicateUserNames(){
         bookingFacade.signUp("Austin", "01-01-2001", "cap", "password");
-        User user = userList.get(2); // 2 users already set in setUp
+        User user = bookingFacade.userList.get(2); // 2 users already set in setUp
         String usersName = user.getName();
         assertEquals(null, usersName); // acount should not be created
     }
@@ -50,7 +50,7 @@ class BookingFacadeTest {
     @Test
     void testCreateEmptyUser(){
         bookingFacade.signUp(" ", " ", " ", " ");
-        User user = userList.get(2); // 2 users already set in setUp
+        User user = bookingFacade.userList.get(2); // 2 users already set in setUp
         String usersName = user.getName();
         assertEquals(null, usersName); // acount should not be created
     }
