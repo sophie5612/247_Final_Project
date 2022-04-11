@@ -79,10 +79,7 @@ class BookingFacadeTest {
     }
 
     @Test
-    public 
-
-    @Test
-    void testPrintHotelNull(){
+    public void testPrintHotelNull(){
         String hotel = BookingFacade.printHotel(null);
         assertEquals(hotel, "");
     }
