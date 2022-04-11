@@ -34,26 +34,26 @@ class BookingFacadeTest {
 
     @Test 
     void testAccountCreation(){
-        bookingFacade.signUp("Austin", "01-01-2001", "cap", "password");
-        User user = userList.get(0);
-        assertSame(austin, user);
+        bookingFacade.signUp("Ben", "01-01-2001", "cap", "password");
+        User user = userList.get(2); // 2 users already set in setUp
+        String usersName = user.getName();
+        assertSame("Ben", usersName);
     }
 
     @Test 
     void testDuplicateUserNames(){
         bookingFacade.signUp("Austin", "01-01-2001", "cap", "password");
-        User user = userList.get(0);
-
-        boolean temp = 
+        User user = userList.get(2); // 2 users already set in setUp
+        String usersName = user.getName();
+        assertEquals(null, usersName); // acount should not be created
     }
 
     @Test
-    void testCreateEmptyUserName(){
-
-    }
-
-    @Test void testCreateNullUserName(){
-        
+    void testCreateEmptyUser(){
+        bookingFacade.signUp(" ", " ", " ", " ");
+        User user = userList.get(2); // 2 users already set in setUp
+        String usersName = user.getName();
+        assertEquals(null, usersName); // acount should not be created
     }
 
     @Test
@@ -64,7 +64,7 @@ class BookingFacadeTest {
 
     @Test
     void testLogInFail(){
-        boolean temp = bookingFacade.login("x", "y");
+        boolean temp = bookingFacade.login("x", "y"); // no credentials exist
         assertFalse(temp);
     }
 
