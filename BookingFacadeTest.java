@@ -31,7 +31,7 @@ class BookingFacadeTest {
         if (bookingFacade.userList != null){
             bookingFacade.userList.clear();
         }
-        DataWriter.saveUsers();
+        //DataWriter.saveUsers();
     }
 
     @Test 
@@ -223,13 +223,8 @@ class BookingFacadeTest {
     }
     @Test
     public void testCheckFamilyMember() {
-<<<<<<< HEAD
-    //    boolean ret = BookingFacade.checkFamilyMember("Shawn");
-    //    assertEquals(ret, false);
-=======
         Boolean ret = BookingFacade.checkFamilyMember("Shawn");
         assertEquals(ret, false);
->>>>>>> 581a12446900ae113c8a14c34816e1b2968c12f1
     }
     @Test
     public void testCalculateFlightTime() {
@@ -251,5 +246,10 @@ class BookingFacadeTest {
         String ret = BookingFacade.calculateFlightTime(-100, -50);
         assertEquals(ret, "Not a valid time");
     }
-    
+    @Test
+    public void testPrintSortedFlight() {
+        ArrayList<Flight> tempArr = new ArrayList<Flight>();
+        String ret = BookingFacade.printSortedFlights(tempArr);
+        assertEquals(ret, "");
+    }
 }

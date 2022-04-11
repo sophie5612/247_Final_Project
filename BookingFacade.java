@@ -221,7 +221,7 @@ public class BookingFacade {
      * @return sortedFlights flights sorted based on user specification
      */
     // Austin
-    public String printSortedFlights(ArrayList<Flight> tempArr){
+    public static String printSortedFlights(ArrayList<Flight> tempArr){
         String sortedFlights = "";
         for(int i = 0; i < tempArr.size(); i++) {
             sortedFlights += "\nFlight " + (i + 1) + ")\n" + printFlight(tempArr.get(i)) + "\n";
@@ -456,7 +456,7 @@ public class BookingFacade {
      * @return true if the family member is seen in the users family members.  false if it is not.
      */
     // Reagan
-    public boolean checkFamilyMember(String famName) {
+    public static boolean checkFamilyMember(String famName) {
         for (int i = 0; i < currentUser.getFamilyMembers().size(); i++) {
             if (famName.equalsIgnoreCase(currentUser.getFamilyMembers().get(i).getName())) {
                 return true;
