@@ -272,4 +272,11 @@ class BookingFacadeTest {
         String ret = BookingFacade.printSortedFlights(tempArr);
         assertEquals(ret, "");
     }
+    
+    @Test
+    public void testPrintSortedFlightNull() {
+        ArrayList<Flight> tempArr = null;
+        String ret = BookingFacade.printSortedFlights(tempArr);
+        assertEquals(ret, null);
+    }
 }
