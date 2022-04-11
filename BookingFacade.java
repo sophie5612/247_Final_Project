@@ -61,7 +61,7 @@ public class BookingFacade {
     /**
      * A method that logs the user out of the program and saves all of their changes.
      */
-    // Sophie?
+    // 
     public void logOut(){
         Flights.logout();
         Hotels.logout();
@@ -82,7 +82,6 @@ public class BookingFacade {
      * @param flights The ArrayList of all flights from a specified departure and arrival location
      * @return ret A new arraylist sorted by most available flights.
      */
-    // Sophie
     public ArrayList<Flight> sortMostAvailableFlights(ArrayList<Flight> flights){ // search the Flights for most available flight, return the sorted ArrayList
         ArrayList<Flight> ret = new ArrayList<Flight>();
         while (flights.size() > 0) {
@@ -108,7 +107,6 @@ public class BookingFacade {
      * @param flight a flight
      * @return flightString a new string that displays all the information about a flight
      */
-    // Reagan
     public static String printFlight(Flight flight){
         if (flight == null) {
             return " ";
@@ -123,7 +121,6 @@ public class BookingFacade {
      * A method that saves what flight the user booked and its information to a new text file.
      * @param text A string of text to be saved to a text file.
      */
-    // Sophie
     public void printFlightToText(String text) {
         try {
             File myObj = new File("FlightTicket.txt");
@@ -142,7 +139,6 @@ public class BookingFacade {
      * A method that prints all the information about a hotel to a new text file
      * @param text A string of text to be saved to a text file.
      */
-    // Ben
     public void printHotelToText(String text) {
         try {
             File myObj = new File("HotelInfo.txt");
@@ -163,7 +159,6 @@ public class BookingFacade {
      * @param arrivalTime a given arrival time for a flight
      * @return total the amount of time that the flight will take to get to its destination.
      */
-    // Sophie 
     public static String calculateFlightTime(int departTime, int arrivalTime){
         int totalMinutes;
         int hours;
@@ -181,7 +176,6 @@ public class BookingFacade {
      * @param time a given integer of time
      * @return timeConvert a converted 12 hour time in AM or PM to a 24 hour time
      */
-    // Reagan
     public static String militaryTimeConvert(int time){
 
         String timeconvert = Integer.toString(time);
@@ -220,7 +214,6 @@ public class BookingFacade {
      * and arrival location)
      * @return sortedFlights flights sorted based on user specification
      */
-    // Austin
     public static String printSortedFlights(ArrayList<Flight> tempArr){
         String sortedFlights = "";
         for(int i = 0; i < tempArr.size(); i++) {
@@ -234,7 +227,6 @@ public class BookingFacade {
      * @param hotels an ArrayList of the total amount of hotels the user is interested in
      * @return hotels the sorted ArrayList of hotels based on their price
      */
-    // Reagan
     public static ArrayList<Hotel> sortCheapestHotels(ArrayList<Hotel> hotels){
         Collections.sort(hotels);
         return hotels;
@@ -244,7 +236,6 @@ public class BookingFacade {
      * @param hotels and ArrayList of the total amount of hotels the user is interested in
      * @return validHotels the sorted ArrayList of hotels based on their ratings
      */
-    // Sophie
     public ArrayList<Hotel> sortRatingHotels(ArrayList<Hotel> hotels){
         ArrayList<Double> tempHotel = new ArrayList<Double>();
         ArrayList<Hotel> validHotel = new ArrayList<Hotel>();
