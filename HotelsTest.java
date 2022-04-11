@@ -1,3 +1,4 @@
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.UUID;
@@ -5,6 +6,7 @@ import org.junit.Test;
 
 
 public class HotelsTest {
+
     Hotel cheapHotel = new Hotel(UUID.randomUUID(), "EvesINN", true, 120.00, 2.3, null, "Charleston");
     Hotel anotherCheapHotel = new Hotel(UUID.randomUUID(), "EvesINN", true, 120.00, 3.0, null, "Charleston");
     Hotel pricyHotel = new Hotel(UUID.randomUUID(), "EvesINN", true, 300.00, 4.5, null, "Charleston");

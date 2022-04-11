@@ -300,7 +300,6 @@ public class BookingFacade {
      * @param departCity the depart city the user wants
      * @return validFlights an ArrayList of flights that are availible that the user is interested in
      */
-    // Austin or Sophie 
     public ArrayList<Flight> validFlights(int numTickets, String destinationCity, String departCity){
         // loop through and see if the flight is available and add to the string
         ArrayList<Flight> validFlights = new ArrayList<Flight>();
@@ -341,7 +340,6 @@ public class BookingFacade {
      * @param startLocation The starting location of the fist flight
      * @return ret a new instance of flights that have been connected
      */
-    // Austin
     public ConnectedFlights connectFlights(Flight compare, String startLocation) {
         // Create list of all connections;
         ConnectedFlights ret = new ConnectedFlights();
@@ -460,7 +458,6 @@ public class BookingFacade {
      * @param flight a flight
      * @return output A string that prints like a grid to show which seats are availible and which are taken
      */
-    // Sophie
     public String showSeats(Flight flight) { //should this be done in the UI
         String output = "   A B C  D E F";
         int rows = 10;
@@ -501,7 +498,6 @@ public class BookingFacade {
      * @param numOfDays the number of days the hotel was booked for
      * @return ret will print out any rooms that are availible if any are, or print that is invalid if there is none.
      */
-    // Ben
     public static String getRoom(Hotel pickedHotel, int numRooms, int numOfBeds, String dateBooked, int numOfDays) {
         String ret = "";
         SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy");
@@ -544,7 +540,6 @@ public class BookingFacade {
      * @param room a room
      * @return a String of the rooms details
      */
-    // Ben
     public static String printRoom(Room room) {
         return "\nFloor: " + room.getFloor() + "\nRoom Number: " + room.getRoomNumber() + "\nNumber of beds: " + room.getNumOfBeds();
     }

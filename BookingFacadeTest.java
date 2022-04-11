@@ -1,16 +1,14 @@
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.security.DrbgParameters.Capability;
+import Enums.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.UUID;
-
 
 class BookingFacadeTest {
     BookingFacade bookingFacade = new BookingFacade();
@@ -88,6 +86,34 @@ class BookingFacadeTest {
     public void testNoValidFlightsIfNullInput(){
         ArrayList<Flight> validFlights = bookingFacade.validFlights(0, " " , " ");
         assertEquals(null, validFlights);
+    }
+
+    @Test
+    public void testValidFlight(){
+        UUID uuID = UUID.randomUUID();
+        ArrayList<Seat> seats = new ArrayList<Seat>();
+        Seat seat = new Seat(2, 'A', uuID, true);
+        seats.add(seat);
+        Flight validFlight = new Flight(UUID.randomUUID(), "Columbia", "Seattle", "1-1-2022", "1-1-2022", "CA", "SA", FlightType.ONE_WAY, Airline.DELTA, 1, 800, 900, seats, 0);
+        assertNotEquals(null, validFlight);
+    }
+
+    @Test
+    public void testOneSeatsLeft(){
+        ArrayList<Seat> seats = new ArrayList<Seat>();
+        Seat seat = new Seat(2, 'A', UUID.randomUUID(), true);
+        seats.add(seat);
+        Flight validFlight = new Flight(UUID.randomUUID(), "Columbia", "Seattle", "1-1-2022", "1-1-2022", "CA", "SA", FlightType.ONE_WAY, Airline.DELTA, 1, 800, 900, seats, 0);
+        int seatsLeft = bookingFacade.howManySeatsLeft(validFlight);
+        assertSame(1, seatsLeft);
+    }
+
+    @Test
+    public void testNoSeatsLeft(){
+        ArrayList<Seat> seats = new ArrayList<Seat>();
+        Flight validFlight = new Flight(UUID.randomUUID(), "Columbia", "Seattle", "1-1-2022", "1-1-2022", "CA", "SA", FlightType.ONE_WAY, Airline.DELTA, 1, 800, 900, seats, 0);
+        int seatsLeft = bookingFacade.howManySeatsLeft(validFlight);
+        assertSame(0, seatsLeft);
     }
 
     @Test
