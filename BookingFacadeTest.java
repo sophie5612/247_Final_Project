@@ -108,6 +108,21 @@ class BookingFacadeTest {
     }
 
     @Test
+    public void testDosentContainDayNull() {
+        boolean ret = BookingFacade.doesntContainDay(null, null);
+        assertEquals(ret, true);
+    }
+
+    @Test //Error?
+    public void testDosentContainDayWorks() {
+        UUID uuid = new UUID(2,5);
+        ArrayList<String> bookedDates = new ArrayList<String>();
+        Room room = new Room(0, 0, uuid, 2, true, bookedDates);
+        boolean ret = BookingFacade.doesntContainDay(room, bookedDates);
+        assertEquals(ret, true);
+    }
+
+    @Test
     public void TestPrintFlight() {
         Flight flight = new Flight();
         String ret = BookingFacade.printFlight(flight);
