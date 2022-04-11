@@ -14,17 +14,16 @@ import java.util.UUID;
 
 class BookingFacadeTest {
     BookingFacade bookingFacade = new BookingFacade();
-    ArrayList<User> userList = new ArrayList<User>();
 
     @BeforeEach
     public void setUp(){
-        userList.clear();
+        bookingFacade.userList.clear();
         UUID uuID1 = UUID.randomUUID(); 
         UUID uuID2 = UUID.randomUUID();
         User austin = new User(uuID1, "Austin", "01-01-2001", "cap", "password", null, null, null);
         User sophie = new User(uuID2, "Sophie" , "05-09-2001", "soph", "pass", null, null, null);
-        userList.add(austin);
-        userList.add(sophie);
+        bookingFacade.userList.add(austin);
+        bookingFacade.userList.add(sophie);
     }
 
     @AfterEach
