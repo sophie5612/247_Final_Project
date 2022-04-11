@@ -71,6 +71,17 @@ class BookingFacadeTest {
     }
 
     @Test
+    public void testSortMostAvailableFlights() {
+        ArrayList<Flight> temp = new ArrayList<Flight>();
+        ArrayList<Flight> sorted = new ArrayList<Flight>();
+        bookingFacade.sortMostAvailableFlights(sorted);
+        assertEquals(sorted, BookingFacade.sortCheapestFlights(temp));
+    }
+
+    @Test
+    public 
+
+    @Test
     void testPrintHotelNull(){
         String hotel = BookingFacade.printHotel(null);
         assertEquals(hotel, "");
@@ -251,5 +262,12 @@ class BookingFacadeTest {
         ArrayList<Flight> tempArr = new ArrayList<Flight>();
         String ret = BookingFacade.printSortedFlights(tempArr);
         assertEquals(ret, "");
+    }
+    
+    @Test
+    public void testPrintSortedFlightNull() {
+        ArrayList<Flight> tempArr = null;
+        String ret = BookingFacade.printSortedFlights(tempArr);
+        assertEquals(ret, null);
     }
 }

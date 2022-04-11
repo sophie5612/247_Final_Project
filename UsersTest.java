@@ -18,7 +18,7 @@ class UsersTest{
 
     @After
     public void tearDown(){
-        DataWriter.saveFlight();
+        DataWriter.saveUsers();
     }
 
     @Test 

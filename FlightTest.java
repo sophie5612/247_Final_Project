@@ -1,3 +1,6 @@
+/**
+ * @author Sophie Azula
+ */
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.UUID;
 import org.junit.Test;
