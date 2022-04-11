@@ -14,11 +14,10 @@ import java.util.UUID;
 
 class BookingFacadeTest {
     BookingFacade bookingFacade = new BookingFacade();
-    Users users = Users.getInstance();
-    ArrayList<User> userList = Users.getUsers();
 
     @BeforeEach
     public void setUp(){
+        bookingFacade.setEmptyUserList();
         UUID uuID1 = UUID.randomUUID(); 
         UUID uuID2 = UUID.randomUUID();
         User austin = new User(uuID1, "Austin", "01-01-2001", "cap", "password", null, null, null);
@@ -29,7 +28,9 @@ class BookingFacadeTest {
 
     @AfterEach
     public void tearDown(){
-        bookingFacade.userList.clear();
+        if (bookingFacade.userList != null){
+            bookingFacade.userList.clear();
+        }
         DataWriter.saveUsers();
     }
 

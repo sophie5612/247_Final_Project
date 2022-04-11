@@ -609,4 +609,8 @@ public class BookingFacade {
         }
         return ret;
     }
+
+    public void setEmptyUserList(){
+        this.userList = new ArrayList<User>();
+    }
 }
